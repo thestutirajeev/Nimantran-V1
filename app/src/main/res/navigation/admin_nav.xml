@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_adminDashboardFragment_to_userListFragment"
             app:destination="@id/userListFragment" />
-        <action
-            android:id="@+id/action_adminDashboardFragment_to_userListFragment2"
-            app:destination="@id/userListFragment" />
     </fragment>
     <fragment
         android:id="@+id/userListFragment"
