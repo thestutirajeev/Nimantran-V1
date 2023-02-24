@@ -10,13 +10,15 @@ import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentUserListBinding
 
 class UserListFragment : Fragment() {
+
     private lateinit var binding: FragmentUserListBinding
     private var _binding: FragmentUserListBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentUserListBinding.inflate(inflater, container, false)
+        _binding = FragmentUserListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

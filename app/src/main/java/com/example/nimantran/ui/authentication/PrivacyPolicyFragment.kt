@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.nimantran.R
+import com.example.nimantran.databinding.FragmentPrivacyPolicyBinding
 
 class PrivacyPolicyFragment : Fragment() {
+
+    private lateinit var binding: FragmentPrivacyPolicyBinding
+    private var _binding: FragmentPrivacyPolicyBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_privacy_policy, container, false)
+        _binding = FragmentPrivacyPolicyBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {
