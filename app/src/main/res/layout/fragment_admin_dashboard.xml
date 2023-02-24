@@ -213,10 +213,8 @@
                 android:padding="5dp"
                 android:text="Send Notification"
                 android:textStyle="bold">
-
             </TextView>
         </LinearLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

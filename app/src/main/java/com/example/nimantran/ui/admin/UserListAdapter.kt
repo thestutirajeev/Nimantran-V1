@@ -26,6 +26,8 @@ class UserListAdapter(var user:List<UserData>): RecyclerView.Adapter<UserListAda
 //        holder.gender.text = user[position].gender
 //
 //        //code to set the data to the views
+
+
     }
 
     override fun getItemCount(): Int {
