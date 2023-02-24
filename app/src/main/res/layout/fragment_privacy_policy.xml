@@ -36,10 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Nimantran application has been developed to help people manage and invite their wedding in a more easy and secure way.
-
-
-This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.
+        android:text="Nimantran application has been developed to help people manage and invite their wedding in a more easy and secure way.This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.
 
 If you choose to use our Service, then you agree to the collection and use of information in relation to this policy.
 
