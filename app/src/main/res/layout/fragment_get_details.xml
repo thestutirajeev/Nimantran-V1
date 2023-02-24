@@ -44,12 +44,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/viewLine"
         android:id="@+id/linearLayout2"
-        android:orientation="vertical"
         android:gravity="center"
         android:paddingTop="30dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
+            android:id="@+id/ImageViewUser"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginTop="4dp"
@@ -62,15 +61,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewEditUser"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginBottom="0dp"
             android:background="@drawable/circle_1"
             android:padding="2dp"
             android:src="@drawable/ic_edit"
-            app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView" />
+            app:layout_constraintBottom_toBottomOf="@+id/ImageViewUser"
+            app:layout_constraintStart_toEndOf="@+id/ImageViewUser" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
