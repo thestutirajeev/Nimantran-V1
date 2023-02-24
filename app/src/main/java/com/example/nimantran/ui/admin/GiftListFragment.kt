@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentGiftListBinding
@@ -23,7 +24,7 @@ class GiftListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //to load data to the recycler view
 //        binding.recyclerViewGiftList.adapter = GiftListAdapter()
-        binding.recyclerViewGiftList.layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerViewGiftList.layoutManager = GridLayoutManager(this.context, 2)
         //to search the data
         binding.searchViewGiftList.clearFocus()        //To remove focus from search bar
         binding.searchViewGiftList.setOnQueryTextListener(object :

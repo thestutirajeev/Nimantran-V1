@@ -15,7 +15,7 @@ class UserListAdapter(var user:List<UserData>): RecyclerView.Adapter<UserListAda
 //        var gender = view.user_gender
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.user_list_item, parent, false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.item_user_list, parent, false)
         return UserViewHolder(view)
     }
 
