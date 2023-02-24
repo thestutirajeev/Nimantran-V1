@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InvitationResponseActivity">
+    tools:context=".InvitationResponseActivity"
+    android:background="@drawable/background_gradient">
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_accept"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,26 +20,33 @@
         app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_reject"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="141dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:text="REJECT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_accept" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_accept1"
-        style="?android:attr/buttonBarButtonStyle"
+        android:id="@+id/buttonReject"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_border"
+        android:text="Reject"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAccept"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAccept"
         android:layout_width="141dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="ACCEPT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_reject"
-        app:layout_constraintHorizontal_bias="0.379"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/round_border"
+        android:text="Verify"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/buttonReject"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf= "parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

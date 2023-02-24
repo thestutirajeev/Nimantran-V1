@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Nimantran"
+        android:theme="@style/Theme.Nimantran.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".AdminActivity"
@@ -28,6 +28,7 @@
         </activity>
         <activity
             android:name=".AuthenticationActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +44,7 @@
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Nimantran.NoActionBar">
+            android:theme="@style/Theme.Nimantran">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
