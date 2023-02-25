@@ -40,13 +40,13 @@
             app:argType="string" />
         <argument
             android:name="token"
-            app:argType="string" />
+            app:argType="com.google.firebase.auth.PhoneAuthProvider$ForceResendingToken" />
     </fragment>
     <fragment
         android:id="@+id/getDetailsFragment"
-        android:name="com.example.nimantran.ui.authentication.GetDetailsFragment"
+        android:name="com.example.nimantran.ui.authentication.GetUserDetailsFragment"
         android:label="fragment_get_details"
-        tools:layout="@layout/fragment_get_details" >
+        tools:layout="@layout/fragment_get_user_details" >
         <action
             android:id="@+id/action_getDetailsFragment_to_privacyPolicyFragment"
             app:destination="@id/privacyPolicyFragment" />

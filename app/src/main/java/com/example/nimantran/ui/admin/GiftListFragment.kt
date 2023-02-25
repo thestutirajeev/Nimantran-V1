@@ -38,7 +38,6 @@ class GiftListFragment : Fragment() {
             }
         })
     }
-
     private fun filterList(newText: String?) {
         //to filter the data
     }

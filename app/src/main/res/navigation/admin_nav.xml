@@ -13,10 +13,35 @@
         <action
             android:id="@+id/action_adminDashboardFragment_to_userListFragment"
             app:destination="@id/userListFragment" />
+        <action
+            android:id="@+id/action_adminDashboardFragment_to_giftListFragment"
+            app:destination="@id/giftListFragment" />
+        <action
+            android:id="@+id/action_adminDashboardFragment_to_notificationListFragment"
+            app:destination="@id/notificationListFragment" />
     </fragment>
     <fragment
         android:id="@+id/userListFragment"
         android:name="com.example.nimantran.ui.admin.UserListFragment"
         android:label="fragment_user_list"
         tools:layout="@layout/fragment_user_list" />
+    <fragment
+        android:id="@+id/giftDetailFragment"
+        android:name="com.example.nimantran.ui.admin.GiftDetailFragment"
+        android:label="fragment_gift_detail"
+        tools:layout="@layout/fragment_gift_detail" />
+    <fragment
+        android:id="@+id/giftListFragment"
+        android:name="com.example.nimantran.ui.admin.GiftListFragment"
+        android:label="fragment_gift_list"
+        tools:layout="@layout/fragment_gift_list" >
+        <action
+            android:id="@+id/action_giftListFragment_to_giftDetailFragment"
+            app:destination="@id/giftDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationListFragment"
+        android:name="com.example.nimantran.ui.admin.NotificationListFragment"
+        android:label="fragment_notification_list"
+        tools:layout="@layout/fragment_notification_list" />
 </navigation>

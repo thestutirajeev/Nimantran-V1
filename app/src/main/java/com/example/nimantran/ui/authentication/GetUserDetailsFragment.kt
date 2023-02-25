@@ -9,16 +9,16 @@ import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
-import com.example.nimantran.databinding.FragmentGetDetailsBinding
+import com.example.nimantran.databinding.FragmentGetUserDetailsBinding
 
-class GetDetailsFragment : Fragment() {
-    private var _binding: FragmentGetDetailsBinding? = null
+class GetUserDetailsFragment : Fragment() {
+    private var _binding: FragmentGetUserDetailsBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentGetDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentGetUserDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

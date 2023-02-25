@@ -192,7 +192,7 @@ class GetInFragment : Fragment() {
             Log.d("TAG", "onCodeSent:$token")
             Log.d("TAG", "onCodeSent:$phoneNumber")
 //             get otp
-            val dir = GetInFragmentDirections.actionGetInFragmentToOTPFragment(verificationId, phoneNumber, token.toString())
+            val dir = GetInFragmentDirections.actionGetInFragmentToOTPFragment(verificationId, phoneNumber, token)
             findNavController().navigate(dir)
         }
     }
