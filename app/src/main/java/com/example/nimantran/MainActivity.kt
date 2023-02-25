@@ -1,6 +1,5 @@
 package com.example.nimantran
 
-import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.appBarMain.toolbar)
+     //   setSupportActionBar(binding.appBarMain.toolbar)
         auth = FirebaseAuth.getInstance()
 
         val drawerLayout: DrawerLayout = binding.drawerLayout

@@ -181,17 +181,14 @@ class OTPFragment : Fragment() {
                 val credential = PhoneAuthProvider.getCredential(OTP, typedOTP)
                 binding.progressBar2.visibility = View.VISIBLE
                 signInWithPhoneAuthCredential(credential)
-
             }else{
                 Toast.makeText(context, "Please enter valid OTP", Toast.LENGTH_SHORT).show()
             }
         }
-
         binding.textViewResendOtp.setOnClickListener {
             resendVerificationCode()
             resendOtpTextViewVisibility()
         }
-
     }
         companion object {
     }
