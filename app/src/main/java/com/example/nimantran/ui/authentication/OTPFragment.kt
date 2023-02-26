@@ -93,6 +93,7 @@ class OTPFragment : Fragment() {
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
             val text = p0.toString()
+            binding.otpEditText1.requestFocus()
             when (view.id) {
                 R.id.otpEditText1 -> if (text.length == 1) binding.otpEditText2.requestFocus()
                 R.id.otpEditText2 -> if (text.length == 1) binding.otpEditText3.requestFocus() else if (text.isEmpty()) binding.otpEditText1.requestFocus()
