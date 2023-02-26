@@ -8,18 +8,17 @@
     tools:context=".ui.authentication.OTPFragment">
 
     <EditText
-        android:id="@+id/otpEditText3"
+        android:id="@+id/otpEditText1"
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="23dp"
         android:background="@drawable/otp_border"
         android:ems="10"
         android:gravity="center"
         android:hint="0"
         android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/otpEditText4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/otpEditText2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <EditText
@@ -35,6 +34,36 @@
         app:layout_constraintEnd_toStartOf="@+id/otpEditText3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/otpEditText1"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <EditText
+        android:id="@+id/otpEditText3"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/otp_border"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="0"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/otpEditText4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/otpEditText2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <EditText
+        android:id="@+id/otpEditText4"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/otp_border"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="0"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/otpEditText5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/otpEditText3"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <EditText
@@ -65,35 +94,6 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/otpEditText5"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <EditText
-        android:id="@+id/otpEditText4"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="23dp"
-        android:background="@drawable/otp_border"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="0"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/otpEditText5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/otpEditText3"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <EditText
-        android:id="@+id/otpEditText1"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="23dp"
-        android:background="@drawable/otp_border"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="0"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <LinearLayout
