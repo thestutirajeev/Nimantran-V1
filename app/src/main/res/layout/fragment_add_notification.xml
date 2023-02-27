@@ -66,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
+                android:text="@string/privacy_policies"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
                 android:padding="8dp"

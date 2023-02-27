@@ -34,6 +34,12 @@
             android:textStyle="bold"
             />
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_delete"
+            />
 
     </LinearLayout>
 
@@ -61,10 +67,7 @@
             android:id="@+id/ImageViewGift"
             android:layout_width="300dp"
             android:layout_height="150dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
             android:src="@drawable/gift_items"
-            app:civ_border_width="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +90,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_margin="30dp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,13 +112,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Item Name"
+            android:text="Item"
             android:textColor="@color/primaryTextColor"
             android:textSize="18dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ImageView1"
             app:layout_constraintStart_toEndOf="@id/ImageView1"
             app:layout_constraintTop_toTopOf="@id/ImageView1"
-            app:layout_constraintBottom_toBottomOf="@id/ImageView1"
 
             />
 
@@ -150,13 +153,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Item Price"
+            android:text="Price"
             android:textColor="@color/primaryTextColor"
             android:textSize="18dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ImageView2"
             app:layout_constraintStart_toEndOf="@id/ImageView2"
             app:layout_constraintTop_toTopOf="@id/ImageView2"
-            app:layout_constraintBottom_toBottomOf="@id/ImageView2"
 
             />
 
@@ -165,7 +168,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="1000"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:paddingLeft="5dp"
@@ -181,7 +184,7 @@
             android:id="@+id/ImageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_note"
+            android:src="@drawable/ic_store"
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toStartOf="@id/TextView3"
             app:layout_constraintStart_toStartOf="parent"
@@ -193,22 +196,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Item Note"
+            android:text="Quantity"
             android:textColor="@color/primaryTextColor"
             android:textSize="18dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ImageView3"
             app:layout_constraintStart_toEndOf="@id/ImageView3"
             app:layout_constraintTop_toTopOf="@id/ImageView3"
-            app:layout_constraintBottom_toBottomOf="@id/ImageView3"
 
             />
 
         <EditText
-            android:id="@+id/TextViewSetIteNote"
+            android:id="@+id/TextViewSetItemQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Note about the item"
-            android:inputType="text"
+            android:inputType="number"
+            android:hint="10000"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:paddingLeft="5dp"
@@ -223,7 +226,7 @@
             android:id="@+id/ImageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_discount"
+            android:src="@drawable/ic_note"
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toStartOf="@id/TextView4"
             app:layout_constraintStart_toStartOf="parent"
@@ -235,30 +238,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Item Discount"
+            android:text="Discount"
             android:textColor="@color/primaryTextColor"
             android:textSize="18dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/ImageView4"
-            app:layout_constraintTop_toTopOf="@id/ImageView4"
             app:layout_constraintBottom_toBottomOf="@id/ImageView4"
-            />
+            app:layout_constraintStart_toEndOf="@id/ImageView4"
+            app:layout_constraintTop_toTopOf="@id/ImageView4" />
 
-        <EditText
-            android:id="@+id/TextViewSetIteDiscount"
+        <ScrollView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="30% off"
-            android:inputType="text"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:paddingLeft="5dp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/TextView4"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/TextView4"
-            app:layout_constraintTop_toTopOf="@id/TextView4"
-            />
+            app:layout_constraintTop_toTopOf="@id/TextView4">
+            <EditText
+                android:id="@+id/TextViewSetItemDescription"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:hint="Share your thoughts about this product"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl."
+                android:inputType="textMultiLine"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingLeft="5dp"
+                android:textColor="@android:color/darker_gray"
+                />
+        </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -266,7 +274,7 @@
         android:layout_width="296dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/round_border"
         android:text="Save"
