@@ -27,12 +27,12 @@
         tools:layout="@layout/fragment_user_list" />
     <fragment
         android:id="@+id/giftDetailFragment"
-        android:name="com.example.nimantran.ui.admin.GiftDetailFragment"
+        android:name="com.example.nimantran.ui.admin.gift.GiftDetailFragment"
         android:label="fragment_gift_detail"
         tools:layout="@layout/fragment_gift_detail" />
     <fragment
         android:id="@+id/giftListFragment"
-        android:name="com.example.nimantran.ui.admin.GiftListFragment"
+        android:name="com.example.nimantran.ui.admin.gift.GiftListFragment"
         android:label="fragment_gift_list"
         tools:layout="@layout/fragment_gift_list" >
         <action
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/notificationListFragment"
-        android:name="com.example.nimantran.ui.admin.NotificationListFragment"
+        android:name="com.example.nimantran.ui.admin.notification.NotificationListFragment"
         android:label="fragment_notification_list"
         tools:layout="@layout/fragment_notification_list" />
 </navigation>

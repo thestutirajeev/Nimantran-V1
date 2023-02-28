@@ -1,9 +1,9 @@
-package com.example.nimantran.ui.admin
+package com.example.nimantran.ui.admin.gift
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.Gift
-import com.example.nimantran.ui.admin.GiftListFragment.Companion.COLL_GIFTS
+import com.example.nimantran.ui.admin.gift.GiftListFragment.Companion.COLL_GIFTS
 import com.google.firebase.firestore.FirebaseFirestore
 
 class GiftDetailViewModel : ViewModel() {
@@ -23,7 +23,7 @@ class GiftDetailViewModel : ViewModel() {
     ) {
         _isLoading.value = true
 
-        if (!validateProduct(item, quantity, description, price)) {
+        if (!validateGift(item, quantity, description, price)) {
             _isLoading.value = false
             _isSaved.value = false
         } else {
@@ -41,7 +41,7 @@ class GiftDetailViewModel : ViewModel() {
         }
     }
 
-    private fun validateProduct(
+    private fun validateGift(
         item: String,
         quantity: String,
         description: String,

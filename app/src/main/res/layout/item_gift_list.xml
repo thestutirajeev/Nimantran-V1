@@ -1,93 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/otp_border"
-    android:layout_margin="8dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardViewGift"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_margin="5dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="gift"
+            type="com.example.nimantran.models.Gift" />
+    </data>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@drawable/otp_border"
+       android:layout_margin="8dp">
+       <com.google.android.material.card.MaterialCardView
+           android:id="@+id/cardViewGift"
+           android:layout_width="170dp"
+           android:layout_height="170dp"
+           android:layout_margin="5dp"
+           app:cardElevation="10dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="160dp"
-                android:layout_height="80dp"
-                android:padding="0dp"
-                android:src="@drawable/gift_items"
-                />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/black_overlay"></View>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="85dp">
+               <ImageView
+                   android:layout_width="160dp"
+                   android:layout_height="80dp"
+                   android:padding="0dp"
+                   android:src="@drawable/gift_items"
+                   />
 
-                <TextView
-                    android:id="@+id/textViewGiftName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Show Piece"
-                    android:textStyle="bold"
-                    android:textColor="@color/secondaryColor"
-                    app:layout_constraintEnd_toStartOf="@+id/textViewPrice"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginTop="2dp"
+                   android:background="@color/black_overlay"></View>
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="85dp">
 
-                <TextView
-                    android:id="@+id/textViewPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rs 1000"
-                    android:textSize="10sp"
-                    android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewGiftName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textViewGiftName"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
-                <ScrollView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp"
-                    app:layout_constraintTop_toBottomOf="@id/textViewGiftName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/textViewGiftName"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                   <TextView
+                       android:id="@+id/textViewGiftName"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Show Piece"
+                       android:textStyle="bold"
+                       android:textColor="@color/secondaryColor"
+                       app:layout_constraintEnd_toStartOf="@+id/textViewPrice"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"></TextView>
 
-                    <TextView
-                        android:id="@+id/textViewDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl."
-                        android:textSize="8sp"
-                        android:textStyle="normal"/>
+                   <TextView
+                       android:id="@+id/textViewPrice"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Rs 1000"
+                       android:textSize="10sp"
+                       android:textStyle="italic"
+                       app:layout_constraintBottom_toBottomOf="@+id/textViewGiftName"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toEndOf="@+id/textViewGiftName"
+                       app:layout_constraintTop_toTopOf="parent"></TextView>
+                   <ScrollView
+                       android:layout_width="0dp"
+                       android:layout_height="0dp"
+                       android:layout_marginEnd="3dp"
+                       android:layout_marginBottom="3dp"
+                       app:layout_constraintTop_toBottomOf="@id/textViewGiftName"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="@id/textViewGiftName"
+                       app:layout_constraintBottom_toBottomOf="parent">
 
-                </ScrollView>
+                       <TextView
+                           android:id="@+id/textViewDescription"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:padding="5dp"
+                           android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl."
+                           android:textSize="8sp"
+                           android:textStyle="normal"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                   </ScrollView>
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+           </LinearLayout>
+       </com.google.android.material.card.MaterialCardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

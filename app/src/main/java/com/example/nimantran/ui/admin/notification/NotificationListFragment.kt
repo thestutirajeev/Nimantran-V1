@@ -1,33 +1,33 @@
-package com.example.nimantran.ui.admin
+package com.example.nimantran.ui.admin.notification
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nimantran.R
-import com.example.nimantran.databinding.FragmentGiftListBinding
+import com.example.nimantran.databinding.FragmentNotificationListBinding
 
-class GiftListFragment : Fragment() {
-    private lateinit var binding: FragmentGiftListBinding
-    private var _binding: FragmentGiftListBinding? = null
+class NotificationListFragment : Fragment() {
+
+    private lateinit var binding: FragmentNotificationListBinding
+    private var _binding: FragmentNotificationListBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentGiftListBinding.inflate(inflater, container, false)
+        _binding = FragmentNotificationListBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //to load data to the recycler view
-//        binding.recyclerViewGiftList.adapter = GiftListAdapter()
-        binding.recyclerViewGiftList.layoutManager = GridLayoutManager(this.context, 2)
+//        binding.recyclerViewNotificationList.adapter = NotificationListAdapter()
+        binding.recyclerViewNotificationList.layoutManager = LinearLayoutManager(this.context)
         //to search the data
-        binding.searchViewGiftList.clearFocus()        //To remove focus from search bar
-        binding.searchViewGiftList.setOnQueryTextListener(object :
+        binding.searchViewNotificationList.clearFocus()        //To remove focus from search bar
+        binding.searchViewNotificationList.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -38,10 +38,12 @@ class GiftListFragment : Fragment() {
             }
         })
     }
+
     private fun filterList(newText: String?) {
         //to filter the data
     }
 
     companion object {
+
     }
 }
