@@ -1,4 +1,4 @@
-package com.example.nimantran.ui.admin
+package com.example.nimantran.models
 
 data class Gift(
     val item: String = "",
