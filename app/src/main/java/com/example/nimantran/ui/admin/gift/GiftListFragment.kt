@@ -49,12 +49,12 @@ class GiftListFragment : Fragment() {
             } else {
                 binding.recyclerViewGiftList.visibility = View.GONE
             }
-            if (binding.swipeRefreshLayout.isRefreshing) {
-                binding.swipeRefreshLayout.isRefreshing = false
+            if (binding.swipeRefreshLayoutGiftList.isRefreshing) {
+                binding.swipeRefreshLayoutGiftList.isRefreshing = false
             }
         }
         // swipe to refresh
-        binding.swipeRefreshLayout.setOnRefreshListener {
+        binding.swipeRefreshLayoutGiftList.setOnRefreshListener {
             giftListViewModel.getGifts(db)
         }
 

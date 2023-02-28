@@ -1,5 +1,4 @@
 package com.example.nimantran.adapters
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
