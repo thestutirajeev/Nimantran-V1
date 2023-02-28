@@ -21,13 +21,13 @@ class GiftListViewModel: ViewModel() {
     private fun loadGifts(db: FirebaseFirestore){
         // fetch data from firebase firestore
         db.collection(COLL_GIFTS).get().addOnFailureListener {
-            Log.e("HomeViewModel", "Error fetching products ${it.message}")
+            Log.e("GiftListViewModel", "Error fetching products ${it.message}")
         }.addOnCanceledListener {
-            Log.e("HomeViewModel", "Cancelled fetching products")
+            Log.e("GiftListViewModel", "Cancelled fetching products")
         }.addOnSuccessListener {
             val giftLoaded = it.toObjects(Gift::class.java)
             _gifts.value = giftLoaded
-            Log.d("HomeViewModel", "Products loaded ${giftLoaded.size}")
+            Log.d("GiftListViewModel", "Products loaded ${giftLoaded.size}")
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.nimantran.ui.admin
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.Gift
+import com.example.nimantran.ui.admin.GiftListFragment.Companion.COLL_GIFTS
 import com.google.firebase.firestore.FirebaseFirestore
 
 class GiftDetailViewModel : ViewModel() {
@@ -26,7 +27,7 @@ class GiftDetailViewModel : ViewModel() {
             _isLoading.value = false
             _isSaved.value = false
         } else {
-            val gift = Gift(item, quantity, description, price = price.toInt())
+            val gift = Gift(item, description, quantity = quantity.toInt(), price = price.toDouble())
             db.collection(COLL_GIFTS).add(gift).addOnSuccessListener {
                 _isLoading.value = false
                 _isSaved.value = true
