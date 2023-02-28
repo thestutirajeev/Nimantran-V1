@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nimantran.databinding.ItemGiftListBinding
 import com.example.nimantran.models.Gift
 
 class GiftAdapter {
@@ -12,7 +13,7 @@ class GiftAdapter {
     private val listener: (Gift) -> Unit
     ) : ListAdapter<Gift, GiftAdapter.ViewHolder>(GiftDiffUtil()) {
         class ViewHolder(
-            private val binding: itemGiftListBinding
+            private val binding: ItemGiftListBinding
         ) : RecyclerView.ViewHolder(binding.root) {
             fun bind(gift: Gift) {
                 binding.gift = gift
@@ -21,7 +22,7 @@ class GiftAdapter {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val binding = itemGiftListBinding.inflate(
+            val binding = ItemGiftListBinding.inflate(
                 LayoutInflater.from(context),
                 parent,
                 false
