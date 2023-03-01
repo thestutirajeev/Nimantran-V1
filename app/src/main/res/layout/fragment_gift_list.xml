@@ -7,7 +7,7 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="viewModelGiftList"
             type="com.example.nimantran.ui.admin.gift.GiftListViewModel" />
     </data>
 

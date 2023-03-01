@@ -22,26 +22,35 @@
     </fragment>
     <fragment
         android:id="@+id/userListFragment"
-        android:name="com.example.nimantran.ui.admin.UserListFragment"
+        android:name="com.example.nimantran.ui.admin.user.UserListFragment"
         android:label="fragment_user_list"
         tools:layout="@layout/fragment_user_list" />
     <fragment
-        android:id="@+id/giftDetailFragment"
-        android:name="com.example.nimantran.ui.admin.gift.GiftDetailFragment"
+        android:id="@+id/addGiftFragment"
+        android:name="com.example.nimantran.ui.admin.gift.AddGiftFragment"
         android:label="fragment_gift_detail"
-        tools:layout="@layout/fragment_gift_detail" />
+        tools:layout="@layout/fragment_add_gift" />
     <fragment
         android:id="@+id/giftListFragment"
         android:name="com.example.nimantran.ui.admin.gift.GiftListFragment"
         android:label="fragment_gift_list"
         tools:layout="@layout/fragment_gift_list" >
         <action
-            android:id="@+id/action_giftListFragment_to_giftDetailFragment"
-            app:destination="@id/giftDetailFragment" />
+            android:id="@+id/action_giftListFragment_to_addGiftFragment"
+            app:destination="@id/addGiftFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationListFragment"
         android:name="com.example.nimantran.ui.admin.notification.NotificationListFragment"
         android:label="fragment_notification_list"
-        tools:layout="@layout/fragment_notification_list" />
+        tools:layout="@layout/fragment_notification_list" >
+        <action
+            android:id="@+id/action_notificationListFragment_to_addNotificationFragment"
+            app:destination="@id/addNotificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNotificationFragment"
+        android:name="com.example.nimantran.ui.admin.notification.AddNotificationFragment"
+        android:label="fragment_add_notification"
+        tools:layout="@layout/fragment_add_notification" />
 </navigation>

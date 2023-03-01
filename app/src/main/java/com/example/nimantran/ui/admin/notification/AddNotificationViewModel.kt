@@ -1,12 +1,12 @@
-package com.example.nimantran.ui.admin.gift
+package com.example.nimantran.ui.admin.notification
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nimantran.models.Gift
-import com.example.nimantran.ui.admin.gift.GiftListFragment.Companion.COLL_GIFTS
+import com.example.nimantran.models.Notification
 import com.google.firebase.firestore.FirebaseFirestore
+import java.sql.Timestamp
 
-class GiftDetailViewModel : ViewModel() {
+class AddNotificationViewModel : ViewModel() {
 
     private val _isLoading = MutableLiveData(false)
     val isLoading: MutableLiveData<Boolean> = _isLoading
@@ -14,21 +14,21 @@ class GiftDetailViewModel : ViewModel() {
     private val _isSaved = MutableLiveData(false)
     val isSaved: MutableLiveData<Boolean> = _isSaved
 
-    fun saveGift(
+    fun saveNotification(
         db: FirebaseFirestore,
-        item: String,
-        price: String,
-        quantity: String,
-        description: String
+        body: String,
+        subject: String,
+        to: String,
+        date: Timestamp
     ) {
         _isLoading.value = true
 
-        if (!validateGift(item, quantity, description, price)) {
+        if (!validateNotification(body, subject, to, date)) {
             _isLoading.value = false
             _isSaved.value = false
         } else {
-            val gift = Gift(item, description, quantity = quantity.toInt(), price = price.toDouble())
-            db.collection(COLL_GIFTS).add(gift).addOnSuccessListener {
+            val notification = Notification(body, subject, to, date)
+            db.collection(NotificationListFragment.COLL_NOTIFICATIONS).add(notification).addOnSuccessListener {
                 _isLoading.value = false
                 _isSaved.value = true
             }.addOnFailureListener {
@@ -41,12 +41,12 @@ class GiftDetailViewModel : ViewModel() {
         }
     }
 
-    private fun validateGift(
-        item: String,
-        quantity: String,
-        description: String,
-        price: String
+    private fun validateNotification(
+        body: String,
+        subject: String,
+        to: String,
+        date: Timestamp
     ): Boolean {
-        return item.isNotEmpty() && quantity.isNotEmpty() && description.isNotEmpty() && price.isNotEmpty()
+        return body.isNotEmpty() && subject.isNotEmpty() && to.isNotEmpty() && date != null
     }
 }

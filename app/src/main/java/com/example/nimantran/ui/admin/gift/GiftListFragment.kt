@@ -43,7 +43,7 @@ class GiftListFragment : Fragment() {
             if (gifts.isNotEmpty()) {
                 binding.recyclerViewGiftList.adapter = GiftAdapter(requireActivity()) {
                     giftListViewModel.selectGift(it)
-                    findNavController().navigate(R.id.action_giftListFragment_to_giftDetailFragment)
+                    findNavController().navigate(R.id.action_giftListFragment_to_addGiftFragment)
                 }
                 (binding.recyclerViewGiftList.adapter as GiftAdapter).submitList(gifts)
             } else {
@@ -58,7 +58,7 @@ class GiftListFragment : Fragment() {
             giftListViewModel.getGifts(db)
         }
 
-        binding.fabAddGift.setOnClickListener { findNavController().navigate(R.id.action_giftListFragment_to_giftDetailFragment) }
+        binding.fabAddGift.setOnClickListener { findNavController().navigate(R.id.action_giftListFragment_to_addGiftFragment) }
     }
 
     override fun onDestroyView() {

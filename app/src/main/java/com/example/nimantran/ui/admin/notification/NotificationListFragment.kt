@@ -5,45 +5,68 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.nimantran.R
+import com.example.nimantran.adapters.NotificationAdapter
 import com.example.nimantran.databinding.FragmentNotificationListBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class NotificationListFragment : Fragment() {
-
-    private lateinit var binding: FragmentNotificationListBinding
     private var _binding: FragmentNotificationListBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var db: FirebaseFirestore
+    private var notificationListViewModel: NotificationListViewModel by activityViewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentNotificationListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //to load data to the recycler view
-//        binding.recyclerViewNotificationList.adapter = NotificationListAdapter()
-        binding.recyclerViewNotificationList.layoutManager = LinearLayoutManager(this.context)
-        //to search the data
-        binding.searchViewNotificationList.clearFocus()        //To remove focus from search bar
-        binding.searchViewNotificationList.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                return false
-            }
-        })
+        db = Firebase.firestore
     }
 
-    private fun filterList(newText: String?) {
-        //to filter the data
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        val root: View = binding.root
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        notificationListViewModel.getNotifications(db) // fetch data only
+        notificationListViewModel.notifications.observe(viewLifecycleOwner) { notifications ->
+            if (notifications.isNotEmpty()) {
+                binding.recyclerViewNotificationList.adapter = NotificationAdapter(requireActivity()) {
+                    notificationListViewModel.selectNotification(it)
+                    findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment)
+                }
+                (binding.recyclerViewNotificationList.adapter as NotificationAdapter).submitList(notifications)
+            } else {
+                binding.recyclerViewNotificationList.visibility = View.GONE
+            }
+            if (binding.swipeRefreshLayoutNotificationList.isRefreshing) {
+                binding.swipeRefreshLayoutNotificationList.isRefreshing = false
+            }
+        }
+        // swipe to refresh
+        binding.swipeRefreshLayoutNotificationList.setOnRefreshListener {
+            notificationListViewModel.getNotifications(db)
+        }
+
+        binding.fabAddNotification.setOnClickListener { findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment) }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
-
+        const val COLL_NOTIFICATIONS = "Gifts"
     }
 }

@@ -1,13 +1,14 @@
-package com.example.nimantran.ui.admin
+package com.example.nimantran.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.R
+import com.example.nimantran.models.User
 
 
-class UserListAdapter(var user:List<UserData>): RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
+class UserListAdapter(var user:List<User>): RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
     class UserViewHolder(view: View): RecyclerView.ViewHolder(view) {
 //        var name = view.user_name // user_name is the id of the textview in user_list_item.xml
 //        var email = view.user_email

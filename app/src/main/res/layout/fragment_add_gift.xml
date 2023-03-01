@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.admin.gift.GiftDetailFragment">
+    tools:context=".ui.admin.gift.AddGiftFragment">
 
+    <data>
+        <variable
+            name="viewModelAddGift"
+            type="com.example.nimantran.ui.admin.gift.AddGiftViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addGiftContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -123,7 +132,7 @@
             />
 
         <EditText
-            android:id="@+id/TextViewSetItemName"
+            android:id="@+id/editTextItemName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Name"
@@ -164,7 +173,7 @@
             />
 
         <EditText
-            android:id="@+id/TextViewSetItemPrice"
+            android:id="@+id/editTextItemPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="1000"
@@ -203,11 +212,10 @@
             app:layout_constraintBottom_toBottomOf="@id/ImageView3"
             app:layout_constraintStart_toEndOf="@id/ImageView3"
             app:layout_constraintTop_toTopOf="@id/ImageView3"
-
             />
 
         <EditText
-            android:id="@+id/TextViewSetItemQuantity"
+            android:id="@+id/editTextItemQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -255,7 +263,7 @@
             app:layout_constraintStart_toStartOf="@id/TextView4"
             >
             <EditText
-                android:id="@+id/TextViewSetItemDescription"
+                android:id="@+id/editTextItemDescription"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:hint="Share your thoughts about this product"
@@ -284,3 +292,4 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

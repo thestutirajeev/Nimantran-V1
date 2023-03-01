@@ -1,6 +1,6 @@
-package com.example.nimantran.ui.admin
+package com.example.nimantran.models
 
-data class UserData(
+data class User(
     val id: String?,
     val name: String?,
     val email: String?,

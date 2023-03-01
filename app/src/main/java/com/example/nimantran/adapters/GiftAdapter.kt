@@ -3,11 +3,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemGiftListBinding
 import com.example.nimantran.models.Gift
 
-class GiftAdapter {
+class GiftAdapter (
     private val context: Context,
     private val listener: (Gift) -> Unit
     ) : ListAdapter<Gift, GiftAdapter.ViewHolder>(GiftDiffUtil()) {
@@ -33,9 +34,7 @@ class GiftAdapter {
             holder.bind(getItem(position))
             holder.itemView.setOnClickListener { listener(getItem(position)) }
         }
-
     }
-
     class GiftDiffUtil : DiffUtil.ItemCallback<Gift>() {
         override fun areItemsTheSame(oldItem: Gift, newItem: Gift): Boolean {
             return oldItem == newItem
