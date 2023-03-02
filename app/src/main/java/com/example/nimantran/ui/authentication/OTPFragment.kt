@@ -6,12 +6,14 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.nimantran.AdminActivity
 import com.example.nimantran.MainActivity
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentOtpBinding
@@ -29,6 +31,7 @@ class OTPFragment : Fragment() {
     private lateinit var OTP: String
     private lateinit var resendingToken: ForceResendingToken
     private lateinit var phoneNumber: String
+    private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +39,7 @@ class OTPFragment : Fragment() {
 
     }
 
-    private fun resendOtpTextViewVisibility(){
+    private fun resendOtpTextViewVisibility() {
         binding.otpEditText1.setText("")
         binding.otpEditText2.setText("")
         binding.otpEditText3.setText("")
@@ -51,6 +54,7 @@ class OTPFragment : Fragment() {
             binding.textViewResendOtp.isEnabled = true
         }, 60000)
     }
+
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
@@ -58,8 +62,8 @@ class OTPFragment : Fragment() {
                     // Sign in success, update UI with the signed-in user's information
                     binding.progressBar2.visibility = View.INVISIBLE
                     Toast.makeText(activity, "Signed In", Toast.LENGTH_SHORT).show()
-                    sendToMain()
                     val user = task.result?.user
+                    sendToMain(user)
                 } else {
                     // Sign in failed, display a message and update the UI
                     Toast.makeText(activity, "Sign In Failed", Toast.LENGTH_SHORT).show()
@@ -72,12 +76,32 @@ class OTPFragment : Fragment() {
             }
     }
 
-    private fun sendToMain() {
-        startActivity(Intent(activity, MainActivity::class.java))
-        requireActivity().finish()
+    private fun sendToMain(user: FirebaseUser?) {
+        if (user != null) {
+            val phn = user.phoneNumber
+            Log.d("TAG", "sendToMain: $phn")
+            when (phn) {
+                "+919336843452" -> {
+                    prefs.edit().putString("userType", "admin").apply()
+                    startActivity(Intent(activity, AdminActivity::class.java))
+                    requireActivity().finish()
+                }
+                else -> {
+                    prefs.edit().putString("userType", "user").apply()
+                    Log.d("TAG", "sendToMain: ${prefs.getBoolean("isFirstTime", true)}")
+                    if (prefs.getBoolean("isFirstTime", true)) {
+                        prefs.edit().putBoolean("isFirstTime", false).apply()
+                        findNavController().navigate(R.id.action_OTPFragment_to_getDetailsFragment)
+                    } else {
+                        startActivity(Intent(activity, MainActivity::class.java))
+                        requireActivity().finish()
+                    }
+                }
+            }
+        }
     }
 
-    private fun addTextChangeListner(){
+    private fun addTextChangeListner() {
         binding.otpEditText1.addTextChangedListener(EditTextWatcher(binding.otpEditText1))
         binding.otpEditText2.addTextChangedListener(EditTextWatcher(binding.otpEditText2))
         binding.otpEditText3.addTextChangedListener(EditTextWatcher(binding.otpEditText3))
@@ -85,15 +109,16 @@ class OTPFragment : Fragment() {
         binding.otpEditText5.addTextChangedListener(EditTextWatcher(binding.otpEditText5))
         binding.otpEditText6.addTextChangedListener(EditTextWatcher(binding.otpEditText6))
     }
-    private fun init(){
+
+    private fun init() {
         auth = FirebaseAuth.getInstance()
     }
+
     inner class EditTextWatcher(private val view: View) : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun afterTextChanged(p0: Editable?) {
             val text = p0.toString()
-            binding.otpEditText1.requestFocus()
             when (view.id) {
                 R.id.otpEditText1 -> if (text.length == 1) binding.otpEditText2.requestFocus()
                 R.id.otpEditText2 -> if (text.length == 1) binding.otpEditText3.requestFocus() else if (text.isEmpty()) binding.otpEditText1.requestFocus()
@@ -104,6 +129,7 @@ class OTPFragment : Fragment() {
             }
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -114,7 +140,7 @@ class OTPFragment : Fragment() {
         return binding.root
     }
 
-    private fun resendVerificationCode(){
+    private fun resendVerificationCode() {
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -177,12 +203,13 @@ class OTPFragment : Fragment() {
         binding.progressBar2.visibility = View.INVISIBLE
 
         binding.buttonOtp.setOnClickListener {
-            val typedOTP = binding.otpEditText1.text.toString() + binding.otpEditText2.text.toString() + binding.otpEditText3.text.toString() + binding.otpEditText4.text.toString() + binding.otpEditText5.text.toString() + binding.otpEditText6.text.toString()
-            if(typedOTP.isNotEmpty() && typedOTP.length == 6) {
+            val typedOTP =
+                binding.otpEditText1.text.toString() + binding.otpEditText2.text.toString() + binding.otpEditText3.text.toString() + binding.otpEditText4.text.toString() + binding.otpEditText5.text.toString() + binding.otpEditText6.text.toString()
+            if (typedOTP.isNotEmpty() && typedOTP.length == 6) {
                 val credential = PhoneAuthProvider.getCredential(OTP, typedOTP)
                 binding.progressBar2.visibility = View.VISIBLE
                 signInWithPhoneAuthCredential(credential)
-            }else{
+            } else {
                 Toast.makeText(context, "Please enter valid OTP", Toast.LENGTH_SHORT).show()
             }
         }
@@ -191,6 +218,7 @@ class OTPFragment : Fragment() {
             resendOtpTextViewVisibility()
         }
     }
-        companion object {
+
+    companion object {
     }
 }

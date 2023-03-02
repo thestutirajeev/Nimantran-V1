@@ -11,7 +11,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.nimantran.AdminActivity
 import com.example.nimantran.MainActivity
+import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentGetInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -21,6 +23,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
+import io.grpc.InternalChannelz.id
 import java.util.concurrent.TimeUnit
 
 class GetInFragment : Fragment() {
@@ -29,6 +32,7 @@ class GetInFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var phoneNumber: String
     private lateinit var googleSignInClient: GoogleSignInClient
+    private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,16 +86,31 @@ class GetInFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         if (auth.currentUser != null) {
-            // User is signed in (getCurrentUser() will be null if not signed in)
-            startActivity(Intent(activity, MainActivity::class.java))
-            activity?.finish()
+            Log.d("TAG", "onStart: ${auth.currentUser}")
+            Log.d("TAG",prefs.getString("userType", "user").toString())
+            when(prefs.getString("userType", "user")) {
+                "user" -> {
+                    Log.d("TAG", "onStart: ${auth.currentUser}")
+                    Log.d("TAG",prefs.getString("userType", "user").toString())
+                    if (prefs.getBoolean("isFirstTime", true)) {
+                        findNavController().navigate(R.id.action_getInFragment_to_getDetailsFragment)
+                    } else {
+                        startActivity(Intent(activity, MainActivity::class.java))
+                        activity?.finish()
+                    }
+                }
+                "admin" -> {
+                    startActivity(Intent(activity, AdminActivity::class.java))
+                    activity?.finish()
+                }
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
         if (auth.currentUser != null) {
-            // User is signed in (getCurrentUser() will be null if not signed in)
+            // Client is signed in (getCurrentUser() will be null if not signed in)
             startActivity(Intent(activity, MainActivity::class.java))
             activity?.finish()
         }

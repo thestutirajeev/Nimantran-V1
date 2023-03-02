@@ -9,16 +9,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemNotificationListBinding
 import com.example.nimantran.models.Notification
 
-class NotificationAdapter (
+class NotificationAdapter(
     private val context: Context,
-    private val listener: (Notification
-            ) -> Unit
+    private val cardListener: (Notification) -> Unit,
+    private val deleteListener: (Notification) -> Unit
 ) : ListAdapter<Notification, NotificationAdapter.ViewHolder>(NotificationDiffUtil()) {
     class ViewHolder(
         private val binding: ItemNotificationListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(notification: Notification) {
+        fun bind(
+            notification: Notification,
+            cardListener: (Notification) -> Unit,
+            deleteListener: (Notification) -> Unit
+        ) {
             binding.notification = notification
+            binding.cardViewNotification.setOnClickListener {
+                cardListener(notification)
+            }
+            binding.imageViewDeleteNotification.setOnClickListener {
+                deleteListener(notification)
+            }
             binding.executePendingBindings()
         }
     }
@@ -32,10 +42,8 @@ class NotificationAdapter (
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
-        holder.itemView.setOnClickListener { listener(getItem(position)) }
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(getItem(position), cardListener, deleteListener)
 }
 
 

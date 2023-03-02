@@ -12,11 +12,11 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
             android:id="@+id/addNotificationContainer"
-            android:layout_width="300dp"
+            android:layout_margin="10dp"
+            android:layout_width="360dp"
             android:layout_height="400dp"
             app:cardElevation="30dp"
             app:cardCornerRadius="10dp"
@@ -31,7 +31,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/notificationManagement"
+                    android:id="@+id/sendNotification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_send"
@@ -49,7 +49,7 @@
                     android:backgroundTint="@color/primaryColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/notificationManagement">
+                    app:layout_constraintTop_toBottomOf="@id/sendNotification">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

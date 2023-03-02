@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardViewNotification"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="notification"
+            type="com.example.nimantran.models.Notification" />
+    </data>
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:id="@+id/cardViewNotification"
+        android:padding="4dp"
+        android:backgroundTint="@color/secondaryColor"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:backgroundTint="@color/secondaryColor"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="10dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:padding="8dp">
 
             <ImageView
                 android:id="@+id/imageView1"
-                android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_width="35dp"
                 android:src="@drawable/ic_notifications"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -35,9 +37,9 @@
 
             <ImageView
                 android:id="@+id/imageViewDeleteNotification"
-                android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginEnd="4dp"
+                android:layout_width="16dp"
 
                 android:src="@drawable/ic_delete"
                 app:layout_constraintBottom_toBottomOf="@id/textViewNotificationDateTime"
@@ -46,12 +48,13 @@
 
             <TextView
                 android:id="@+id/textViewNotificationHeading"
-                android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                android:text="Update Alert"
+                android:layout_width="0dp"
+                android:text="@{notification.subject}"
                 android:textColor="@color/white"
                 android:textSize="25sp"
+                tools:text="Heading"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/imageView1"
                 app:layout_constraintStart_toEndOf="@id/imageView1"
@@ -59,20 +62,21 @@
 
             <TextView
                 android:id="@+id/textViewNotificationBody"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:padding="5dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                tools:text="Body"
+                android:text="@{notification.body}"
                 android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/textViewNotificationDateTime"
                 app:layout_constraintStart_toStartOf="@+id/textViewNotificationHeading"
-                app:layout_constraintTop_toBottomOf="@id/textViewNotificationHeading"
-                app:layout_constraintEnd_toEndOf="@id/textViewNotificationDateTime"/>
+                app:layout_constraintTop_toBottomOf="@id/textViewNotificationHeading" />
 
             <TextView
                 android:id="@+id/textViewNotificationDateTime"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
+                android:layout_width="wrap_content"
                 android:text="11 Feb"
                 android:textColor="@color/white"
                 android:textSize="11dp"
@@ -83,4 +87,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+

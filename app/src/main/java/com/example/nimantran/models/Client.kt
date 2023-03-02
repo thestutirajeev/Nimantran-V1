@@ -1,6 +1,6 @@
 package com.example.nimantran.models
 
-data class User(
+data class Client(
     val id: String?,
     val name: String?,
     val email: String?,

@@ -2,6 +2,7 @@ package com.example.nimantran
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    private val prefs by lazy {getSharedPreferences("prefs", 0) }
     private lateinit var auth: FirebaseAuth
 
 
@@ -32,27 +34,31 @@ class MainActivity : AppCompatActivity() {
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        navView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_logout -> {
-                    // Handle the logout action
-                    auth.signOut()
-                    startActivity(Intent(this, AuthenticationActivity::class.java))
-                }
-            }
-            true
-        }
-
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_logout
+                 R.id.nav_logout
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        val userType = prefs.getString("userType", "user")
+
+        // add listener to navigation drawer
+        navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_logout -> {
+                    Log.d("logout", "logout")
+                    auth.signOut()
+                    prefs.edit().putString("userType", "").apply()
+                    startActivity(Intent(this, AuthenticationActivity::class.java))
+                    finish()
+                }
+            }
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

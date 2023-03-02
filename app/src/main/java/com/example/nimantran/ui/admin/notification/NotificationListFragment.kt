@@ -1,12 +1,12 @@
 package com.example.nimantran.ui.admin.notification
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.adapters.NotificationAdapter
@@ -19,7 +19,7 @@ class NotificationListFragment : Fragment() {
     private var _binding: FragmentNotificationListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private var notificationListViewModel: NotificationListViewModel by activityViewModels()
+    private val notificationListViewModel: NotificationListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +41,16 @@ class NotificationListFragment : Fragment() {
         notificationListViewModel.getNotifications(db) // fetch data only
         notificationListViewModel.notifications.observe(viewLifecycleOwner) { notifications ->
             if (notifications.isNotEmpty()) {
-                binding.recyclerViewNotificationList.adapter = NotificationAdapter(requireActivity()) {
-                    notificationListViewModel.selectNotification(it)
-                    findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment)
-                }
-                (binding.recyclerViewNotificationList.adapter as NotificationAdapter).submitList(notifications)
+                binding.recyclerViewNotificationList.adapter =
+                    NotificationAdapter(requireActivity(), {
+                        notificationListViewModel.selectNotification(it)
+                    }, {
+                        notificationListViewModel.deleteNotification(db, it)
+                    })
+
+                (binding.recyclerViewNotificationList.adapter as NotificationAdapter).submitList(
+                    notifications
+                )
             } else {
                 binding.recyclerViewNotificationList.visibility = View.GONE
             }
@@ -54,11 +59,13 @@ class NotificationListFragment : Fragment() {
             }
         }
         // swipe to refresh
+
         binding.swipeRefreshLayoutNotificationList.setOnRefreshListener {
             notificationListViewModel.getNotifications(db)
         }
 
         binding.fabAddNotification.setOnClickListener { findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment) }
+
     }
 
     override fun onDestroyView() {

@@ -16,6 +16,7 @@
         android:background="@drawable/otp_border"
         android:ems="10"
         android:gravity="center"
+        android:focusedByDefault="true"
         android:hint="0"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"

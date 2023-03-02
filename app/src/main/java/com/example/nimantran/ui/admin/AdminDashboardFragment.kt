@@ -1,35 +1,51 @@
 package com.example.nimantran.ui.admin
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
+import com.example.nimantran.AuthenticationActivity
+import com.example.nimantran.MainActivity
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentAdminDashboardBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AdminDashboardFragment : Fragment() {
-    private lateinit var binding: FragmentAdminDashboardBinding
     private var _binding: FragmentAdminDashboardBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var auth: FirebaseAuth
+      private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        auth = Firebase.auth
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAdminDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentAdminDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.userManagement.setOnClickListener {
             findNavController().navigate(R.id.action_adminDashboardFragment_to_userListFragment)
         }
-
-        binding.giftItemManagement.setOnClickListener {
-            findNavController().navigate(R.id.action_adminDashboardFragment_to_giftListFragment)
+        binding.logout.setOnClickListener {
+            auth.signOut()
+            prefs.edit().putString("userType", "").apply()
+            startActivity(Intent(activity, AuthenticationActivity::class.java))
+            activity?.finish()
         }
-
     }
 
     companion object {

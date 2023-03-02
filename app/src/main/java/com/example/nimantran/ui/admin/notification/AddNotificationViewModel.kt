@@ -14,6 +14,7 @@ class AddNotificationViewModel : ViewModel() {
     private val _isSaved = MutableLiveData(false)
     val isSaved: MutableLiveData<Boolean> = _isSaved
 
+
     fun saveNotification(
         db: FirebaseFirestore,
         body: String,

@@ -20,7 +20,7 @@ class GiftListFragment : Fragment() {
     private var _binding: FragmentGiftListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private var giftListViewModel: GiftListViewModel by activityViewModels()
+    private val giftListViewModel: GiftListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -9,8 +9,8 @@ import com.example.nimantran.databinding.FragmentPrivacyPolicyBinding
 
 class PrivacyPolicyFragment : Fragment() {
 
-    private lateinit var binding: FragmentPrivacyPolicyBinding
     private var _binding: FragmentPrivacyPolicyBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
