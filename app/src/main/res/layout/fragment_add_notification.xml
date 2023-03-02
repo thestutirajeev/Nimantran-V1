@@ -18,6 +18,8 @@
             android:id="@+id/addNotificationContainer"
             android:layout_width="300dp"
             android:layout_height="400dp"
+            app:cardElevation="30dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,64 +35,79 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_send"
+                    android:layout_margin="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/layout1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/layout1"
                     android:layout_width="match_parent"
-                    android:background="@color/primaryColor"
                     android:layout_height="40dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="20dp"
+                    android:backgroundTint="@color/primaryColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/sendNotification">
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:text="Heading"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextNotificationSubject"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:hint="Enter Heading"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/textView2"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                    <ScrollView
-                        android:id="@+id/scrollView"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="350dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout1"
-                        >
+                        android:layout_height="match_parent"
+                        android:padding="2dp">
 
-                        <EditText
-                            android:id="@+id/editTextNotificationBody"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_margin="4dp"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:inputType="textLongMessage"
-                            android:text="@string/privacy_policies"
-                            android:hint="Write Notification content here..."
-                            android:padding="8dp" />
+                            android:padding="8dp"
+                            android:text="Heading"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    </ScrollView>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextNotificationSubject"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:hint="Enter Heading"
+                            android:inputType="textCapCharacters"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/textView2"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <ScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout1">
+
+                    <EditText
+                        android:id="@+id/editTextNotificationBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:hint="Write Notification content here..."
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:text="@string/privacy_policies"
+                        android:textSize="16sp" />
+
+                </ScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
