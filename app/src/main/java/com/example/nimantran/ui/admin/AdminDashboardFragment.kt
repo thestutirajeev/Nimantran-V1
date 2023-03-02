@@ -25,6 +25,11 @@ class AdminDashboardFragment : Fragment() {
         binding.userManagement.setOnClickListener {
             findNavController().navigate(R.id.action_adminDashboardFragment_to_userListFragment)
         }
+
+        binding.giftItemManagement.setOnClickListener {
+            findNavController().navigate(R.id.action_adminDashboardFragment_to_giftListFragment)
+        }
+
     }
 
     companion object {
