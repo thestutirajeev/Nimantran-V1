@@ -31,7 +31,6 @@ class GetInFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var phoneNumber: String
-    private lateinit var googleSignInClient: GoogleSignInClient
     private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
 
 
@@ -39,48 +38,6 @@ class GetInFragment : Fragment() {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
         auth.setLanguageCode("en")
-
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-
-    }
-
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            // There are no request codes
-
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            handleSignInResult(task)
-        }
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        if(completedTask.isSuccessful) {
-            val account = completedTask.result
-            if (account != null) {
-                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                auth.signInWithCredential(credential)
-                    .addOnCompleteListener(requireActivity()) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(activity, "Signed in as ${account?.displayName}", Toast.LENGTH_SHORT).show()
-                            sendToMain()
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(activity, "Sign in failed", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-            }
-        }else{
-            Toast.makeText(activity, "Sign in failed", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onStart() {
@@ -140,10 +97,6 @@ class GetInFragment : Fragment() {
             }else{
                 Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
             }
-        }
-        binding.imageVerifyGoogle.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            launcher.launch(signInIntent)
         }
     }
 
