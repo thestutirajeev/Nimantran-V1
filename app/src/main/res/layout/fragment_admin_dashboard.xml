@@ -13,11 +13,10 @@
         android:layout_height="150dp"
         android:layout_margin="10dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="132dp"
         app:cardElevation="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/appInsights"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/appInsight">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,11 +49,10 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/appInsights"
+        android:id="@+id/appInsight"
         android:layout_width="130dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
-        android:layout_marginStart="71dp"
         android:layout_marginTop="24dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,14 +92,14 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/orders"
+        android:id="@+id/orderManagement"
         android:layout_width="130dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
         android:layout_marginEnd="71dp"
         app:cardElevation="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/manageGiftItems"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/userManagement"
+        app:layout_constraintStart_toStartOf="@+id/userManagement"
         app:layout_constraintTop_toBottomOf="@id/userManagement">
 
         <LinearLayout
@@ -137,15 +135,15 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/manageGiftItems"
+        android:id="@+id/giftManagement"
         android:layout_width="130dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
-        android:layout_marginStart="132dp"
         app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/orders"
-        app:layout_constraintTop_toBottomOf="@id/appInsights">
+        tools:layout_editor_absoluteY="170dp"
+        app:layout_constraintStart_toStartOf="@id/appInsight"
+        app:layout_constraintEnd_toEndOf="@id/appInsight"
+        app:layout_constraintTop_toBottomOf="@id/appInsight">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -172,22 +170,21 @@
                 android:layout_marginTop="10dp"
                 android:padding="5dp"
                 android:text="Gift Items"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"></TextView>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/sendNotification"
+        android:id="@+id/notificationManagement"
         android:layout_width="130dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
         android:layout_marginEnd="271dp"
         app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/orders"
-        app:layout_constraintStart_toStartOf="@+id/orders"
-        app:layout_constraintTop_toBottomOf="@+id/orders">
+        app:layout_constraintEnd_toEndOf="@+id/orderManagement"
+        app:layout_constraintStart_toStartOf="@+id/orderManagement"
+        app:layout_constraintTop_toBottomOf="@+id/orderManagement">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -225,9 +222,9 @@
         android:layout_margin="10dp"
         android:layout_marginEnd="271dp"
         app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/manageGiftItems"
-        app:layout_constraintStart_toStartOf="@+id/manageGiftItems"
-        app:layout_constraintTop_toBottomOf="@+id/manageGiftItems">
+        app:layout_constraintEnd_toEndOf="@+id/giftManagement"
+        app:layout_constraintStart_toStartOf="@+id/giftManagement"
+        app:layout_constraintTop_toBottomOf="@+id/giftManagement">
 
         <LinearLayout
             android:layout_width="match_parent"

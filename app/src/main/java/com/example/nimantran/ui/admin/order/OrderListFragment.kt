@@ -1,4 +1,4 @@
-package com.example.nimantran.ui.main
+package com.example.nimantran.ui.admin.order
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.nimantran.R
-import com.example.nimantran.databinding.FragmentHomeBinding
+import com.example.nimantran.databinding.FragmentOrderListBinding
 
-class HomeFragment : Fragment() {
+class OrderListFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var binding: FragmentOrderListBinding
+    private var _binding: FragmentOrderListBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentOrderListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

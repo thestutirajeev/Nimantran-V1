@@ -31,7 +31,7 @@ class AdminDashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAdminDashboardBinding.inflate(inflater, container, false)
+        _binding = com.example.nimantran.databinding.FragmentAdminDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,6 +40,24 @@ class AdminDashboardFragment : Fragment() {
         binding.userManagement.setOnClickListener {
             findNavController().navigate(R.id.action_adminDashboardFragment_to_userListFragment)
         }
+
+        binding.orderManagement.setOnClickListener {
+            findNavController().navigate(R.id.action_adminDashboardFragment_to_orderListFragment)
+        }
+
+        binding.appInsight.setOnClickListener {
+            findNavController().navigate(R.id.action_adminDashboardFragment_to_appInsightFragment)
+        }
+
+        binding.giftManagement.setOnClickListener {
+            findNavController().navigate(R.id.action_adminDashboardFragment_to_giftListFragment)
+        }
+
+        binding.notificationManagement.setOnClickListener {
+            findNavController().navigate(R.id.action_adminDashboardFragment_to_notificationListFragment)
+        }
+
+
         binding.logout.setOnClickListener {
             auth.signOut()
             prefs.edit().putString("userType", "").apply()
