@@ -25,8 +25,14 @@ class UserListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         //to load data to the recycler view
-//        binding.recyclerViewUserList.adapter = UserListAdapter()
+        //binding.recyclerViewUserList.adapter = UserListAdapter()
         binding.recyclerViewUserList.layoutManager = LinearLayoutManager(this.context)
 
         //to search the data
