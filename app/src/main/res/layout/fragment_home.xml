@@ -27,7 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         >
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -37,4 +36,5 @@
             android:layout_gravity="bottom"
             app:menu="@menu/home_bottom_menu" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

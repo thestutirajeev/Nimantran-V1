@@ -71,6 +71,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //Blur Kit
-    implementation 'io.alterac.blurkit:blurkit:1.1.0'
+   // implementation 'io.alterac.blurkit:blurkit:1.1.0'
 
 }

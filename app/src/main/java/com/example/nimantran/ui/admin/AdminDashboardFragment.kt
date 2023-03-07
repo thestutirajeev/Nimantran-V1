@@ -6,10 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.AuthenticationActivity
-import com.example.nimantran.MainActivity
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentAdminDashboardBinding
 import com.google.firebase.auth.FirebaseAuth
