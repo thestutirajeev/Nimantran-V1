@@ -15,6 +15,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class AdminDashboardFragment : Fragment() {
+
     private var _binding: FragmentAdminDashboardBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
@@ -29,7 +30,7 @@ class AdminDashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = com.example.nimantran.databinding.FragmentAdminDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentAdminDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
