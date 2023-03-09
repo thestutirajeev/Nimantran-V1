@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nimantran.R
 import com.example.nimantran.adapters.UserListAdapter
@@ -38,18 +39,16 @@ class UserListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-/*
+
         userListViewModel.getClients(db) // fetch data only
         userListViewModel.clients.observe(viewLifecycleOwner) { clients ->
             if (clients.isNotEmpty()) {
                 binding.recyclerViewUserList.adapter =
                     UserListAdapter(requireActivity(), {
                         userListViewModel.selectClient(it)
-                    }, {
-                        userListViewModel.deleteClient(db, it)
                     })
 
-                (binding.recyclerViewUserList.adapter as UserAdapter).submitList(
+                (binding.recyclerViewUserList.adapter as UserListAdapter).submitList(
                     clients
                 )
             } else {
@@ -59,7 +58,7 @@ class UserListFragment : Fragment() {
                 binding.swipeRefreshLayoutUserList.isRefreshing = false
             }
         }
-  */  }
+    }
 
     companion object {
         const val COLL_CLIENTS = "clients"

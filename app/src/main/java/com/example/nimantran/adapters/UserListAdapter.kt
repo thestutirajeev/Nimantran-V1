@@ -1,37 +1,57 @@
 package com.example.nimantran.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nimantran.databinding.ItemUserListBinding
 import com.example.nimantran.R
 import com.example.nimantran.models.Client
 
 
-class UserListAdapter(var user:List<Client>): RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
-    class UserViewHolder(view: View): RecyclerView.ViewHolder(view) {
-//        var name = view.user_name // user_name is the id of the textview in user_list_item.xml
-//        var email = view.user_email
-//        var phone = view.user_phone
-//        var gender = view.user_gender
-    }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.item_user_list, parent, false)
-        return UserViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-//        holder.name.text = user[position].name
-//        holder.email.text = user[position].email
-//        holder.phone.text = user[position].phone
-//        holder.gender.text = user[position].gender
-//
-//        //code to set the data to the views
-
-
+class UserListAdapter(
+    private val context: Context,
+    private val cardListener: (Client) -> Unit
+) : ListAdapter<Client, UserListAdapter.ViewHolder>(ClientDiffUtil()) {
+    class ViewHolder(
+        private val binding: ItemUserListBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            client: Client,
+            cardListener: (Client) -> Unit
+        ) {
+            binding.client = client
+            binding.cardViewUserList.setOnClickListener {
+                cardListener(client)
+            }
+            binding.executePendingBindings()
+        }
     }
 
-    override fun getItemCount(): Int {
-        return user.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ItemUserListBinding.inflate(
+            LayoutInflater.from(context),
+            parent,
+            false
+        )
+        return ViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(getItem(position), cardListener)
+}
+
+class ClientDiffUtil : DiffUtil.ItemCallback<Client>() {
+    override fun areItemsTheSame(oldItem: Client, newItem: Client): Boolean {
+        return oldItem == newItem
+    }
+
+    //
+    //
+    override fun areContentsTheSame(oldItem: Client, newItem: Client): Boolean {
+        return oldItem.name == newItem.name
     }
 }

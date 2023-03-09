@@ -16,6 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class NotificationListFragment : Fragment() {
+
     private var _binding: FragmentNotificationListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
