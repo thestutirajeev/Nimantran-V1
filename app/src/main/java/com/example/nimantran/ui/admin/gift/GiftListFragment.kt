@@ -32,7 +32,7 @@ class GiftListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_gift_list, container, false)
         val root: View = binding.root
         return root
     }

@@ -5,20 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.nimantran.R
+import com.example.nimantran.R.layout.fragment_app_insight
 import com.example.nimantran.databinding.FragmentAppInsightBinding
-import com.example.nimantran.databinding.FragmentUserListBinding
 
 class AppInsightFragment : Fragment() {
 
-    private lateinit var binding: FragmentAppInsightBinding
     private var _binding: FragmentAppInsightBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAppInsightBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, fragment_app_insight, container, false)
         return binding.root
     }
 

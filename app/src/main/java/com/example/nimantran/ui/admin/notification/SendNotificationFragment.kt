@@ -5,19 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentSendNotificationBinding
 
 class SendNotificationFragment : Fragment() {
 
-    private lateinit var binding: FragmentSendNotificationBinding
     private var _binding: FragmentSendNotificationBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSendNotificationBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_send_notification, container, false)
         return binding.root
     }
 

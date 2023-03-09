@@ -24,7 +24,7 @@ class UserListAdapter(
             cardListener: (Client) -> Unit
         ) {
             binding.client = client
-            binding.cardViewUserList.setOnClickListener {
+            binding.cardViewUser.setOnClickListener {
                 cardListener(client)
             }
             binding.executePendingBindings()

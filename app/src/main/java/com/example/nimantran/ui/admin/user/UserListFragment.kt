@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +33,7 @@ class UserListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentUserListBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_user_list, container, false)
         return binding.root
     }
 
@@ -44,13 +45,11 @@ class UserListFragment : Fragment() {
         userListViewModel.clients.observe(viewLifecycleOwner) { clients ->
             if (clients.isNotEmpty()) {
                 binding.recyclerViewUserList.adapter =
-                    UserListAdapter(requireActivity(), {
+                    UserListAdapter(requireActivity()) {
                         userListViewModel.selectClient(it)
-                    })
+                    }
 
-                (binding.recyclerViewUserList.adapter as UserListAdapter).submitList(
-                    clients
-                )
+                (binding.recyclerViewUserList.adapter as UserListAdapter).submitList(clients)
             } else {
                 binding.recyclerViewUserList.visibility = View.GONE
             }

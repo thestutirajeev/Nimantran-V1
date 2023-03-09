@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.designsbottombutton -> {
                     true
                 }
-                R.id.invitesbottombutton -> {
+                R.id.guestsbottombutton -> {
                     true
                 }
                 R.id.profilebottombutton -> {

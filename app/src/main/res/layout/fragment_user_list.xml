@@ -26,29 +26,29 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:background="@drawable/round_border"
+                app:iconifiedByDefault="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="Search user...."
-                android:background="@drawable/round_border"
-                app:iconifiedByDefault="false"
-                />
+                app:queryHint="Search user...." />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayoutUserList"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutTop" >
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutTop">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewUserList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_user_list"/>
+                tools:listitem="@layout/item_user_list" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
