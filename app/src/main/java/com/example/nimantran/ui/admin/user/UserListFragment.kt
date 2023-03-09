@@ -5,55 +5,63 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nimantran.R
+import com.example.nimantran.adapters.UserListAdapter
 import com.example.nimantran.databinding.FragmentUserListBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class UserListFragment : Fragment() {
 
-    private lateinit var binding: FragmentUserListBinding
     private var _binding: FragmentUserListBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var db: FirebaseFirestore
+    private val userListViewModel: UserListViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        db = Firebase.firestore
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentUserListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+/*
+        userListViewModel.getClients(db) // fetch data only
+        userListViewModel.clients.observe(viewLifecycleOwner) { clients ->
+            if (clients.isNotEmpty()) {
+                binding.recyclerViewUserList.adapter =
+                    UserListAdapter(requireActivity(), {
+                        userListViewModel.selectClient(it)
+                    }, {
+                        userListViewModel.deleteClient(db, it)
+                    })
 
-        //to load data to the recycler view
-        //binding.recyclerViewUserList.adapter = UserListAdapter()
-        binding.recyclerViewUserList.layoutManager = LinearLayoutManager(this.context)
-
-        //to search the data
-        binding.searchViewUserList.clearFocus()        //To remove focus from search bar
-        binding.searchViewUserList.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                (binding.recyclerViewUserList.adapter as UserAdapter).submitList(
+                    clients
+                )
+            } else {
+                binding.recyclerViewUserList.visibility = View.GONE
             }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                return false
+            if (binding.swipeRefreshLayoutUserList.isRefreshing) {
+                binding.swipeRefreshLayoutUserList.isRefreshing = false
             }
-        })
-    }
-
-    private fun filterList(newText: String?) {
-        //to filter the data
-    }
+        }
+  */  }
 
     companion object {
+        const val COLL_CLIENTS = "clients"
     }
 }

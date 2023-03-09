@@ -14,12 +14,12 @@ class NotificationListViewModel : ViewModel() {
     private val _selectedNotification = MutableLiveData<Notification?>()
     val selectedNotification: MutableLiveData<Notification?> = _selectedNotification
 
-    fun getNotifications(db: FirebaseFirestore){
+    fun getNotifications(db: FirebaseFirestore) {
         loadNotifications(db)
         _selectedNotification.value = null
     }
 
-    private fun loadNotifications(db: FirebaseFirestore){
+    private fun loadNotifications(db: FirebaseFirestore) {
         // fetch data from firebase firestore
         db.collection(NotificationListFragment.COLL_NOTIFICATIONS).get().addOnFailureListener {
             Log.e("NotificationListViewModel", "Error fetching notifications ${it.message}")
@@ -32,17 +32,22 @@ class NotificationListViewModel : ViewModel() {
         }
     }
 
-    fun selectNotification(notification: Notification){
+    fun selectNotification(notification: Notification) {
         _selectedNotification.value = notification
     }
 
-    fun deleteNotification(db: FirebaseFirestore, notification: Notification){
-        db.collection(NotificationListFragment.COLL_NOTIFICATIONS).document(notification.id).delete().addOnFailureListener {
+    fun deselectNotification() {
+        _selectedNotification.value = null
+    }
+
+    fun deleteNotification(db: FirebaseFirestore, notification: Notification) {
+        db.collection(NotificationListFragment.COLL_NOTIFICATIONS).document(notification.id)
+            .delete().addOnFailureListener {
             Log.e("NotificationListViewModel", "Error deleting notification ${it.message}")
         }.addOnCanceledListener {
             Log.e("NotificationListViewModel", "Cancelled deleting notification")
         }.addOnSuccessListener {
             Log.d("NotificationListViewModel", "Notification deleted")
         }
-     }
+    }
 }

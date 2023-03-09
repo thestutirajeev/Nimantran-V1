@@ -1,9 +1,11 @@
 package com.example.nimantran.models
 
+import java.util.*
+
 data class Client(
-    val id: String?,
-    val name: String?,
+    val id: String = UUID.randomUUID().toString(),
+    val name: String,
     val email: String?,
     val phone: String?,
-    val gender: String?,
+    val gender: String,
 )
