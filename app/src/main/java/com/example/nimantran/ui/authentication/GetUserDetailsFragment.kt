@@ -51,7 +51,6 @@ class GetUserDetailsFragment : Fragment() {
         if (currUser != null) {
             userId = currUser.uid
             currUser.phoneNumber?.let { binding.TextViewSetPhone.setText(it) }
-            currUser.email?.let { binding.TextViewSetMail.setText(it) }
 
         }
 
@@ -69,7 +68,6 @@ class GetUserDetailsFragment : Fragment() {
                 userId = currUser!!.uid
                 val name = binding.TextViewSetName.text.toString()
                 val phone = binding.TextViewSetPhone.text.toString()
-                val email = binding.TextViewSetMail.text.toString()
                 val gender = when (binding.genderGroup.checkedRadioButtonId) {
                     R.id.radioFemale -> "Female"
                     R.id.radioMale -> "Male"
@@ -86,12 +84,7 @@ class GetUserDetailsFragment : Fragment() {
                     binding.TextViewSetPhone.requestFocus()
                     return@setOnClickListener
                 }
-                if (email.isEmpty()) {
-                    binding.TextViewSetMail.error = "Please enter your email"
-                    binding.TextViewSetMail.requestFocus()
-                    return@setOnClickListener
-                }
-                val client=Client(userId, name, email, phone, gender)
+                val client=Client(userId, name, phone, gender)
                 db.collection(COLL_USER).document(userId).set(client).addOnSuccessListener {
                     prefs.edit().putBoolean("isFirstTime", false).apply()
                     // jump to main activity

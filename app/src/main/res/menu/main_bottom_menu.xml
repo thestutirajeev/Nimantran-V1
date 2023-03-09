@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homebottombutton"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/giftsbottombutton"
+        android:enabled="true"
+        android:icon="@drawable/ic_gift"
+        android:title="Gifts"/>
+
+    <item
+        android:id="@+id/designsbottombutton"
+        android:enabled="true"
+        android:icon="@drawable/ic_template_designs"
+        android:title="Add Card"
+        />
+    <item
+        android:id="@+id/guestsbottombutton"
+        android:enabled="true"
+        android:icon="@drawable/ic_guests"
+        android:title="Guests"/>
+
+    <item
+        android:id="@+id/profilebottombutton"
+        android:enabled="true"
+        android:icon="@drawable/ic_person"
+        android:title="Profile"/>
+
+</menu>

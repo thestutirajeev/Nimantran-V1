@@ -49,8 +49,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ImageViewUser"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:src="@drawable/ic_person"
@@ -118,57 +118,15 @@
         android:layout_below="@id/linearLayout3"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout3"
-        android:layout_marginTop="30dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_contact_mail" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Mail"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/TextViewSetMail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:hint="example@gmail.com"
-            android:inputType="textEmailAddress"
-            android:textColor="@android:color/darker_gray" />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_below="@id/linearLayout4"/>
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/linearLayout4"
+        android:layout_below="@id/linearLayout3"
         android:gravity="center_vertical"
-        android:id="@+id/linearLayout5">
+        android:id="@+id/linearLayout4">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -198,7 +156,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_below="@id/linearLayout5"/>
+        android:layout_below="@id/linearLayout4"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -206,9 +164,9 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/linearLayout5"
+        android:layout_below="@id/linearLayout4"
         android:gravity="center_vertical"
-        android:id="@+id/linearLayout6">
+        android:id="@+id/linearLayout5">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -248,7 +206,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_below="@id/linearLayout6"
+        android:layout_below="@id/linearLayout5"
         android:id="@+id/viewLine2"/>
 
     <CheckBox

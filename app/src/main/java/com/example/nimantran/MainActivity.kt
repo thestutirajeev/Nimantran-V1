@@ -13,11 +13,13 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nimantran.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var bottomNav: BottomNavigationView
     private lateinit var binding: ActivityMainBinding
 
     private val prefs by lazy {getSharedPreferences("prefs", 0) }
@@ -42,6 +44,28 @@ class MainActivity : AppCompatActivity() {
                  R.id.nav_logout
             ), drawerLayout
         )
+        bottomNav = findViewById(R.id.bottomNavigationView) as BottomNavigationView
+        bottomNav.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.homebottombutton -> {
+                    //loadFragment(HomeFragment())
+                    true
+                }
+                R.id.giftsbottombutton -> {
+                    true
+                }
+                R.id.designsbottombutton -> {
+                    true
+                }
+                R.id.invitesbottombutton -> {
+                    true
+                }
+                R.id.profilebottombutton -> {
+                    true
+                }
+                else -> false
+            }
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         val userType = prefs.getString("userType", "user")
