@@ -18,17 +18,20 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/user_image"
             android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:elevation="30dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_person"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/card_client"
             app:shapeAppearanceOverlay="@style/RoundCorner" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="340dp"
+            android:id="@+id/card_client"
+            android:layout_width="0dp"
             android:layout_height="120dp"
             android:layout_marginStart="-60dp"
             android:layout_marginTop="10dp"
@@ -42,6 +45,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:id="@+id/linear_layout_client"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="65dp"
@@ -50,6 +54,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/linear_layout_client_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"

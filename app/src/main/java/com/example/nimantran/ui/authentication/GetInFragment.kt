@@ -98,6 +98,10 @@ class GetInFragment : Fragment() {
                 Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.textViewResponse.setOnClickListener {
+            findNavController().navigate(R.id.action_getInFragment_to_guestAuthenticationFragment)
+        }
     }
 
     private fun sendToMain(){
