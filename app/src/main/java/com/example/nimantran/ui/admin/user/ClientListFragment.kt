@@ -9,14 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.nimantran.R
 import com.example.nimantran.adapters.ClientListAdapter
-import com.example.nimantran.databinding.FragmentUserListBinding
+import com.example.nimantran.databinding.FragmentClientListBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class ClientListFragment : Fragment() {
 
-    private var _binding: FragmentUserListBinding? = null
+    private var _binding: FragmentClientListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
     private val userListViewModel: ClientListViewModel by viewModels()
