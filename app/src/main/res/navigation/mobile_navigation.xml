@@ -9,4 +9,41 @@
         android:name="com.example.nimantran.ui.main.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/templateDesignsFragment"
+        android:name="com.example.nimantran.ui.main.addcard.TemplateDesignsFragment"
+        android:label="TemplateDesignsFragment" >
+        <action
+            android:id="@+id/action_templateDesignsFragment_to_cardEditorFragment"
+            app:destination="@id/cardEditorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardEditorFragment"
+        android:name="com.example.nimantran.ui.main.addcard.CardEditorFragment"
+        android:label="fragment_card_editor"
+        tools:layout="@layout/fragment_card_editor" />
+    <fragment
+        android:id="@+id/myGiftOrdersFragment"
+        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyGiftOrdersFragment"
+        android:label="fragment_my_gift_orders"
+        tools:layout="@layout/fragment_my_gift_orders" />
+    <fragment
+        android:id="@+id/myGuestListFragment"
+        android:name="com.example.nimantran.ui.main.clientguests.MyGuestListFragment"
+        android:label="fragment_my_guest_list"
+        tools:layout="@layout/fragment_my_guest_list" >
+        <action
+            android:id="@+id/action_myGuestListFragment_to_addMyGuestFragment"
+            app:destination="@id/addMyGuestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMyGuestFragment"
+        android:name="com.example.nimantran.ui.main.clientguests.AddMyGuestFragment"
+        android:label="fragment_add_my_guest"
+        tools:layout="@layout/fragment_add_my_guest" />
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.nimantran.ui.main.settings.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" />
 </navigation>
