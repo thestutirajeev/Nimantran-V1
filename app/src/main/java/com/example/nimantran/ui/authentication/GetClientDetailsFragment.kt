@@ -7,22 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toast.makeText
-import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.MainActivity
 import com.example.nimantran.R
-import com.example.nimantran.databinding.FragmentGetUserDetailsBinding
+import com.example.nimantran.databinding.FragmentGetClientDetailsBinding
 import com.example.nimantran.models.Client
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.util.UUID
 
-class GetUserDetailsFragment : Fragment() {
-    private var _binding: FragmentGetUserDetailsBinding? = null
+class GetClientDetailsFragment : Fragment() {
+    private var _binding: FragmentGetClientDetailsBinding? = null
     private val binding get() = _binding!!
     private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
     private lateinit var auth: FirebaseAuth
@@ -39,7 +37,7 @@ class GetUserDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGetUserDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentGetClientDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

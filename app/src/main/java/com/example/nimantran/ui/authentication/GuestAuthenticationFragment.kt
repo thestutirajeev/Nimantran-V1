@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.nimantran.R
 
-class guestAuthenticationFragment : Fragment() {
+class GuestAuthenticationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -31,7 +31,7 @@ class ClientListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_user_list, container, false)
+        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_client_list, container, false)
         return binding.root
     }
 
