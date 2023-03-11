@@ -63,7 +63,7 @@
                        android:id="@+id/textViewPrice"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="Rs 1000"
+                       android:text="@{gift.price}"
                        android:textSize="10sp"
                        android:textStyle="italic"
                        app:layout_constraintBottom_toBottomOf="@+id/textViewGiftName"
