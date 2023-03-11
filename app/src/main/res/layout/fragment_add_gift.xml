@@ -267,7 +267,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:hint="Share your thoughts about this product"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl."
                 android:inputType="textMultiLine"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"

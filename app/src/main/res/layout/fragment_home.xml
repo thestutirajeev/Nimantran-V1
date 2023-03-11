@@ -43,14 +43,21 @@
         app:cardElevation="30dp"
         >
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayoutHome"
             android:layout_width="350dp"
             android:layout_height="500dp"
-            android:layout_margin="16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_my_cards"
-            >
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_margin="16dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_my_cards"
+                >
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.cardview.widget.CardView>
 
 
