@@ -67,6 +67,6 @@ class GiftListFragment : Fragment() {
     }
 
     companion object {
-        const val COLL_GIFTS = "Gifts"
+        const val COLL_GIFTS = "gifts"
     }
 }
