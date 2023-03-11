@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nimantran.databinding.ItemUserListBinding
+import com.example.nimantran.databinding.ItemClientListBinding
 import com.example.nimantran.models.Client
 
 
@@ -15,7 +15,7 @@ class ClientListAdapter(
     private val cardListener: (Client) -> Unit
 ) : ListAdapter<Client, ClientListAdapter.ViewHolder>(ClientDiffUtil()) {
     class ViewHolder(
-        private val binding: ItemUserListBinding
+        private val binding: ItemClientListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             client: Client,
@@ -30,7 +30,7 @@ class ClientListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemUserListBinding.inflate(
+        val binding = ItemClientListBinding.inflate(
             LayoutInflater.from(context),
             parent,
             false
