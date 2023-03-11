@@ -2,20 +2,18 @@ package com.example.nimantran.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemUserListBinding
-import com.example.nimantran.R
 import com.example.nimantran.models.Client
 
 
-class UserListAdapter(
+class ClientListAdapter(
     private val context: Context,
     private val cardListener: (Client) -> Unit
-) : ListAdapter<Client, UserListAdapter.ViewHolder>(ClientDiffUtil()) {
+) : ListAdapter<Client, ClientListAdapter.ViewHolder>(ClientDiffUtil()) {
     class ViewHolder(
         private val binding: ItemUserListBinding
     ) : RecyclerView.ViewHolder(binding.root) {

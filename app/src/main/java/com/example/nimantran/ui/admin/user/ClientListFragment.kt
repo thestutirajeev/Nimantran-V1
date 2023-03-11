@@ -7,21 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nimantran.R
-import com.example.nimantran.adapters.UserListAdapter
+import com.example.nimantran.adapters.ClientListAdapter
 import com.example.nimantran.databinding.FragmentUserListBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class UserListFragment : Fragment() {
+class ClientListFragment : Fragment() {
 
     private var _binding: FragmentUserListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val userListViewModel: UserListViewModel by viewModels()
+    private val userListViewModel: ClientListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +43,11 @@ class UserListFragment : Fragment() {
         userListViewModel.clients.observe(viewLifecycleOwner) { clients ->
             if (clients.isNotEmpty()) {
                 binding.recyclerViewUserList.adapter =
-                    UserListAdapter(requireActivity()) {
+                    ClientListAdapter(requireActivity()) {
                         userListViewModel.selectClient(it)
                     }
 
-                (binding.recyclerViewUserList.adapter as UserListAdapter).submitList(clients)
+                (binding.recyclerViewUserList.adapter as ClientListAdapter).submitList(clients)
             } else {
                 binding.recyclerViewUserList.visibility = View.GONE
             }

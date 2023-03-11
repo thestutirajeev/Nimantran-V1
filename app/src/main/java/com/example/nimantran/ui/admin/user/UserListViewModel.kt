@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.Client
 import com.google.firebase.firestore.FirebaseFirestore
 
-class UserListViewModel : ViewModel() {
+class ClientListViewModel : ViewModel() {
     private val _clients = MutableLiveData<List<Client>>()
     val clients: MutableLiveData<List<Client>> = _clients
 
@@ -19,7 +19,7 @@ class UserListViewModel : ViewModel() {
     }
 
     private fun loadClients(db: FirebaseFirestore) {
-       db.collection(UserListFragment.COLL_CLIENTS).get().addOnFailureListener {
+       db.collection(ClientListFragment.COLL_CLIENTS).get().addOnFailureListener {
             Log.e("UserListViewModel", "Error fetching clients ${it.message}")
        }.addOnCanceledListener {
             Log.e("UserListViewModel", "Cancelled fetching clients")
@@ -39,7 +39,7 @@ class UserListViewModel : ViewModel() {
     }
 
     fun deleteClient(db: FirebaseFirestore, client: Client){
-        db.collection(UserListFragment.COLL_CLIENTS).document(client.id)
+        db.collection(ClientListFragment.COLL_CLIENTS).document(client.id)
             .delete().addOnFailureListener {
                 Log.e("UserListViewModel", "Error deleting client ${it.message}")
             }.addOnCanceledListener {
