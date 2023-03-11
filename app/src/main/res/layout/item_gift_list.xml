@@ -17,9 +17,10 @@
        android:layout_margin="8dp">
        <com.google.android.material.card.MaterialCardView
            android:id="@+id/cardViewGift"
-           android:layout_width="170dp"
-           android:layout_height="170dp"
-           android:layout_margin="5dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+
            app:cardElevation="10dp"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +53,8 @@
                        android:id="@+id/textViewGiftName"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="Show Piece"
+                       android:text="@{gift.item}"
+                       tools:text="Gift Item"
                        android:textStyle="bold"
                        android:textColor="@color/secondaryColor"
                        app:layout_constraintEnd_toStartOf="@+id/textViewPrice"
@@ -63,7 +65,8 @@
                        android:id="@+id/textViewPrice"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="@{gift.price}"
+                       android:text="@{String.valueOf(gift.price)}"
+                       tools:text="100"
                        android:textSize="10sp"
                        android:textStyle="italic"
                        app:layout_constraintBottom_toBottomOf="@+id/textViewGiftName"
@@ -85,7 +88,8 @@
                            android:layout_width="match_parent"
                            android:layout_height="match_parent"
                            android:padding="5dp"
-                           android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl."
+                           android:text="@{gift.description}"
+                           tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl."
                            android:textSize="8sp"
                            android:textStyle="normal"/>
 
