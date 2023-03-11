@@ -74,6 +74,6 @@ class NotificationListFragment : Fragment() {
     }
 
     companion object {
-        const val COLL_NOTIFICATIONS = "Gifts"
+        const val COLL_NOTIFICATIONS = "notifications"
     }
 }
