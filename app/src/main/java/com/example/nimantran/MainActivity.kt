@@ -47,20 +47,20 @@ class MainActivity : AppCompatActivity() {
         bottomNav = findViewById(R.id.bottomNavigationView) as BottomNavigationView
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.homebottombutton -> {
+                R.id.homeFragment -> {
                     //loadFragment(HomeFragment())
                     true
                 }
-                R.id.giftsbottombutton -> {
+                R.id.myGiftOrdersFragment -> {
                     true
                 }
-                R.id.designsbottombutton -> {
+                R.id.templateDesignsFragment -> {
                     true
                 }
-                R.id.guestsbottombutton -> {
+                R.id.myGuestListFragment -> {
                     true
                 }
-                R.id.profilebottombutton -> {
+                R.id.myProfileFragment -> {
                     true
                 }
                 else -> false
