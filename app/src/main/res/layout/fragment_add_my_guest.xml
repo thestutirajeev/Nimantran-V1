@@ -62,7 +62,7 @@
             app:layout_constraintTop_toTopOf="@id/textView1"
             app:layout_constraintBottom_toBottomOf="@id/textView1"/>
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewSendNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_contact_phone"
@@ -79,9 +79,9 @@
             android:textColor="@color/primaryTextColor"
             android:textSize="18dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/imageView2"
-            app:layout_constraintTop_toTopOf="@id/imageView2"
-            app:layout_constraintBottom_toBottomOf="@id/imageView2"/>
+            app:layout_constraintStart_toEndOf="@id/imageViewSendNotification"
+            app:layout_constraintTop_toTopOf="@id/imageViewSendNotification"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewSendNotification"/>
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,9 +98,9 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_address"
             android:layout_marginTop="40dp"
-            app:layout_constraintTop_toBottomOf="@id/imageView2"
-            app:layout_constraintStart_toStartOf="@id/imageView2"
-            app:layout_constraintEnd_toEndOf="@id/imageView2"/>
+            app:layout_constraintTop_toBottomOf="@id/imageViewSendNotification"
+            app:layout_constraintStart_toStartOf="@id/imageViewSendNotification"
+            app:layout_constraintEnd_toEndOf="@id/imageViewSendNotification"/>
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"

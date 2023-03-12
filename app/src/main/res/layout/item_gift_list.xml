@@ -15,13 +15,13 @@
        android:layout_height="wrap_content"
        android:background="@drawable/otp_border"
        android:layout_margin="8dp">
-       <com.google.android.material.card.MaterialCardView
+       <androidx.cardview.widget.CardView
            android:id="@+id/cardViewGift"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_margin="10dp"
-
            app:cardElevation="10dp"
+           app:cardCornerRadius="16dp"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
@@ -34,9 +34,10 @@
                android:orientation="vertical">
 
                <ImageView
+                   android:id="@+id/imageViewGift"
                    android:layout_width="160dp"
                    android:layout_height="80dp"
-                   android:padding="0dp"
+                   android:padding="4dp"
                    android:src="@drawable/gift_items"
                    />
 
@@ -53,11 +54,11 @@
                        android:id="@+id/textViewGiftName"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
                        android:text="@{gift.item}"
                        tools:text="Gift Item"
                        android:textStyle="bold"
                        android:textColor="@color/secondaryColor"
-                       app:layout_constraintEnd_toStartOf="@+id/textViewPrice"
                        app:layout_constraintStart_toStartOf="parent"
                        app:layout_constraintTop_toTopOf="parent"></TextView>
 
@@ -65,14 +66,14 @@
                        android:id="@+id/textViewPrice"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:layout_marginRight="16dp"
                        android:text="@{String.valueOf(gift.price)}"
                        tools:text="100"
                        android:textSize="10sp"
                        android:textStyle="italic"
                        app:layout_constraintBottom_toBottomOf="@+id/textViewGiftName"
                        app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@+id/textViewGiftName"
-                       app:layout_constraintTop_toTopOf="parent"></TextView>
+                       app:layout_constraintTop_toTopOf="@id/textViewGiftName"></TextView>
                    <ScrollView
                        android:layout_width="0dp"
                        android:layout_height="0dp"
@@ -99,7 +100,7 @@
 
 
            </LinearLayout>
-       </com.google.android.material.card.MaterialCardView>
+       </androidx.cardview.widget.CardView>
 
 
    </androidx.constraintlayout.widget.ConstraintLayout>

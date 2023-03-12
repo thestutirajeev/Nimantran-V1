@@ -32,7 +32,7 @@ class NotificationListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notification_list, container, false)
         return binding.root
     }
 
@@ -65,7 +65,6 @@ class NotificationListFragment : Fragment() {
         }
 
         binding.fabAddNotification.setOnClickListener { findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment) }
-
     }
 
     override fun onDestroyView() {

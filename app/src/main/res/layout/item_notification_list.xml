@@ -22,14 +22,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:layout_width="match_parent"
             android:padding="8dp">
 
             <ImageView
                 android:id="@+id/imageView1"
-                android:layout_height="35dp"
-                android:layout_width="35dp"
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:layout_marginStart="16dp"
                 android:src="@drawable/ic_notifications"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,9 +38,9 @@
 
             <ImageView
                 android:id="@+id/imageViewDeleteNotification"
-                android:layout_height="16dp"
+                android:layout_height="20dp"
                 android:layout_marginEnd="4dp"
-                android:layout_width="16dp"
+                android:layout_width="20dp"
 
                 android:src="@drawable/ic_delete"
                 app:layout_constraintBottom_toBottomOf="@id/textViewNotificationDateTime"
@@ -48,12 +49,12 @@
 
             <TextView
                 android:id="@+id/textViewNotificationHeading"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:text="@{notification.subject}"
                 android:textColor="@color/white"
-                android:textSize="25sp"
+                android:textSize="16sp"
                 tools:text="Heading"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/imageView1"
@@ -62,15 +63,19 @@
 
             <TextView
                 android:id="@+id/textViewNotificationBody"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
                 android:padding="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
                 tools:text="Body"
                 android:text="@{notification.body}"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@id/textViewNotificationDateTime"
-                app:layout_constraintStart_toStartOf="@+id/textViewNotificationHeading"
-                app:layout_constraintTop_toBottomOf="@id/textViewNotificationHeading" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView1"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/textViewNotificationDateTime"
@@ -79,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:text="11 Feb"
                 android:textColor="@color/white"
-                android:textSize="11dp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/imageViewDeleteNotification"
                 app:layout_constraintEnd_toStartOf="@id/imageViewDeleteNotification"
                 app:layout_constraintTop_toTopOf="@id/imageViewDeleteNotification" />
