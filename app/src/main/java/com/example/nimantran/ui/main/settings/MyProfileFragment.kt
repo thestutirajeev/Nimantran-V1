@@ -9,8 +9,8 @@ import com.example.nimantran.databinding.FragmentMyProfileBinding
 
 class MyProfileFragment : Fragment() {
 
-    private lateinit var binding: FragmentMyProfileBinding
     private var _binding: FragmentMyProfileBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

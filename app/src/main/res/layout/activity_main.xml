@@ -5,9 +5,9 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    android:background="@drawable/background_gradient">
+    tools:openDrawer="start">
 
     <include
         android:id="@+id/app_bar_main"
@@ -23,15 +23,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:menu="@menu/main_bottom_menu" />
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

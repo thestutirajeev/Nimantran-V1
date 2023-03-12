@@ -4,25 +4,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.example.nimantran.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var bottomNav: BottomNavigationView
     private lateinit var binding: ActivityMainBinding
 
-    private val prefs by lazy {getSharedPreferences("prefs", 0) }
+    private val prefs by lazy { getSharedPreferences("prefs", 0) }
     private lateinit var auth: FirebaseAuth
 
 
@@ -36,38 +35,29 @@ class MainActivity : AppCompatActivity() {
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
+        val bottomNav: BottomNavigationView = binding.appBarMain.bottomNavigationView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        binding.appBarMain.appBarLogoimage.setOnClickListener {
+            //open drawer
+            drawerLayout.open()
+        }
         // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                 R.id.nav_logout
-            ), drawerLayout
+                R.id.nav_logout,
+                R.id.homeFragment,
+                R.id.myGuestListFragment,
+                R.id.myGiftOrdersFragment,
+                R.id.myProfileFragment,
+                R.id.templateDesignsFragment
+                ), drawerLayout
         )
-        bottomNav = findViewById(R.id.bottomNavigationView) as BottomNavigationView
-        bottomNav.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.homeFragment -> {
-                    //loadFragment(HomeFragment())
-                    true
-                }
-                R.id.myGiftOrdersFragment -> {
-                    true
-                }
-                R.id.templateDesignsFragment -> {
-                    true
-                }
-                R.id.myGuestListFragment -> {
-                    true
-                }
-                R.id.myProfileFragment -> {
-                    true
-                }
-                else -> false
-            }
-        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        //hide action bar
+        supportActionBar?.hide()
+        bottomNav.setupWithNavController(navController)
         val userType = prefs.getString("userType", "user")
 
         // add listener to navigation drawer
