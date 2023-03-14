@@ -7,25 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.nimantran.R
-import com.example.nimantran.databinding.FragmentMyGiftOrdersBinding
-import com.example.nimantran.ui.admin.gift.GiftListViewModel
+import com.example.nimantran.databinding.FragmentMyOrdersBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MyGiftOrdersFragment : Fragment() {
-    private var _binding: FragmentMyGiftOrdersBinding? = null
+class MyOrdersFragment : Fragment() {
+    private var _binding: FragmentMyOrdersBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val myGiftsViewModel: MyGiftsViewModel by viewModels()
+    private val myOrdersViewModel: MyOrdersViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMyGiftOrdersBinding.inflate(inflater, container, false)
+        _binding = FragmentMyOrdersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     companion object {
-        const val COLL_GIFTS = "gifts"
     }
 }
