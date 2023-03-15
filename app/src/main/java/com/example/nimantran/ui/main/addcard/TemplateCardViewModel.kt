@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.Template
 
-class CardViewModel: ViewModel(){
+class TemplateCardViewModel: ViewModel(){
     val _selectedTemplate = MutableLiveData<Template>()
     val selectedTemplate: MutableLiveData<Template>
         get() = _selectedTemplate

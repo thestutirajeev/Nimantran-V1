@@ -15,5 +15,4 @@ class TemplateDesignsFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_template_designs, container, false)
     }
-
 }

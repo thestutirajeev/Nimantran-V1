@@ -104,7 +104,6 @@
                         android:hint="Write Notification content here..."
                         android:inputType="textMultiLine"
                         android:padding="8dp"
-                        android:text="@string/privacy_policies"
                         android:textSize="16sp" />
 
                 </ScrollView>
