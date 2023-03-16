@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_logout,
                 R.id.homeFragment,
                 R.id.myGuestListFragment,
-                R.id.myGiftOrdersFragment,
+                R.id.myGiftsFragment,
                 R.id.myProfileFragment,
                 R.id.templateDesignsFragment
                 ), drawerLayout

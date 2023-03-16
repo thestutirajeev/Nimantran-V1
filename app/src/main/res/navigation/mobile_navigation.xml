@@ -23,13 +23,16 @@
         android:label="fragment_card_editor"
         tools:layout="@layout/fragment_card_editor" />
     <fragment
-        android:id="@+id/myGiftOrdersFragment"
-        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyGiftOrdersFragment"
+        android:id="@+id/myGiftsFragment"
+        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyGiftsFragment"
         android:label="fragment_my_gift_orders"
-        tools:layout="@layout/fragment_my_gift_orders" >
+        tools:layout="@layout/fragment_my_gifts" >
         <action
-            android:id="@+id/action_myGiftOrdersFragment_to_myOrdersFragment"
+            android:id="@+id/action_myGiftsFragment_to_myOrdersFragment"
             app:destination="@id/myOrdersFragment" />
+        <action
+            android:id="@+id/action_myGiftsFragment_to_myGiftDetailsFragment"
+            app:destination="@id/myGiftDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/myGuestListFragment"
@@ -64,4 +67,9 @@
         android:name="com.example.nimantran.ui.main.clientGiftOrders.MyOrderDetailsFragment"
         android:label="fragment_my_order_details"
         tools:layout="@layout/fragment_my_order_details" />
+    <fragment
+        android:id="@+id/myGiftDetailsFragment"
+        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyGiftDetailsFragment"
+        android:label="fragment_my_gift_details"
+        tools:layout="@layout/fragment_my_gift_details" />
 </navigation>
