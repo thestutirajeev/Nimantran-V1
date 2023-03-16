@@ -43,6 +43,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.activity:activity-compose:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
@@ -80,4 +81,7 @@ dependencies {
 
     //Coil Library
     implementation 'io.coil-kt:coil:1.1.0'
+
+    //Coil Compose
+    implementation 'io.coil-kt:coil-compose:2.1.0'
 }
