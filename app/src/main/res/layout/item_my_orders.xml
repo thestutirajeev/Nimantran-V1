@@ -14,9 +14,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewMyOrder"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="16dp"
         app:cardElevation="30dp"
         app:cardCornerRadius="10dp">
@@ -26,30 +26,86 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewMyOrderName"
+                android:id="@+id/textViewMyOrderID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="4dp"
-                android:text=""
-                tools:text="Card Title"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@{myOrder.id}"
+                android:textSize="10sp"
+                tools:text="Order ID"
+                app:layout_constraintStart_toEndOf="@id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewMyOrderPhone"
+                android:id="@+id/textViewMyOrderTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{myOrder.orderTitle}"
+                tools:text="Order Title"
+                app:layout_constraintStart_toStartOf="@id/textViewMyOrderID"
+                app:layout_constraintTop_toBottomOf="@id/textViewMyOrderID" />
+
+
+            <TextView
+                android:id="@+id/textViewMyCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="4dp"
+                android:textSize="12sp"
+                android:text="@{myOrder.card.cardTitle}"
+                tools:text="Card Title"
+                app:layout_constraintStart_toStartOf="@id/textViewMyOrderTitle"
+                app:layout_constraintTop_toBottomOf="@id/textViewMyOrderTitle" />
+
+            <TextView
+                android:id="@+id/textViewMyOrderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{myOrder.orderStatus}"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/imageView2"
+                app:layout_constraintStart_toStartOf="@id/textViewMyCardTitle"
+                tools:text="Order Status" />
+
+
+            <TextView
+                android:id="@+id/textViewMyOrderDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="95"
+                android:text="@{myOrder.card.cardDate}"
+                tools:text="10/10/24"
+                android:textSize="10sp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintBottom_toBottomOf="@id/textViewMyOrderName"
+                app:layout_constraintTop_toTopOf="@id/textViewMyOrderID"
+                app:layout_constraintBottom_toBottomOf="@id/textViewMyOrderID"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView2"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginStart="12dp"
+                android:src="@{myOrder.orderImageSrc}"
+                tools:src="@drawable/ic_template_designs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="126dp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="12dp"
+                android:src="@{myOrder.card.cardImage}"
+                tools:src="@drawable/ic_template_designs"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textViewMyOrderName" />
+                app:layout_constraintTop_toBottomOf="@id/textViewMyOrderDate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="126dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

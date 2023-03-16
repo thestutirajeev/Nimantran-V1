@@ -26,7 +26,11 @@
         android:id="@+id/myGiftOrdersFragment"
         android:name="com.example.nimantran.ui.main.clientGiftOrders.MyGiftOrdersFragment"
         android:label="fragment_my_gift_orders"
-        tools:layout="@layout/fragment_my_gift_orders" />
+        tools:layout="@layout/fragment_my_gift_orders" >
+        <action
+            android:id="@+id/action_myGiftOrdersFragment_to_myOrdersFragment"
+            app:destination="@id/myOrdersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myGuestListFragment"
         android:name="com.example.nimantran.ui.main.clientguests.MyGuestListFragment"
@@ -46,4 +50,18 @@
         android:name="com.example.nimantran.ui.main.settings.MyProfileFragment"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/myOrdersFragment"
+        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyOrdersFragment"
+        android:label="fragment_my_orders"
+        tools:layout="@layout/fragment_my_orders" >
+        <action
+            android:id="@+id/action_myOrdersFragment_to_myOrderDetailsFragment"
+            app:destination="@id/myOrderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myOrderDetailsFragment"
+        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyOrderDetailsFragment"
+        android:label="fragment_my_order_details"
+        tools:layout="@layout/fragment_my_order_details" />
 </navigation>

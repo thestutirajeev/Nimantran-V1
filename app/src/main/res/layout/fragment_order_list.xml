@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.admin.order.OrderListFragment">
 
+    <data>
+        <variable
+            name="viewModelOrderList"
+            type="com.example.nimantran.ui.admin.order.OrderListViewModel" />
+    </data>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

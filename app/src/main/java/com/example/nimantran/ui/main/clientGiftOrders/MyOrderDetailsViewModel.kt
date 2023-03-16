@@ -7,7 +7,7 @@ import com.example.nimantran.models.MyOrder
 import com.example.nimantran.ui.main.clientGiftOrders.MyOrdersFragment.Companion.COLL_ORDERS
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MyOrdersViewModel : ViewModel(){
+class MyOrderDetailsViewModel : ViewModel() {
     private val _myorders = MutableLiveData<List<MyOrder>>()
     val myorders: MutableLiveData<List<MyOrder>> = _myorders
 
