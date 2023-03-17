@@ -1,5 +1,7 @@
-package com.example.nimantran.models
+package com.example.nimantran.models.user
 
+import com.example.nimantran.models.user.Guest
+import com.example.nimantran.models.user.MyCards
 import java.util.Date
 import java.util.UUID
 

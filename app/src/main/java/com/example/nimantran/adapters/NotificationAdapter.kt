@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemNotificationListBinding
-import com.example.nimantran.models.Notification
+import com.example.nimantran.models.admin.Notification
 
 class NotificationAdapter(
     private val context: Context,

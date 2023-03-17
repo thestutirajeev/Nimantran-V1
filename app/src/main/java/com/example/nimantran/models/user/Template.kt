@@ -1,4 +1,4 @@
-package com.example.nimantran.models
+package com.example.nimantran.models.user
 
 data class Template(
     val name: String = "",

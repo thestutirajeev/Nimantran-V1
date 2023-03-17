@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.nimantran.MainActivity
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentGetClientDetailsBinding
-import com.example.nimantran.models.Client
+import com.example.nimantran.models.admin.Client
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -82,7 +82,7 @@ class GetClientDetailsFragment : Fragment() {
                     binding.TextViewSetPhone.requestFocus()
                     return@setOnClickListener
                 }
-                val client=Client(userId, name, phone, gender)
+                val client= Client(userId, name, phone, gender)
                 db.collection(COLL_USER).document(userId).set(client).addOnSuccessListener {
                     prefs.edit().putBoolean("isFirstTime", false).apply()
                     // jump to main activity

@@ -6,7 +6,7 @@
 
         <variable
             name="client"
-            type="com.example.nimantran.models.Client" />
+            type="com.example.nimantran.models.admin.Client" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

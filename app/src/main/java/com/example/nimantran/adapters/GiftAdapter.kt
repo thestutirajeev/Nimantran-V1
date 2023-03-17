@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemGiftListBinding
-import com.example.nimantran.models.Gift
+import com.example.nimantran.models.admin.Gift
 
 class GiftAdapter (
     private val context: Context,

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemClientListBinding
-import com.example.nimantran.models.Client
+import com.example.nimantran.models.admin.Client
 
 
 class ClientListAdapter(

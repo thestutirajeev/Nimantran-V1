@@ -1,29 +1,29 @@
 package com.example.nimantran.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.content.Context
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.nimantran.databinding.ItemMyCardsBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nimantran.models.user.MyCards
+import com.example.nimantran.databinding.ItemOrderListBinding
+import com.example.nimantran.models.admin.Order
 
-class MyCardsAdapter(
+class OrderListAdapter(
     private val context: Context,
-    private val listener: (MyCards) -> Unit
-) : ListAdapter<MyCards, MyCardsAdapter.ViewHolder>(MyCardsDiffUtil()) {
+    private val listener: (Order) -> Unit
+) : ListAdapter<Order, OrderListAdapter.ViewHolder>(OrderListDiffUtil()) {
     class ViewHolder(
-        private val binding: ItemMyCardsBinding
+        private val binding: ItemOrderListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(mycards: MyCards) {
-            binding.mycards = mycards
+        fun bind(order: Order) {
+            binding.order = order
             binding.executePendingBindings()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemMyCardsBinding.inflate(
+        val binding = ItemOrderListBinding.inflate(
             LayoutInflater.from(context),
             parent,
             false
@@ -35,14 +35,13 @@ class MyCardsAdapter(
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener { listener(getItem(position)) }
     }
-
 }
-class MyCardsDiffUtil : DiffUtil.ItemCallback<MyCards>() {
-    override fun areItemsTheSame(oldItem: MyCards, newItem: MyCards): Boolean {
+class OrderListDiffUtil : DiffUtil.ItemCallback<Order>() {
+    override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: MyCards, newItem: MyCards): Boolean {
-        return oldItem.cardImage == newItem.cardImage
+    override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean {
+        return oldItem.id == newItem.id
     }
 }

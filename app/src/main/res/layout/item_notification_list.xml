@@ -6,7 +6,7 @@
     <data>
         <variable
             name="notification"
-            type="com.example.nimantran.models.Notification" />
+            type="com.example.nimantran.models.admin.Notification" />
     </data>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewNotification"

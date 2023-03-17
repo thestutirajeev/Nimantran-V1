@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nimantran.models.MyCards
+import com.example.nimantran.models.user.MyCards
 import com.example.nimantran.ui.main.home.HomeFragment.Companion.COLL_MYCARDS
 import com.google.firebase.firestore.FirebaseFirestore
 

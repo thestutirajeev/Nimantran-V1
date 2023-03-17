@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nimantran.models.Gift
+import com.example.nimantran.models.admin.Gift
 import com.example.nimantran.ui.admin.gift.GiftListFragment.Companion.COLL_GIFTS
 import com.google.firebase.firestore.FirebaseFirestore
 

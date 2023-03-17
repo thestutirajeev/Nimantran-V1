@@ -19,7 +19,7 @@ class AdminDashboardFragment : Fragment() {
     private var _binding: FragmentAdminDashboardBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
-      private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
+    private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,13 +1,12 @@
 package com.example.nimantran.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemTemplateDesignBinding
-import com.example.nimantran.models.Template
+import com.example.nimantran.models.user.Template
 
 class TemplateAdapter(
     private val listener: (Template) -> Unit

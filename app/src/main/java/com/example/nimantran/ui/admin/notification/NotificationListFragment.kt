@@ -64,7 +64,9 @@ class NotificationListFragment : Fragment() {
             notificationListViewModel.getNotifications(db)
         }
 
-        binding.fabAddNotification.setOnClickListener { findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment) }
+        binding.fabAddNotification.setOnClickListener {
+            findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment)
+        }
     }
 
     override fun onDestroyView() {

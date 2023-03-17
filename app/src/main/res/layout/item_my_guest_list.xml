@@ -4,7 +4,7 @@
     <data>
         <variable
             name="guest"
-            type="com.example.nimantran.models.Guest" />
+            type="com.example.nimantran.models.user.Guest" />
     </data>
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewMyGuest"

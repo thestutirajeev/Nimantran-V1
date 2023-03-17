@@ -6,7 +6,7 @@
     <data>
         <variable
             name="template"
-            type="com.example.nimantran.models.Template" />
+            type="com.example.nimantran.models.user.Template" />
     </data>
 
     <androidx.cardview.widget.CardView

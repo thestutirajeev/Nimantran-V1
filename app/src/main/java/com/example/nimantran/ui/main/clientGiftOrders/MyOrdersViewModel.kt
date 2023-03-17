@@ -3,7 +3,7 @@ package com.example.nimantran.ui.main.clientGiftOrders
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nimantran.models.MyOrder
+import com.example.nimantran.models.user.MyOrder
 import com.example.nimantran.ui.main.clientGiftOrders.MyOrdersFragment.Companion.COLL_ORDERS
 import com.google.firebase.firestore.FirebaseFirestore
 

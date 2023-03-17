@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nimantran.databinding.ItemMyGuestListBinding
-import com.example.nimantran.models.Guest
+import com.example.nimantran.models.user.Guest
 
 class MyGuestListAdapter(
     private val context: Context,

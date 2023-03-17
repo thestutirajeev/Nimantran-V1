@@ -7,7 +7,7 @@
 
         <variable
             name="mycards"
-            type="com.example.nimantran.models.MyCards" />
+            type="com.example.nimantran.models.user.MyCards" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"

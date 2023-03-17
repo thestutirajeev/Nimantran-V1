@@ -3,7 +3,7 @@ package com.example.nimantran.ui.main.addcard
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nimantran.models.Template
+import com.example.nimantran.models.user.Template
 import com.google.firebase.firestore.FirebaseFirestore
 
 class TemplateCardViewModel : ViewModel() {
