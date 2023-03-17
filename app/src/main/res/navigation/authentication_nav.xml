@@ -55,5 +55,14 @@
         android:id="@+id/guestAuthenticationFragment"
         android:name="com.example.nimantran.ui.authentication.GuestAuthenticationFragment"
         android:label="fragment_guest_authentication"
-        tools:layout="@layout/fragment_guest_authentication" />
+        tools:layout="@layout/fragment_guest_authentication" >
+        <action
+            android:id="@+id/action_guestAuthenticationFragment_to_invitationResponseFragment"
+            app:destination="@id/invitationResponseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/invitationResponseFragment"
+        android:name="com.example.nimantran.ui.authentication.InvitationResponseFragment"
+        android:label="fragment_invitation_response"
+        tools:layout="@layout/fragment_invitation_response" />
 </navigation>
