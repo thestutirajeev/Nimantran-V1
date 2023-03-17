@@ -8,7 +8,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.nimantran.ui.main.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_myGiftsFragment"
+            app:destination="@id/myGiftsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_templateDesignsFragment"
+            app:destination="@id/templateDesignsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myGuestListFragment"
+            app:destination="@id/myGuestListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/templateDesignsFragment"
         android:name="com.example.nimantran.ui.main.addcard.TemplateDesignsFragment"
