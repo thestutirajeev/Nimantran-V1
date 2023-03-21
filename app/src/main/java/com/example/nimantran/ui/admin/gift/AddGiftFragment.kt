@@ -47,7 +47,14 @@ class AddGiftFragment : Fragment() {
                 binding.buttonSaveGift.text = "Save"
             }
         }
-
+      /*
+        if(gift.id != null) {
+            binding.editTextItemName.setText(gift.item)
+            binding.editTextItemPrice.setText(gift.price)
+            binding.editTextItemQuantity.setText(gift.quantity)
+            binding.editTextItemDescription.setText(gift.description)
+        }
+*/
         binding.apply {
             buttonSaveGift.setOnClickListener {
                 addGiftContainer.isEnabled = false

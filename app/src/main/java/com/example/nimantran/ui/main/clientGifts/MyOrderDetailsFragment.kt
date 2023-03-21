@@ -1,13 +1,11 @@
-package com.example.nimantran.ui.main.clientGiftOrders
+package com.example.nimantran.ui.main.clientGifts
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentMyOrderDetailsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore

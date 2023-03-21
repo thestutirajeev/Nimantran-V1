@@ -1,11 +1,11 @@
-package com.example.nimantran.ui.main.clientGiftOrders
+package com.example.nimantran.ui.main.clientGifts
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.admin.Gift
-import com.example.nimantran.ui.main.clientGiftOrders.MyGiftsFragment.Companion.COLL_MY_GIFTS
+import com.example.nimantran.ui.main.clientGifts.MyGiftsFragment.Companion.COLL_MY_GIFTS
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MyGiftsViewModel : ViewModel() {

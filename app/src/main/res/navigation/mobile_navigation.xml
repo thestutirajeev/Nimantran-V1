@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_card_editor" />
     <fragment
         android:id="@+id/myGiftsFragment"
-        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyGiftsFragment"
+        android:name="com.example.nimantran.ui.main.clientGifts.MyGiftsFragment"
         android:label="fragment_my_gift_orders"
         tools:layout="@layout/fragment_my_gifts" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/myGuestListFragment"
-        android:name="com.example.nimantran.ui.main.clientguests.MyGuestListFragment"
+        android:name="com.example.nimantran.ui.main.clientGuests.MyGuestListFragment"
         android:label="fragment_my_guest_list"
         tools:layout="@layout/fragment_my_guest_list" >
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/addMyGuestFragment"
-        android:name="com.example.nimantran.ui.main.clientguests.AddMyGuestFragment"
+        android:name="com.example.nimantran.ui.main.clientGuests.AddMyGuestFragment"
         android:label="fragment_add_my_guest"
         tools:layout="@layout/fragment_add_my_guest" />
     <fragment
@@ -68,7 +68,7 @@
         tools:layout="@layout/fragment_my_profile" />
     <fragment
         android:id="@+id/myOrdersFragment"
-        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyOrdersFragment"
+        android:name="com.example.nimantran.ui.main.clientGifts.MyOrdersFragment"
         android:label="fragment_my_orders"
         tools:layout="@layout/fragment_my_orders" >
         <action
@@ -77,12 +77,12 @@
     </fragment>
     <fragment
         android:id="@+id/myOrderDetailsFragment"
-        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyOrderDetailsFragment"
+        android:name="com.example.nimantran.ui.main.clientGifts.MyOrderDetailsFragment"
         android:label="fragment_my_order_details"
         tools:layout="@layout/fragment_my_order_details" />
     <fragment
         android:id="@+id/myGiftDetailsFragment"
-        android:name="com.example.nimantran.ui.main.clientGiftOrders.MyGiftDetailsFragment"
+        android:name="com.example.nimantran.ui.main.clientGifts.MyGiftDetailsFragment"
         android:label="fragment_my_gift_details"
         tools:layout="@layout/fragment_my_gift_details" />
 </navigation>

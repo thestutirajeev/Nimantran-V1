@@ -1,4 +1,4 @@
-package com.example.nimantran.ui.main.clientGiftOrders
+package com.example.nimantran.ui.main.clientGifts
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

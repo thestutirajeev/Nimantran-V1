@@ -1,4 +1,4 @@
-package com.example.nimantran.ui.main.clientguests
+package com.example.nimantran.ui.main.clientGuests
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
