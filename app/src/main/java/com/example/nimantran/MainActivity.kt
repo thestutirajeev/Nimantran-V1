@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             //open drawer
             drawerLayout.open()
         }
+        //Notification
+        binding.appBarMain.imageViewMyNotifications.setOnClickListener{
+            findNavController(R.id.action_homeFragment_to_myNotificationFragment)
+        }
         // Passing each menu ID as a set of Ids because each
         appBarConfiguration = AppBarConfiguration(
             setOf(

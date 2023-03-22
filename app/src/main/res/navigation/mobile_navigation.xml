@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homeFragment_to_myGuestListFragment"
             app:destination="@id/myGuestListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myNotificationFragment"
+            app:destination="@id/myNotificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/templateDesignsFragment"
@@ -85,4 +88,9 @@
         android:name="com.example.nimantran.ui.main.clientGifts.MyGiftDetailsFragment"
         android:label="fragment_my_gift_details"
         tools:layout="@layout/fragment_my_gift_details" />
+    <fragment
+        android:id="@+id/myNotificationFragment"
+        android:name="com.example.nimantran.ui.main.notification.MyNotificationFragment"
+        android:label="fragment_my_notification"
+        tools:layout="@layout/fragment_my_notification" />
 </navigation>
