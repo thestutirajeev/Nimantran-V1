@@ -26,7 +26,6 @@ class MyNotificationFragment : Fragment() {
         super.onCreate(savedInstanceState)
         db = Firebase.firestore
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
