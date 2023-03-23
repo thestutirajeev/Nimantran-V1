@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        flatDir(name: 'libs', dirs: 'libs')
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +11,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        flatDir(name: 'libs', dirs: 'libs')
     }
 }
 rootProject.name = "Nimantran"
