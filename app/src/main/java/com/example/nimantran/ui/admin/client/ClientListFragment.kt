@@ -1,4 +1,4 @@
-package com.example.nimantran.ui.admin.user
+package com.example.nimantran.ui.admin.client
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

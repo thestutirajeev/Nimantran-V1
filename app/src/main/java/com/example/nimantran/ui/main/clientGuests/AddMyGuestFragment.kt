@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import com.example.nimantran.R
 import com.example.nimantran.ui.main.clientGuests.AddMyGuestViewModel
 import com.example.nimantran.databinding.FragmentAddMyGuestBinding
+import com.example.nimantran.models.user.Guest
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AddMyGuestFragment : Fragment() {
@@ -20,12 +21,22 @@ class AddMyGuestFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
     //private var addMyGuestViewModel: AddMyGuestViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        db = FirebaseFirestore.getInstance()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAddMyGuestBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     companion object {

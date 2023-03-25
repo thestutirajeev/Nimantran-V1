@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toStartOf="@id/imageViewMyOrders"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="Search gift...." />
+            app:queryHint="Search gift..." />
 
         <ImageView
             android:id="@+id/imageViewMyOrders"

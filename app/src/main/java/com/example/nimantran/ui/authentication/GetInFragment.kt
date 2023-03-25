@@ -32,6 +32,36 @@ class GetInFragment : Fragment() {
         auth.setLanguageCode("en")
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // User is signed in (getCurrentUser() will be null if not signed in)
+        sendToMain()
+
+        binding.progressBar.visibility = View.GONE
+
+        binding.buttonVerify.setOnClickListener {
+            phoneNumber = "+91" + binding.editPhone.text.toString().trim()
+            if(phoneNumber.length == 13) {
+                val options = PhoneAuthOptions.newBuilder(auth)
+                    .setPhoneNumber(phoneNumber)       // Phone number to verify
+                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                    .setActivity(requireActivity())                 // Activity (for callback binding)
+                    .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
+                    .build()
+                PhoneAuthProvider.verifyPhoneNumber(options)
+                binding.progressBar.visibility = View.VISIBLE
+                binding.buttonVerify.isEnabled = false
+            }else{
+                Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.textViewResponse.setOnClickListener {
+            findNavController().navigate(R.id.action_getInFragment_to_guestAuthenticationFragment)
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         if (auth.currentUser != null) {
@@ -74,32 +104,6 @@ class GetInFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.progressBar.visibility = View.GONE
-
-        binding.buttonVerify.setOnClickListener {
-            phoneNumber = "+91" + binding.editPhone.text.toString().trim()
-            if(phoneNumber.length == 13) {
-                val options = PhoneAuthOptions.newBuilder(auth)
-                    .setPhoneNumber(phoneNumber)       // Phone number to verify
-                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                    .setActivity(requireActivity())                 // Activity (for callback binding)
-                    .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
-                    .build()
-                PhoneAuthProvider.verifyPhoneNumber(options)
-                binding.progressBar.visibility = View.VISIBLE
-                binding.buttonVerify.isEnabled = false
-            }else{
-                Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        binding.textViewResponse.setOnClickListener {
-            findNavController().navigate(R.id.action_getInFragment_to_guestAuthenticationFragment)
-        }
-    }
 
     private fun sendToMain(){
         startActivity(Intent(activity, MainActivity::class.java))

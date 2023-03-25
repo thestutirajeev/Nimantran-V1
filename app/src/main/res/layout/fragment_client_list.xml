@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.admin.user.ClientListFragment">
+    tools:context=".ui.admin.client.ClientListFragment">
 
     <data>
         <variable
             name="viewModelClientList"
-            type="com.example.nimantran.ui.admin.user.ClientListViewModel" />
+            type="com.example.nimantran.ui.admin.client.ClientListViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="Search user...." />
+                app:queryHint="Search client..." />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

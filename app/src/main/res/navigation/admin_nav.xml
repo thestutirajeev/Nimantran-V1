@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/userListFragment"
-        android:name="com.example.nimantran.ui.admin.user.ClientListFragment"
+        android:name="com.example.nimantran.ui.admin.client.ClientListFragment"
         android:label="fragment_user_list"
         tools:layout="@layout/fragment_client_list" />
     <fragment

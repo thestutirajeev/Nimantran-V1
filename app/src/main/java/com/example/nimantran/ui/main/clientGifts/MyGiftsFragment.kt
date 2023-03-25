@@ -15,7 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MyGiftsFragment : Fragment() {
-    private var _binding: com.example.nimantran.databinding.FragmentMyGiftsBinding? = null
+    private var _binding: FragmentMyGiftsBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
     private val myGiftsViewModel: MyGiftsViewModel by viewModels()
