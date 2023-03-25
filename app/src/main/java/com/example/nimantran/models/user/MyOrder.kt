@@ -8,9 +8,13 @@ import java.util.UUID
 data class MyOrder(
     val id: String = UUID.randomUUID().toString(),
     val orderDate: Date = Date(),
+    //timestamp
     val orderStatus: String = "",
     val orderTitle: String = "",
+    //<gift,qty>
+    //total amt
     val orderImageSrc: String = "",
     val card: MyCards = MyCards(),
-    val guest: List<Guest> //= listOf(Guest()),
+    val guest: List<Guest> = emptyList(),//= listOf(Guest()),
+    val paymentRefId: String = "",
 )
