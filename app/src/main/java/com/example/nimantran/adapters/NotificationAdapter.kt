@@ -3,9 +3,12 @@ package com.example.nimantran.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nimantran.R
 import com.example.nimantran.databinding.ItemNotificationListBinding
 import com.example.nimantran.models.admin.Notification
 
@@ -25,6 +28,7 @@ class NotificationAdapter(
             binding.notification = notification
             binding.cardViewNotification.setOnClickListener {
                 cardListener(notification)
+                //findNavController().navigate(R.id.action_notificationListFragment_to_readNotificationFragment)
             }
             binding.imageViewDeleteNotification.setOnClickListener {
                 deleteListener(notification)

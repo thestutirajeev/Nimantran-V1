@@ -14,21 +14,18 @@ class AddNotificationViewModel : ViewModel() {
     private val _isSaved = MutableLiveData(false)
     val isSaved: MutableLiveData<Boolean> = _isSaved
 
-
     fun saveNotification(
         db: FirebaseFirestore,
         body: String,
-        subject: String,
-        to: String,
-        date: Timestamp
+        subject: String
     ) {
         _isLoading.value = true
 
-        if (!validateNotification(body, subject, to, date)) {
+        if (!validateNotification(body, subject)) {
             _isLoading.value = false
             _isSaved.value = false
         } else {
-            val notification = Notification(body, subject, to, date)
+            val notification = Notification(body, subject)
             db.collection(NotificationListFragment.COLL_NOTIFICATIONS).add(notification).addOnSuccessListener {
                 _isLoading.value = false
                 _isSaved.value = true
@@ -44,9 +41,7 @@ class AddNotificationViewModel : ViewModel() {
     private fun validateNotification(
         body: String,
         subject: String,
-        to: String,
-        date: Timestamp
     ): Boolean {
-        return body.isNotEmpty() && subject.isNotEmpty() && to.isNotEmpty() && date != null
+        return body.isNotEmpty() && subject.isNotEmpty()
     }
 }

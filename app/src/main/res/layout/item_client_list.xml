@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
-
         <variable
             name="client"
             type="com.example.nimantran.models.admin.Client" />
@@ -90,8 +88,6 @@
                     android:layout_marginTop="5dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp">
-
-
                     <ImageView
                         android:id="@+id/user_phone_icon"
                         android:layout_width="wrap_content"
@@ -101,7 +97,6 @@
                         app:layout_constraintEnd_toStartOf="@id/user_phone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
 
                     <TextView
                         android:id="@+id/user_phone"
@@ -114,16 +109,7 @@
                         app:layout_constraintStart_toEndOf="@id/user_phone_icon"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <CheckBox
-                        android:id="@+id/checkboxSelectUser"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:visibility="invisible"
-                        android:scaleX="1.3"
-                        android:scaleY="1.3"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                   </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

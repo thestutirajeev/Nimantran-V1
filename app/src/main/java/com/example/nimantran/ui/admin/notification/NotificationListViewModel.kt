@@ -31,15 +31,12 @@ class NotificationListViewModel : ViewModel() {
             Log.d("NotificationListViewModel", "Notification loaded ${notificationsLoaded.size}")
         }
     }
-
     fun selectNotification(notification: Notification) {
         _selectedNotification.value = notification
     }
-
     fun deselectNotification() {
         _selectedNotification.value = null
     }
-
     fun deleteNotification(db: FirebaseFirestore, notification: Notification) {
         db.collection(NotificationListFragment.COLL_NOTIFICATIONS).document(notification.id)
             .delete().addOnFailureListener {

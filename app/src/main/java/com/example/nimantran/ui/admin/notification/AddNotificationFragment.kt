@@ -41,7 +41,9 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
         binding.viewModelAddNotification = viewModel
 
         binding.imageViewSendNotification.setOnClickListener{
-            findNavController().navigate(R.id.action_addNotificationFragment_to_sendNotificationFragment)
+            val subject = binding.editTextNotificationSubject.text.toString()
+            val body = binding.editTextNotificationBody.text.toString()
+            viewModel.saveNotification(db, body, subject)
         }
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {

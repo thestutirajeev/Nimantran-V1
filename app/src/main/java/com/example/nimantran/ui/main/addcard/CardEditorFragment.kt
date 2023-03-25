@@ -58,7 +58,7 @@ class CardEditorFragment : Fragment() {
             binding.ivTemplate.setImageURI(Uri.parse(it.url))
             launchPhotoEditor(Uri.parse(it.url))
 
-            binding.lledit.setOnClickListener {
+            binding.cLEdit.setOnClickListener {
                 launchPhotoEditor(mUri!!)
             }
 

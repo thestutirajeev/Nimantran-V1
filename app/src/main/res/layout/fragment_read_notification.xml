@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.admin.notification.AddNotificationFragment">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.admin.notification.ReadNotificationFragment">
     <data>
         <variable
-            name="viewModelAddNotification"
-            type="com.example.nimantran.ui.admin.notification.AddNotificationViewModel" />
+            name="Notification"
+            type="com.example.nimantran.models.admin.Notification" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/addNotificationContainer"
+            android:id="@+id/readNotificationContainer"
             android:layout_width="360dp"
             android:layout_height="400dp"
             android:layout_margin="10dp"
@@ -29,27 +28,16 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageViewSendNotification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/ic_send"
-                    app:layout_constraintBottom_toTopOf="@+id/layout1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/layout1"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:backgroundTint="@color/primaryColor"
                     app:cardCornerRadius="5dp"
-                    app:cardElevation="20dp"
+                    app:cardElevation="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageViewSendNotification">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -68,13 +56,14 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextNotificationSubject"
+                        <TextView
+                            android:id="@+id/textViewNotificationSubject"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:layout_marginEnd="4dp"
-                            android:hint="Enter Subject"
+                            android:hint="Subject"
+                            android:text="@{Notification.subject}"
                             android:inputType="textCapCharacters"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -94,14 +83,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout1">
 
-                    <EditText
-                        android:id="@+id/editTextNotificationBody"
+                    <TextView
+                        android:id="@+id/textViewNotificationBody"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="8dp"
                         android:ems="10"
                         android:gravity="start|top"
-                        android:hint="Write Notification content here..."
+                        android:text="@{Notification.body}"
+                        android:hint="Notification content here..."
                         android:inputType="textMultiLine"
                         android:padding="8dp"
                         android:textSize="16sp" />
@@ -114,5 +104,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

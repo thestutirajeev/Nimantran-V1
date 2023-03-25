@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -45,6 +46,7 @@ class NotificationListFragment : Fragment() {
                     NotificationAdapter(requireActivity(), {
                         notificationListViewModel.selectNotification(it)
                     }, {
+                        Toast.makeText(requireContext(), "deleted", Toast.LENGTH_SHORT).show()
                         notificationListViewModel.deleteNotification(db, it)
                     })
 
@@ -67,6 +69,7 @@ class NotificationListFragment : Fragment() {
         binding.fabAddNotification.setOnClickListener {
             findNavController().navigate(R.id.action_notificationListFragment_to_addNotificationFragment)
         }
+
     }
 
     override fun onDestroyView() {

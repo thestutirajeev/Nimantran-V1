@@ -176,7 +176,7 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/imageViewSendNotification"
+        android:id="@+id/notificationManagement"
         android:layout_width="130dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"

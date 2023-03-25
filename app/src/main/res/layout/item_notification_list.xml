@@ -35,13 +35,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <ImageView
                 android:id="@+id/imageViewDeleteNotification"
                 android:layout_height="20dp"
                 android:layout_marginEnd="4dp"
                 android:layout_width="20dp"
-
                 android:src="@drawable/ic_delete"
                 app:layout_constraintBottom_toBottomOf="@id/textViewNotificationDateTime"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:layout_width="wrap_content"
-                android:text="11 Feb"
+                app:humanize_date_text="@{notification.date}"
+                tools:text="28 March"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/imageViewDeleteNotification"
