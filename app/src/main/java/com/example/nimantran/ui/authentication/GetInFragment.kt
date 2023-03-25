@@ -76,6 +76,9 @@ class GetInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.progressBar.visibility = View.GONE
+
         binding.buttonVerify.setOnClickListener {
             phoneNumber = "+91" + binding.editPhone.text.toString().trim()
             if(phoneNumber.length == 13) {
@@ -86,6 +89,8 @@ class GetInFragment : Fragment() {
                     .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
                     .build()
                 PhoneAuthProvider.verifyPhoneNumber(options)
+                binding.progressBar.visibility = View.VISIBLE
+                binding.buttonVerify.isEnabled = false
             }else{
                 Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
             }
@@ -106,6 +111,8 @@ class GetInFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
+                    binding.progressBar.visibility = View.GONE
+                    binding.buttonVerify.isEnabled = true
                     Toast.makeText(activity, "Signed In", Toast.LENGTH_SHORT).show()
                     sendToMain()
                     val user = task.result?.user
@@ -115,6 +122,8 @@ class GetInFragment : Fragment() {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
                         Toast.makeText(activity, "Invalid OTP", Toast.LENGTH_SHORT).show()
+                        binding.progressBar.visibility = View.GONE
+                        binding.buttonVerify.isEnabled = true
                     }
                     // Update UI
                 }

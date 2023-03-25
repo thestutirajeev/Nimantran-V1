@@ -70,6 +70,8 @@ class OTPFragment : Fragment() {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
                         Toast.makeText(activity, "Invalid OTP", Toast.LENGTH_SHORT).show()
+                        binding.buttonOtp.isEnabled = true  // Enable the button
+                        binding.progressBar2.visibility = View.INVISIBLE
                     }
                     // Update UI
                 }
@@ -126,6 +128,10 @@ class OTPFragment : Fragment() {
                 R.id.otpEditText4 -> if (text.length == 1) binding.otpEditText5.requestFocus() else if (text.isEmpty()) binding.otpEditText3.requestFocus()
                 R.id.otpEditText5 -> if (text.length == 1) binding.otpEditText6.requestFocus() else if (text.isEmpty()) binding.otpEditText4.requestFocus()
                 R.id.otpEditText6 -> if (text.isEmpty()) binding.otpEditText5.requestFocus()
+
+            }
+            if(binding.otpEditText1.text.toString().isEmpty() && binding.otpEditText2.text.toString().isEmpty() && binding.otpEditText3.text.toString().isEmpty() && binding.otpEditText4.text.toString().isEmpty() && binding.otpEditText5.text.toString().isEmpty() && binding.otpEditText6.text.toString().isEmpty()){
+                binding.otpEditText1.requestFocus()
             }
         }
     }
@@ -149,6 +155,7 @@ class OTPFragment : Fragment() {
             .setForceResendingToken(resendingToken) // ForceResendingToken from callbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
+
     }
 
     var callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -193,6 +200,7 @@ class OTPFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.otpEditText1.requestFocus()
         val bundle = OTPFragmentArgs.fromBundle(requireArguments())
         phoneNumber = bundle.phone
         OTP = bundle.otp
@@ -208,6 +216,7 @@ class OTPFragment : Fragment() {
             if (typedOTP.isNotEmpty() && typedOTP.length == 6) {
                 val credential = PhoneAuthProvider.getCredential(OTP, typedOTP)
                 binding.progressBar2.visibility = View.VISIBLE
+                binding.buttonOtp.isEnabled = false
                 signInWithPhoneAuthCredential(credential)
             } else {
                 Toast.makeText(context, "Please enter valid OTP", Toast.LENGTH_SHORT).show()
