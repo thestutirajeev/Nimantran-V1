@@ -41,7 +41,6 @@ class AddNotificationViewModel : ViewModel() {
             }
         }
     }
-
     private fun validateNotification(
         body: String,
         subject: String,

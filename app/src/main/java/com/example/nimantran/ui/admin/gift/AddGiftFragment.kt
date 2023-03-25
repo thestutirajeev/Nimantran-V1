@@ -30,8 +30,7 @@ class AddGiftFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_add_gift, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_gift, container, false)
         return binding.root
     }
 

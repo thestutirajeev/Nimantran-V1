@@ -58,7 +58,11 @@
         android:id="@+id/addNotificationFragment"
         android:name="com.example.nimantran.ui.admin.notification.AddNotificationFragment"
         android:label="fragment_add_notification"
-        tools:layout="@layout/fragment_add_notification" />
+        tools:layout="@layout/fragment_add_notification" >
+        <action
+            android:id="@+id/action_addNotificationFragment_to_sendNotificationFragment"
+            app:destination="@id/sendNotificationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/appInsightFragment"
         android:name="com.example.nimantran.ui.admin.insight.AppInsightFragment"
@@ -69,4 +73,8 @@
         android:name="com.example.nimantran.ui.admin.order.OrderListFragment"
         android:label="fragment_order_list"
         tools:layout="@layout/fragment_order_list" />
+    <fragment
+        android:id="@+id/sendNotificationFragment"
+        android:name="com.example.nimantran.ui.admin.notification.SendNotificationFragment"
+        android:label="SendNotificationFragment" />
 </navigation>

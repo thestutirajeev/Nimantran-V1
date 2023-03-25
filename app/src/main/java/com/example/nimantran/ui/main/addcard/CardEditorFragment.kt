@@ -35,8 +35,9 @@ class CardEditorFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             result?.data?.let {
                 // display result in the ivTemplate
-                val uri = it.data
-                binding.ivTemplate.setImageURI(uri)
+                mUri = it.data
+                binding.ivTemplate.setImageURI(mUri)
+
             }
         }
 
@@ -56,7 +57,17 @@ class CardEditorFragment : Fragment() {
             mUri = Uri.parse(it.url)
             binding.ivTemplate.setImageURI(Uri.parse(it.url))
             launchPhotoEditor(Uri.parse(it.url))
+
+            binding.lledit.setOnClickListener {
+                launchPhotoEditor(mUri!!)
+            }
+
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun launchPhotoEditor(uri: Uri) {
@@ -64,14 +75,8 @@ class CardEditorFragment : Fragment() {
         photoEditorIntent.data = uri
         photoEditorIntent.putExtra(
             DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY,
-            "PHOTO EDITOR"
+            "Nimantran"
         );
-        val toolsToHide =
-            intArrayOf(DsPhotoEditorActivity.TOOL_ORIENTATION)
-        photoEditorIntent.putExtra(
-            DsPhotoEditorConstants.DS_PHOTO_EDITOR_TOOLS_TO_HIDE,
-            toolsToHide
-        )
         photoEditorLauncher.launch(photoEditorIntent)
     }
 
@@ -96,6 +101,7 @@ class CardEditorFragment : Fragment() {
                 launchPhotoEditor(it)
             }
         }
+
 
     // Camera Launcher.
     private val cameraLauncher =

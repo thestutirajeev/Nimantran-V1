@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -45,9 +46,9 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         navController = findNavController(R.id.nav_host_fragment_content_main)
         loadUI()
         if (EasyPermissions.hasPermissions(this, *perms)) {
-            enableUI()
+            //enableUI()
         } else {
-            disableUI()
+            //disableUI()
             EasyPermissions.requestPermissions(
                 this,
                 "This app needs access to permission to work",
@@ -123,15 +124,17 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        disableUI()
+       // disableUI()
     }
 
     private fun enableUI() {
         binding.appBarMain.bottomNavigationView.visibility = android.view.View.VISIBLE
+        Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
     }
 
 
     private fun disableUI() {
         binding.appBarMain.bottomNavigationView.visibility = android.view.View.GONE
+        Toast.makeText(this, "Permission Revoked", Toast.LENGTH_SHORT).show()
     }
 }

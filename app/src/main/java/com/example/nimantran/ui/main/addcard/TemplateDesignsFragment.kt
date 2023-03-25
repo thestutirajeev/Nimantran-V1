@@ -36,7 +36,6 @@ class TemplateDesignsFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getTemplates(db)
@@ -50,5 +49,8 @@ class TemplateDesignsFragment : Fragment() {
             }
         }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

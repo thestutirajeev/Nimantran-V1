@@ -40,14 +40,15 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModelAddNotification = viewModel
 
+        binding.imageViewSendNotification.setOnClickListener{
+            findNavController().navigate(R.id.action_addNotificationFragment_to_sendNotificationFragment)
+        }
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {
                 findNavController().navigateUp() // Navigate back to NotificationListFragment
             } else {
                 binding.addNotificationContainer.isEnabled = true }
         }
-
-
         binding.apply {
         }
     }

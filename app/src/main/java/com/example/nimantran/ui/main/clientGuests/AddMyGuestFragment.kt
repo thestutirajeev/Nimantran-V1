@@ -18,7 +18,7 @@ class AddMyGuestFragment : Fragment() {
     private var _binding: FragmentAddMyGuestBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    //private var addMyGuestViewModel: AddMyGuestViewModel by viewModels()
+   // private var addMyGuestViewModel: AddMyGuestViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

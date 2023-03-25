@@ -37,6 +37,8 @@ class MyNotificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.myNotificationViewModel = myNotificationViewModel
+
         myNotificationViewModel.getMyNotifications(db) // fetch data only
         myNotificationViewModel.myNotifications.observe(viewLifecycleOwner) { notifications ->
             if (notifications.isNotEmpty()) {
