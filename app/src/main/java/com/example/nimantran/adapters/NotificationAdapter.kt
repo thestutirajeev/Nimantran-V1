@@ -15,7 +15,8 @@ import com.example.nimantran.models.admin.Notification
 class NotificationAdapter(
     private val context: Context,
     private val cardListener: (Notification) -> Unit,
-    private val deleteListener: (Notification) -> Unit
+    private val deleteListener: (Notification) -> Unit,
+
 ) : ListAdapter<Notification, NotificationAdapter.ViewHolder>(NotificationDiffUtil()) {
     class ViewHolder(
         private val binding: ItemNotificationListBinding
@@ -28,7 +29,6 @@ class NotificationAdapter(
             binding.notification = notification
             binding.cardViewNotification.setOnClickListener {
                 cardListener(notification)
-                //findNavController().navigate(R.id.action_notificationListFragment_to_readNotificationFragment)
             }
             binding.imageViewDeleteNotification.setOnClickListener {
                 deleteListener(notification)

@@ -45,6 +45,7 @@ class NotificationListFragment : Fragment() {
                 binding.recyclerViewNotificationList.adapter =
                     NotificationAdapter(requireActivity(), {
                         notificationListViewModel.selectNotification(it)
+                        findNavController().navigate(R.id.action_notificationListFragment_to_readNotificationFragment)
                     }, {
                         Toast.makeText(requireContext(), "deleted", Toast.LENGTH_SHORT).show()
                         notificationListViewModel.deleteNotification(db, it)
