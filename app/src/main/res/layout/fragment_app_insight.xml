@@ -4,6 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.admin.insight.AppInsightFragment">
 
+    <data>
+        <variable
+            name="appInsightViewModel"
+            type="com.example.nimantran.ui.admin.insight.AppInsightViewModel" />
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentGuestAuthenticationBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
 class GuestAuthenticationFragment : Fragment() {
     private var _binding: FragmentGuestAuthenticationBinding? = null
     private val binding get() = _binding!!
+    private lateinit var db: FirebaseFirestore
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
