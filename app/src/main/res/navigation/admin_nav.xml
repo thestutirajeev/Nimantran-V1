@@ -57,7 +57,7 @@
             android:id="@+id/action_notificationListFragment_to_readNotificationFragment"
             app:destination="@id/readNotificationFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/addNotificationFragment"
         android:name="com.example.nimantran.ui.admin.notification.AddNotificationFragment"
         android:label="fragment_add_notification"
@@ -72,7 +72,7 @@
         android:name="com.example.nimantran.ui.admin.order.OrderListFragment"
         android:label="fragment_order_list"
         tools:layout="@layout/fragment_order_list" />
-    <fragment
+    <dialog
         android:id="@+id/readNotificationFragment"
         android:name="com.example.nimantran.ui.admin.notification.ReadNotificationFragment"
         android:label="fragment_read_notification"

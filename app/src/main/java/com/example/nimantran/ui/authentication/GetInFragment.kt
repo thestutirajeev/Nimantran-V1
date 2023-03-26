@@ -36,7 +36,7 @@ class GetInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // User is signed in (getCurrentUser() will be null if not signed in)
-        sendToMain()
+        //sendToMain()
 
         binding.progressBar.visibility = View.GONE
 

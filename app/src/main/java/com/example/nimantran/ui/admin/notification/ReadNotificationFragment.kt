@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.nimantran.databinding.FragmentReadNotificationBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ReadNotificationFragment : Fragment() {
+class ReadNotificationFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentReadNotificationBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore

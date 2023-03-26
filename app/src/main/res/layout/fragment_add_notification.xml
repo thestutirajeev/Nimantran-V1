@@ -19,7 +19,7 @@
             android:layout_height="400dp"
             android:layout_margin="10dp"
             android:background="@drawable/round_border"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="30dp"
             app:cardElevation="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/layout1"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="56dp"
                     android:backgroundTint="@color/primaryColor"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="20dp"
@@ -62,10 +62,12 @@
                             android:layout_height="match_parent"
                             android:padding="8dp"
                             android:text="Subject"
+                            android:textSize="16sp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
 
 
                         <com.google.android.material.textfield.TextInputEditText
