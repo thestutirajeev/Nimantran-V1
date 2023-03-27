@@ -52,6 +52,7 @@ class GetInFragment : Fragment() {
                 PhoneAuthProvider.verifyPhoneNumber(options)
                 binding.progressBar.visibility = View.VISIBLE
                 binding.buttonVerify.isEnabled = false
+                binding.textViewResponse.isEnabled= false
             }else{
                 Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
             }
@@ -117,6 +118,7 @@ class GetInFragment : Fragment() {
                     // Sign in success, update UI with the signed-in user's information
                     binding.progressBar.visibility = View.GONE
                     binding.buttonVerify.isEnabled = true
+                    binding.textViewResponse.isEnabled = true
                     Toast.makeText(activity, "Signed In", Toast.LENGTH_SHORT).show()
                     sendToMain()
                     val user = task.result?.user
@@ -128,6 +130,7 @@ class GetInFragment : Fragment() {
                         Toast.makeText(activity, "Invalid OTP", Toast.LENGTH_SHORT).show()
                         binding.progressBar.visibility = View.GONE
                         binding.buttonVerify.isEnabled = true
+                        binding.textViewResponse.isEnabled = true
                     }
                     // Update UI
                 }
