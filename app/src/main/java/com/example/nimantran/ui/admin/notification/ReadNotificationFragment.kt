@@ -14,13 +14,15 @@ class ReadNotificationFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentReadNotificationBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val readNotificationViewModel: ReadNotificationViewModel by viewModels()
+    private val notificationListViewModel: NotificationListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentReadNotificationBinding.inflate(inflater, container, false)
+        binding.viewModel = notificationListViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
     

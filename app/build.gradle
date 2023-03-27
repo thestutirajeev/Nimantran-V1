@@ -71,6 +71,4 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     // easypermissions
     implementation 'pub.devrel:easypermissions:3.0.0'
-
-
 }

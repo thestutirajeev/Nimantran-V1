@@ -5,8 +5,8 @@
     tools:context=".ui.admin.notification.ReadNotificationFragment">
     <data>
         <variable
-            name="Notification"
-            type="com.example.nimantran.models.admin.Notification" />
+            name="viewModel"
+            type="com.example.nimantran.ui.admin.notification.NotificationListViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +17,6 @@
             android:layout_width="360dp"
             android:layout_height="400dp"
             android:background="@drawable/round_border"
-            app:cardCornerRadius="30dp"
             app:cardElevation="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +26,31 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/textViewNotificationTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="3:50PM"
+                    android:textSize="16sp"
+                    android:layout_margin="8dp"
+                    app:humanize_date_text="@{viewModel.selectedNotification.date}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/layout1"
+                    />
+                <TextView
+                    android:id="@+id/textViewNotificationDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4sp"
+                    app:humanize_time_text="@{viewModel.selectedNotification.date}"
+                    tools:text="12/12/2023"
+                    android:textSize="8sp"
+                    app:layout_constraintStart_toEndOf="@id/textViewNotificationTime"
+                    app:layout_constraintBottom_toBottomOf="@id/textViewNotificationTime"
+
+                    />
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/layout1"
                     android:layout_width="match_parent"
@@ -37,8 +61,7 @@
                     app:cardElevation="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
+                    app:layout_constraintTop_toBottomOf="@id/textViewNotificationTime">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -65,7 +88,7 @@
                             android:layout_marginStart="4dp"
                             android:layout_marginEnd="4dp"
                             android:hint="Subject"
-                            android:text="@{Notification.subject}"
+                            android:text="@{viewModel.selectedNotification.subject}"
                             android:inputType="textCapCharacters"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,7 +115,7 @@
                         android:layout_margin="8dp"
                         android:ems="10"
                         android:gravity="start|top"
-                        android:text="@{Notification.body}"
+                        android:text="@{viewModel.selectedNotification.body}"
                         android:hint="Notification content here..."
                         android:inputType="textMultiLine"
                         android:padding="8dp"
