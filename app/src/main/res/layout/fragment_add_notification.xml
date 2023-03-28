@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModelAddNotification"
-            type="com.example.nimantran.ui.admin.notification.AddNotificationViewModel" />
+            type="com.example.nimantran.ui.admin.notification.NotificationListViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
@@ -19,7 +20,7 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentAddNotificationBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val viewModel : AddNotificationViewModel by viewModels()
+    private val viewModel : NotificationListViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

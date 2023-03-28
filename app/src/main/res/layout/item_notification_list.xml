@@ -58,7 +58,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/imageView1"
                 app:layout_constraintStart_toEndOf="@id/imageView1"
                 app:layout_constraintTop_toTopOf="@+id/imageView1"
-                tools:text="Heading"></TextView>
+                tools:text="Heading" />
 
             <TextView
                 android:id="@+id/textViewNotificationBody"

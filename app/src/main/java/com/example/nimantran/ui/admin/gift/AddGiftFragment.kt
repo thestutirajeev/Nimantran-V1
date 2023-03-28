@@ -1,35 +1,52 @@
 package com.example.nimantran.ui.admin.gift
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentAddGiftBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
 
-class AddGiftFragment : Fragment() {
+class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private var _binding: FragmentAddGiftBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val viewModel: AddGiftViewModel by viewModels()
+    private lateinit var storage: FirebaseStorage
+    private lateinit var auth: FirebaseAuth
+    private val viewModel: GiftViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         db = Firebase.firestore
+        storage = Firebase.storage
+        auth = Firebase.auth
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_gift, container, false)
         return binding.root
     }
@@ -46,14 +63,14 @@ class AddGiftFragment : Fragment() {
                 binding.buttonSaveGift.text = "Save"
             }
         }
-      /*
-        if(gift.id != null) {
-            binding.editTextItemName.setText(gift.item)
-            binding.editTextItemPrice.setText(gift.price)
-            binding.editTextItemQuantity.setText(gift.quantity)
-            binding.editTextItemDescription.setText(gift.description)
-        }
-*/
+        /*
+          if(gift.id != null) {
+              binding.editTextItemName.setText(gift.item)
+              binding.editTextItemPrice.setText(gift.price)
+              binding.editTextItemQuantity.setText(gift.quantity)
+              binding.editTextItemDescription.setText(gift.description)
+          }
+  */
         binding.apply {
             buttonSaveGift.setOnClickListener {
                 addGiftContainer.isEnabled = false
@@ -62,13 +79,69 @@ class AddGiftFragment : Fragment() {
                 val quantity = editTextItemQuantity.text.toString().trim()
                 val description = editTextItemDescription.text.toString().trim()
                 buttonSaveGift.text = "Saving..."
-                viewModel.saveGift(db, item, price, quantity, description)  // Save gift to Firestore
+                viewModel.saveGift(
+                    db,
+                    item,
+                    price,
+                    quantity,
+                    description
+                )  // Save gift to Firestore
             }
+            imageViewEditGift.setOnClickListener { selectImage() }
         }
     }
+
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            binding.ImageViewGift.load(uri) {
+                crossfade(true)
+                transformations(CircleCropTransformation())
+                viewModel.uploadToFirebase(requireActivity(), storage, uri)
+            }
+        }
+
+    @AfterPermissionGranted(REQUEST_IMAGE_GET)
+    private fun selectImage() {
+        if (EasyPermissions.hasPermissions(
+                requireContext(),
+                READ_EXTERNAL_STORAGE,
+            )
+        ) {
+            getContent.launch("image/*")
+        } else {
+            EasyPermissions.requestPermissions(
+                this, getString(R.string.permission_required),
+                122, READ_EXTERNAL_STORAGE
+            )
+        }
+    }
+
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+        selectImage()
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        const val REQUEST_IMAGE_GET = 12
     }
 }

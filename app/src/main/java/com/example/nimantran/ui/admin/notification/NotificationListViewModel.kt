@@ -15,14 +15,20 @@ class NotificationListViewModel : ViewModel() {
     private val _selectedNotification = MutableLiveData<Notification?>()
     val selectedNotification: MutableLiveData<Notification?> = _selectedNotification
 
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: MutableLiveData<Boolean> = _isLoading
+
+    private val _isSaved = MutableLiveData(false)
+    val isSaved: MutableLiveData<Boolean> = _isSaved
+
     fun getNotifications(db: FirebaseFirestore) {
         loadNotifications(db)
-        _selectedNotification.value = null
     }
 
     private fun loadNotifications(db: FirebaseFirestore) {
         // fetch data from firebase firestore
-        db.collection(NotificationListFragment.COLL_NOTIFICATIONS).orderBy("date", Query.Direction.DESCENDING)
+        db.collection(NotificationListFragment.COLL_NOTIFICATIONS)
+            .orderBy("date", Query.Direction.DESCENDING)
             .get().addOnSuccessListener {
                 val notificationsLoaded = it.toObjects(Notification::class.java)
                 _notifications.value = notificationsLoaded
@@ -35,7 +41,7 @@ class NotificationListViewModel : ViewModel() {
 
     fun selectNotification(notification: Notification) {
         _selectedNotification.value = notification
-        Log.e("NotificationListViewModel", "Selected notification ${notification.id}")
+        Log.e("TAGX", "Selected notification ${notification.subject}")
     }
 
     fun deselectNotification() {
@@ -52,10 +58,58 @@ class NotificationListViewModel : ViewModel() {
             }.addOnSuccessListener {
                 try {
                     db.collection(NotificationListFragment.COLL_NOTIFICATIONS)
-                        .document(it.documents[0].id).delete()
+                        .document(it.documents[0].id).delete().addOnSuccessListener {
+                            Log.d(
+                                "NotificationListViewModel",
+                                "Deleted notification ${notification.id}"
+                            )
+                            loadNotifications(db)
+                        }.addOnFailureListener {
+                            Log.e(
+                                "NotificationListViewModel",
+                                "Error deleting notification ${it.message}"
+                            )
+                        }.addOnCanceledListener {
+                            Log.e("NotificationListViewModel", "Cancelled deleting notification")
+                        }
                 } catch (e: Exception) {
                     Log.e("NotificationListViewModel", "Error deleting notification ${e.message}")
                 }
             }
+    }
+
+
+    fun saveNotification(
+        db: FirebaseFirestore,
+        body: String,
+        subject: String
+    ) {
+        _isLoading.value = true
+
+        if (!validateNotification(body, subject)) {
+            _isLoading.value = false
+            _isSaved.value = false
+        } else {
+            val notification = Notification(body, subject)
+            db.collection(NotificationListFragment.COLL_NOTIFICATIONS).add(notification)
+                .addOnSuccessListener {
+                    _isLoading.value = false
+                    _isSaved.value = true
+                    loadNotifications(db)
+                }.addOnFailureListener {
+                _isLoading.value = false
+                _isSaved.value = false
+            }.addOnCanceledListener {
+                _isLoading.value = false
+                _isSaved.value = false
+            }
+        }
+    }
+
+    private fun validateNotification(
+        body: String,
+        subject: String,
+    ): Boolean {
+        return body.isNotEmpty() && subject.isNotEmpty()
     }
 }

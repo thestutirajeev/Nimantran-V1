@@ -1,6 +1,7 @@
 package com.example.nimantran.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
@@ -17,7 +18,7 @@ class NotificationAdapter(
     private val cardListener: (Notification) -> Unit,
     private val deleteListener: (Notification) -> Unit,
 
-) : ListAdapter<Notification, NotificationAdapter.ViewHolder>(NotificationDiffUtil()) {
+    ) : ListAdapter<Notification, NotificationAdapter.ViewHolder>(NotificationDiffUtil()) {
     class ViewHolder(
         private val binding: ItemNotificationListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -27,6 +28,7 @@ class NotificationAdapter(
             deleteListener: (Notification) -> Unit
         ) {
             binding.notification = notification
+            Log.d("NotificationAdapter", "Binding notification ${notification.id}")
             binding.cardViewNotification.setOnClickListener {
                 cardListener(notification)
             }

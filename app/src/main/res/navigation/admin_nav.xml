@@ -9,7 +9,7 @@
         android:id="@+id/adminDashboardFragment"
         android:name="com.example.nimantran.ui.admin.AdminDashboardFragment"
         android:label="fragment_admin_dashboard"
-        tools:layout="@layout/fragment_admin_dashboard" >
+        tools:layout="@layout/fragment_admin_dashboard">
         <action
             android:id="@+id/action_adminDashboardFragment_to_userListFragment"
             app:destination="@id/userListFragment" />
@@ -40,7 +40,7 @@
         android:id="@+id/giftListFragment"
         android:name="com.example.nimantran.ui.admin.gift.GiftListFragment"
         android:label="fragment_gift_list"
-        tools:layout="@layout/fragment_gift_list" >
+        tools:layout="@layout/fragment_gift_list">
         <action
             android:id="@+id/action_giftListFragment_to_addGiftFragment"
             app:destination="@id/addGiftFragment" />
@@ -49,7 +49,7 @@
         android:id="@+id/notificationListFragment"
         android:name="com.example.nimantran.ui.admin.notification.NotificationListFragment"
         android:label="fragment_notification_list"
-        tools:layout="@layout/fragment_notification_list" >
+        tools:layout="@layout/fragment_notification_list">
         <action
             android:id="@+id/action_notificationListFragment_to_addNotificationFragment"
             app:destination="@id/addNotificationFragment" />
@@ -76,5 +76,10 @@
         android:id="@+id/readNotificationFragment"
         android:name="com.example.nimantran.ui.admin.notification.ReadNotificationFragment"
         android:label="fragment_read_notification"
-        tools:layout="@layout/fragment_read_notification" />
+        tools:layout="@layout/fragment_read_notification">
+        <argument
+            android:name="subject"
+            app:argType="string"
+            app:nullable="false" />
+    </dialog>
 </navigation>

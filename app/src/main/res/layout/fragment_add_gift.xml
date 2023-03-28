@@ -8,7 +8,7 @@
     <data>
         <variable
             name="viewModelAddGift"
-            type="com.example.nimantran.ui.admin.gift.AddGiftViewModel" />
+            type="com.example.nimantran.ui.admin.gift.GiftViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,15 +84,14 @@
 
         <ImageView
             android:id="@+id/imageViewEditGift"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginBottom="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
             android:background="@drawable/circle_1"
-            android:padding="2dp"
-            android:layout_marginStart="-15dp"
+            android:padding="12dp"
             android:src="@drawable/ic_edit"
-            app:layout_constraintBottom_toBottomOf="@+id/ImageViewGift"
-            app:layout_constraintStart_toEndOf="@+id/ImageViewGift" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ImageViewGift" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

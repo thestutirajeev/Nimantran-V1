@@ -1,12 +1,14 @@
 package com.example.nimantran.ui.admin.notification
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
@@ -21,7 +23,7 @@ class NotificationListFragment : Fragment() {
     private var _binding: FragmentNotificationListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val notificationListViewModel: NotificationListViewModel by viewModels()
+    private val notificationListViewModel: NotificationListViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +47,12 @@ class NotificationListFragment : Fragment() {
                 binding.recyclerViewNotificationList.adapter =
                     NotificationAdapter(requireActivity(), {
                         notificationListViewModel.selectNotification(it)
-
-                        findNavController().navigate(R.id.action_notificationListFragment_to_readNotificationFragment)
+                        val dir = NotificationListFragmentDirections.actionNotificationListFragmentToReadNotificationFragment(it.subject)
+                        findNavController().navigate(dir)
                     }, {
                         Toast.makeText(requireContext(), "deleted", Toast.LENGTH_SHORT).show()
                         notificationListViewModel.deleteNotification(db, it)
-                        notificationListViewModel.getNotifications(db)
+
                     })
 
                 (binding.recyclerViewNotificationList.adapter as NotificationAdapter).submitList(
