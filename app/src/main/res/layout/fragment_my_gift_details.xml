@@ -8,9 +8,8 @@
             name="myGiftsViewModel"
             type="com.example.nimantran.ui.main.clientGifts.MyGiftsViewModel" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/addGiftContainer"
+        android:id="@+id/myGiftContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -22,13 +21,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
-                android:src="@drawable/ic_arrow_back"
-                />
+                android:src="@drawable/ic_arrow_back"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -38,8 +35,7 @@
                 android:text="Gift Details"
                 android:textColor="@color/secondaryDarkColor"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <View
