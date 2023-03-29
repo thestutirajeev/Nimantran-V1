@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -61,13 +62,13 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         Log.d("TAGX", "onViewCreated: ${viewModel.selectedGift.value}")
 
         binding.viewModelEditGift = viewModel
-
+/*
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {
                 findNavController().navigateUp() // Navigate back to GiftListFragment
             }
         }
-
+*/
 
         disableEdit()
 
@@ -75,7 +76,9 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         binding.imageViewDelete.setOnClickListener{
             Toast.makeText(context, "Gift Deleted", Toast.LENGTH_SHORT).show()
             viewModel.deleteGift(db)
-            findNavController().navigate(R.id.action_editGiftFragment_to_giftListFragment)
+
+            findNavController().navigateUp()
+            viewModel.getGifts(db)
         }
 
         binding.btnEditGift.setOnClickListener {
@@ -86,12 +89,18 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
         binding.btnSaveGift.setOnClickListener {
             disableEdit()
-            Toast.makeText(context, "Save Mode", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Changes Save", Toast.LENGTH_LONG).show()
         }
 
         binding.btnCancel.setOnClickListener {
             Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
             disableEdit()
+        }
+
+        binding.imageViewBackToGiftList.setOnClickListener {
+            viewModel.getGifts(db)
+            findNavController().navigateUp()
+            viewModel.getGifts(db)
         }
     }
 

@@ -78,6 +78,7 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 val price = editTextItemPrice.text.toString().trim()
                 val quantity = editTextItemQuantity.text.toString().trim()
                 val description = editTextItemDescription.text.toString().trim()
+               // val image =
                 buttonSaveGift.text = "Saving..."
                 viewModel.saveGift(
                     db,
@@ -86,6 +87,14 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                     quantity,
                     description
                 )  // Save gift to Firestore
+
+            }
+            viewModel.isSaved.observe(viewLifecycleOwner) { state ->
+                if (state) {
+                    viewModel.getGifts(db)
+                    findNavController().navigateUp() // Navigate back to NotificationListFragment
+                } else {
+                    binding.addGiftContainer.isEnabled = true }
             }
             imageViewEditGift.setOnClickListener { selectImage() }
         }

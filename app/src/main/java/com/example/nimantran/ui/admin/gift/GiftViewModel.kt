@@ -3,11 +3,15 @@ package com.example.nimantran.ui.admin.gift
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
+import androidx.fragment.app.Fragment
 import android.provider.OpenableColumns
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.nimantran.R
 import com.example.nimantran.models.admin.Gift
 import com.example.nimantran.ui.admin.gift.GiftListFragment.Companion.COLL_GIFTS
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,12 +38,13 @@ class GiftViewModel : ViewModel() {
     private val _downloadUri = MutableLiveData<Uri>()
     val downloadUri: MutableLiveData<Uri> = _downloadUri
 
+
     fun saveGift(
         db: FirebaseFirestore,
         item: String,
         price: String,
         quantity: String,
-        description: String
+        description: String,
     ) {
         _isLoading.value = true
 
@@ -137,6 +142,7 @@ class GiftViewModel : ViewModel() {
         db.collection(GiftListFragment.COLL_GIFTS)
             .whereEqualTo("item", selectedGift.value?.item).get().addOnFailureListener {
                 Log.e("GiftViewModel", "Error deleting gift ${it.message}")
+                getGifts(db)
             }.addOnCanceledListener {
                 Log.e("GiftViewModel", "Cancelled deleting gift")
             }.addOnSuccessListener {
