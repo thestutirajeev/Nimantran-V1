@@ -35,6 +35,7 @@
             app:layout_constraintBottom_toBottomOf="@id/searchViewMyGifts"
             app:layout_constraintStart_toEndOf="@id/searchViewMyGifts"
             app:layout_constraintEnd_toEndOf="parent"/>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayoutMyGifts"
             android:layout_width="match_parent"
@@ -43,8 +44,10 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchViewMyGifts">
+            app:layout_constraintTop_toBottomOf="@id/searchViewMyGifts"
+            app:layout_constraintVertical_bias="0.857">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewMyGifts"
@@ -52,9 +55,8 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                tools:listitem="@layout/item_my_gifts"
-                />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                tools:listitem="@layout/item_my_gifts" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,10 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
-import com.example.nimantran.adapters.GiftAdapter
+import com.example.nimantran.adapters.MyGiftAdapter
 import com.example.nimantran.databinding.FragmentMyGiftsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -18,7 +19,7 @@ class MyGiftsFragment : Fragment() {
     private var _binding: FragmentMyGiftsBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val myGiftsViewModel: MyGiftsViewModel by viewModels()
+    private val myGiftsViewModel: MyGiftsViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +40,11 @@ class MyGiftsFragment : Fragment() {
         myGiftsViewModel.getMyGifts(db) // fetch data only
         myGiftsViewModel.myGifts.observe(viewLifecycleOwner) { gifts ->
             if (gifts.isNotEmpty()) {
-                binding.recyclerViewMyGifts.adapter = GiftAdapter(requireActivity()) {
+                binding.recyclerViewMyGifts.adapter = MyGiftAdapter(requireActivity()) {
                     myGiftsViewModel.selectMyGift(it)
                     findNavController().navigate(R.id.action_myGiftsFragment_to_myGiftDetailsFragment)
                 }
-                (binding.recyclerViewMyGifts.adapter as GiftAdapter).submitList(gifts)
+                (binding.recyclerViewMyGifts.adapter as MyGiftAdapter).submitList(gifts)
             } else {
                 binding.recyclerViewMyGifts.visibility = View.GONE
             }

@@ -12,8 +12,8 @@ class MyGiftsViewModel : ViewModel() {
     private val _myGifts = MutableLiveData<List<Gift>>()
     val myGifts: LiveData<List<Gift>> = _myGifts
 
-    val _selectedMyGift = MutableLiveData<Gift>()
-    val selectedMyGift: LiveData<Gift> = _selectedMyGift
+    private val _selectedMyGift = MutableLiveData<Gift?>()
+    val selectedMyGift: MutableLiveData<Gift?> = _selectedMyGift
 
     fun getMyGifts(db: FirebaseFirestore){
         loadMyGifts(db)

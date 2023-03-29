@@ -87,19 +87,31 @@
         android:id="@+id/myGiftDetailsFragment"
         android:name="com.example.nimantran.ui.main.clientGifts.MyGiftDetailsFragment"
         android:label="fragment_my_gift_details"
-        tools:layout="@layout/fragment_my_gift_details" />
+        tools:layout="@layout/fragment_my_gift_details" >
+        <argument
+            android:name="item"
+            app:argType="string"
+            android:defaultValue="Gift Name" />
+        <argument
+            android:name="price"
+            app:argType="float"
+            android:defaultValue="1000" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/myNotificationFragment"
         android:name="com.example.nimantran.ui.main.notification.MyNotificationFragment"
         android:label="fragment_my_notification"
         tools:layout="@layout/fragment_my_notification" >
         <action
-            android:id="@+id/action_myNotificationFragment_to_readNotificationFragment2"
+            android:id="@+id/action_myNotificationFragment_to_myReadNotificationFragment"
             app:destination="@id/myReadNotificationFragment" />
     </fragment>
-    <dialog
+    <fragment
         android:id="@+id/myReadNotificationFragment"
-        android:name="com.example.nimantran.ui.admin.notification.ReadNotificationFragment"
-        android:label="fragment_read_notification"
-        tools:layout="@layout/fragment_read_notification" />
+        android:name="com.example.nimantran.ui.main.notification.MyReadNotificationFragment"
+        android:label="fragment_my_read_notification"
+        tools:layout="@layout/fragment_my_read_notification" />
 </navigation>

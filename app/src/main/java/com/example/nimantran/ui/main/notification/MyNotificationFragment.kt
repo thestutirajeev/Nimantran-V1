@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.nimantran.R
 import com.example.nimantran.adapters.MyNotificationAdapter
@@ -20,7 +21,7 @@ class MyNotificationFragment : Fragment() {
     private var _binding: FragmentMyNotificationBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val myNotificationViewModel: MyNotificationViewModel by viewModels()
+    private val myNotificationViewModel: MyNotificationViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
