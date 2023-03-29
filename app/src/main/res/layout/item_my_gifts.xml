@@ -87,7 +87,7 @@
                         android:padding="2dp"
                         android:text="@{gift.description}"
                         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl."
-                        android:textSize="8sp"
+                        android:textSize="10sp"
                         android:textStyle="normal"/>
 
                 </ScrollView>

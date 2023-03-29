@@ -83,7 +83,7 @@
         android:name="com.example.nimantran.ui.main.clientOrders.MyOrderDetailsFragment"
         android:label="fragment_my_order_details"
         tools:layout="@layout/fragment_my_order_details" />
-    <fragment
+    <dialog
         android:id="@+id/myGiftDetailsFragment"
         android:name="com.example.nimantran.ui.main.clientGifts.MyGiftDetailsFragment"
         android:label="fragment_my_gift_details"
@@ -99,7 +99,7 @@
         <argument
             android:name="description"
             app:argType="string" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/myNotificationFragment"
         android:name="com.example.nimantran.ui.main.notification.MyNotificationFragment"

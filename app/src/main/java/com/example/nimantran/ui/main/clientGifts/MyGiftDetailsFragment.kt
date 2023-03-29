@@ -1,7 +1,6 @@
 package com.example.nimantran.ui.main.clientGifts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.nimantran.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class MyGiftDetailsFragment : Fragment() {
+class MyGiftDetailsFragment : BottomSheetDialogFragment() {
     private var _binding: com.example.nimantran.databinding.FragmentMyGiftDetailsBinding? = null
     private val args: MyGiftDetailsFragmentArgs by navArgs()
     private val binding get() = _binding!!
