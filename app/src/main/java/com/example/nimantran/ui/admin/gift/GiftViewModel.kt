@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.admin.Gift
 import com.example.nimantran.ui.admin.gift.GiftListFragment.Companion.COLL_GIFTS
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
+
 
 class GiftViewModel : ViewModel() {
     private val _gifts = MutableLiveData<List<Gift>>()
@@ -75,7 +77,9 @@ class GiftViewModel : ViewModel() {
 
     private fun loadGifts(db: FirebaseFirestore) {
         // fetch data from firebase firestore
-        db.collection(COLL_GIFTS).get().addOnFailureListener {
+        db.collection(COLL_GIFTS)
+            .orderBy("price", Query.Direction.ASCENDING)
+            .get().addOnFailureListener {
             Log.e("GiftViewModel", "Error fetching gifts ${it.message}")
         }.addOnCanceledListener {
             Log.e("GiftViewModel", "Cancelled fetching gifts")
@@ -128,5 +132,26 @@ class GiftViewModel : ViewModel() {
         }
     }
 
-
+    fun deleteGift(db:  FirebaseFirestore) {
+        Log.d("GiftViewModel", "Deleting gift ${selectedGift.value?.item}")
+        db.collection(GiftListFragment.COLL_GIFTS)
+            .whereEqualTo("item", selectedGift.value?.item).get().addOnFailureListener {
+                Log.e("GiftViewModel", "Error deleting gift ${it.message}")
+            }.addOnCanceledListener {
+                Log.e("GiftViewModel", "Cancelled deleting gift")
+            }.addOnSuccessListener {
+                try {
+                    db.collection(GiftListFragment.COLL_GIFTS)
+                        .document(it.documents[0].id).delete().addOnCanceledListener {
+                            Log.e("GiftViewModel", "Cancelled deleting gift")
+                        }.addOnFailureListener {
+                            Log.e("GiftViewModel", "Error deleting gift ${it.message}")
+                        }.addOnSuccessListener {
+                            Log.d("GiftViewModel", "Gift deleted ${selectedGift.value?.item}")
+                        }
+                }catch (e: Exception) {
+                    Log.e("GiftViewModel", "Error deleting gift ${e.message}")
+                }
+            }
+    }
 }

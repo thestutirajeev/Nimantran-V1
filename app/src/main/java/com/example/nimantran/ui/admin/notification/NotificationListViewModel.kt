@@ -81,16 +81,16 @@ class NotificationListViewModel : ViewModel() {
 
     fun saveNotification(
         db: FirebaseFirestore,
+        subject: String,
         body: String,
-        subject: String
     ) {
         _isLoading.value = true
 
-        if (!validateNotification(body, subject)) {
+        if (!validateNotification(subject, body)) {
             _isLoading.value = false
             _isSaved.value = false
         } else {
-            val notification = Notification(body, subject)
+            val notification = Notification(subject, body)
             db.collection(NotificationListFragment.COLL_NOTIFICATIONS).add(notification)
                 .addOnSuccessListener {
                     _isLoading.value = false
@@ -107,8 +107,8 @@ class NotificationListViewModel : ViewModel() {
     }
 
     private fun validateNotification(
-        body: String,
         subject: String,
+        body: String,
     ): Boolean {
         return body.isNotEmpty() && subject.isNotEmpty()
     }

@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_giftListFragment_to_addGiftFragment"
             app:destination="@id/addGiftFragment" />
+        <action
+            android:id="@+id/action_giftListFragment_to_editGiftFragment"
+            app:destination="@id/editGiftFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationListFragment"
@@ -82,4 +85,15 @@
             app:argType="string"
             app:nullable="false" />
     </dialog>
+    <fragment
+        android:id="@+id/editGiftFragment"
+        android:name="com.example.nimantran.ui.admin.gift.EditGiftFragment"
+        android:label="fragment_edit_gift">
+        <argument
+            android:name="item"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editGiftFragment_to_giftListFragment"
+            app:destination="@id/giftListFragment" />
+    </fragment>
 </navigation>

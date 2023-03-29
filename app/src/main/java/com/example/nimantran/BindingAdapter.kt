@@ -31,3 +31,12 @@ fun humanizeTime(view: TextView, date: Date?) {
         view.text = "00:00"
     }
 }
+
+@BindingAdapter("price_text")
+fun priceInRupeesText(view: TextView, price: Double) {
+    try {
+        view.text = "₹ $price"
+    } catch (e: Exception) {
+        view.text = "₹ 0.0"
+    }
+}

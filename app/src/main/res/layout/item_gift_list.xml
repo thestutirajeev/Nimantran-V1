@@ -34,7 +34,8 @@
                    android:layout_width="160dp"
                    android:layout_height="80dp"
                    android:padding="4dp"
-                   android:src="@drawable/gift_items"
+                   app:image="@{gift.image}"
+                   tools:src="@drawable/gift_items"
                    />
 
                <View
@@ -63,7 +64,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginRight="16dp"
-                       android:text="@{String.valueOf(gift.price)}"
+                       app:price_text="@{gift.price}"
                        tools:text="100"
                        android:textSize="10sp"
                        android:textStyle="italic"

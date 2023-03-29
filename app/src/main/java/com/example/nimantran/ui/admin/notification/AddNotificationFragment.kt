@@ -44,7 +44,7 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
         binding.buttonSend.setOnClickListener{
             val subject = binding.editTextNotificationSubject.text.toString()
             val body = binding.editTextNotificationBody.text.toString()
-            viewModel.saveNotification(db, body, subject)
+            viewModel.saveNotification(db, subject, body)
         }
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {

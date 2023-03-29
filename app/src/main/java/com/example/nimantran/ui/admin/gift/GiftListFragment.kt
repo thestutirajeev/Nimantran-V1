@@ -1,17 +1,13 @@
 package com.example.nimantran.ui.admin.gift
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import coil.transform.CircleCropTransformation
 import com.example.nimantran.R
 import com.example.nimantran.adapters.GiftAdapter
 import com.example.nimantran.databinding.FragmentGiftListBinding
@@ -44,11 +40,16 @@ class GiftListFragment : Fragment() {
         giftViewModel.getGifts(db) // fetch data only
         giftViewModel.gifts.observe(viewLifecycleOwner) { gifts ->
             if (gifts.isNotEmpty()) {
-                binding.recyclerViewGiftList.adapter = GiftAdapter(requireActivity()) {
-                    giftViewModel.selectGift(it)
-                    findNavController().navigate(R.id.action_giftListFragment_to_addGiftFragment)
-                }
-                (binding.recyclerViewGiftList.adapter as GiftAdapter).submitList(gifts)
+                binding.recyclerViewGiftList.adapter =
+                    GiftAdapter(requireActivity(),) {
+                        giftViewModel.selectGift(it)
+                        val dir =
+                            GiftListFragmentDirections.actionGiftListFragmentToEditGiftFragment(it.item)
+                        findNavController().navigate(dir)
+                    }
+                (binding.recyclerViewGiftList.adapter as GiftAdapter).submitList(
+                    gifts
+                )
             } else {
                 binding.recyclerViewGiftList.visibility = View.GONE
             }
@@ -61,14 +62,14 @@ class GiftListFragment : Fragment() {
             giftViewModel.getGifts(db)
         }
 
-        binding.fabAddGift.setOnClickListener { findNavController().navigate(R.id.action_giftListFragment_to_addGiftFragment) }
+        binding.fabAddGift.setOnClickListener {
+            findNavController().navigate(R.id.action_giftListFragment_to_addGiftFragment) }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
 
     companion object {
