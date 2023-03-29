@@ -1,11 +1,11 @@
-package com.example.nimantran.ui.main.clientGifts
+package com.example.nimantran.ui.main.clientOrders
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.adapters.MyOrdersAdapter
@@ -16,7 +16,7 @@ class MyOrdersFragment : Fragment() {
     private var _binding: FragmentMyOrdersBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val myOrdersViewModel: MyOrdersViewModel by viewModels()
+    private val myOrdersViewModel: MyOrdersViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

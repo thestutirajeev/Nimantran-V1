@@ -1,13 +1,13 @@
-package com.example.nimantran.ui.main.clientGifts
+package com.example.nimantran.ui.main.clientOrders
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.user.MyOrder
-import com.example.nimantran.ui.main.clientGifts.MyOrdersFragment.Companion.COLL_ORDERS
+import com.example.nimantran.ui.main.clientOrders.MyOrdersFragment.Companion.COLL_ORDERS
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MyOrderDetailsViewModel : ViewModel() {
+class MyOrdersViewModel : ViewModel(){
     private val _myorders = MutableLiveData<List<MyOrder>>()
     val myorders: MutableLiveData<List<MyOrder>> = _myorders
 

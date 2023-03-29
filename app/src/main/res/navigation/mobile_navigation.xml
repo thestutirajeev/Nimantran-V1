@@ -71,7 +71,7 @@
         tools:layout="@layout/fragment_my_profile" />
     <fragment
         android:id="@+id/myOrdersFragment"
-        android:name="com.example.nimantran.ui.main.clientGifts.MyOrdersFragment"
+        android:name="com.example.nimantran.ui.main.clientOrders.MyOrdersFragment"
         android:label="fragment_my_orders"
         tools:layout="@layout/fragment_my_orders" >
         <action
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/myOrderDetailsFragment"
-        android:name="com.example.nimantran.ui.main.clientGifts.MyOrderDetailsFragment"
+        android:name="com.example.nimantran.ui.main.clientOrders.MyOrderDetailsFragment"
         android:label="fragment_my_order_details"
         tools:layout="@layout/fragment_my_order_details" />
     <fragment
