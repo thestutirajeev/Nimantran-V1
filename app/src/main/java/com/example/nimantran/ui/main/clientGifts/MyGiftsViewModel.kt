@@ -17,6 +17,7 @@ class MyGiftsViewModel : ViewModel() {
 
     fun getMyGifts(db: FirebaseFirestore){
         loadMyGifts(db)
+        deselectGift()
     }
 
     private fun loadMyGifts(db: FirebaseFirestore){
@@ -34,5 +35,9 @@ class MyGiftsViewModel : ViewModel() {
 
     fun selectMyGift(gift: Gift){
         _selectedMyGift.value = gift
+    }
+
+    fun deselectGift() {
+        _selectedMyGift.value = null
     }
 }

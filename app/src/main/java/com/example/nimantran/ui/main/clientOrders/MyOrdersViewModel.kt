@@ -14,8 +14,11 @@ class MyOrdersViewModel : ViewModel(){
     private val _selectedOrder = MutableLiveData<MyOrder>()
     val selectedOrder: MutableLiveData<MyOrder> = _selectedOrder
 
+
+
     fun getMyOrders(db: FirebaseFirestore){
         loadMyOrders(db)
+        deselectOrder()
     }
 
     private fun loadMyOrders(db: FirebaseFirestore){
@@ -34,4 +37,10 @@ class MyOrdersViewModel : ViewModel(){
     fun selectOrder(myorder: MyOrder){
         _selectedOrder.value = myorder
     }
+
+    fun deselectOrder() {
+  //      _selectedOrder.value = null
+    }
+
+
 }

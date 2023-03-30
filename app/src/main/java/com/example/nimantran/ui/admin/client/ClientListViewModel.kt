@@ -15,7 +15,7 @@ class ClientListViewModel : ViewModel() {
 
     fun getClients(db: FirebaseFirestore) {
         loadClients(db)
-        _selectedClient.value = null
+        deselectClient()
     }
 
     private fun loadClients(db: FirebaseFirestore) {

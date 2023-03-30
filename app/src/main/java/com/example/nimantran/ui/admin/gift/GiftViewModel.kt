@@ -78,6 +78,7 @@ class GiftViewModel : ViewModel() {
 
     fun getGifts(db: FirebaseFirestore) {
         loadGifts(db)
+        deselectGift()
     }
 
     private fun loadGifts(db: FirebaseFirestore) {
@@ -97,6 +98,10 @@ class GiftViewModel : ViewModel() {
 
     fun selectGift(gift: Gift) {
         _selectedGift.value = gift
+    }
+
+    fun deselectGift() {
+ //       _selectedGift.value = null
     }
 
     @SuppressLint("Range")

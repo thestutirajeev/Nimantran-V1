@@ -34,6 +34,13 @@ class MyGuestListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myGuestListViewModel.getGuests(db) // fetch data only
+
+        binding.fabMyGuestList.setOnClickListener{
+
+
+        }
+
+
         myGuestListViewModel.guests.observe(viewLifecycleOwner) { guests ->
             if (guests.isNotEmpty()) {
                 binding.recyclerViewMyGuestList.adapter =

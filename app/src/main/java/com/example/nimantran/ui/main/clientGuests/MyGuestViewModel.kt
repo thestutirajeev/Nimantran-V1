@@ -27,7 +27,7 @@ class MyGuestViewModel : ViewModel() {
 
     fun getGuests(db: FirebaseFirestore) {
         loadGuests(db)
-        _selectedGuest.value = null
+        deselectGuest()
     }
 
     private fun loadGuests(db: FirebaseFirestore) {

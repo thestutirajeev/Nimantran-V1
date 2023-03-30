@@ -14,7 +14,7 @@ class MyNotificationViewModel : ViewModel() {
 
     fun getMyNotifications(db: FirebaseFirestore) {
         loadMyNotifications(db)
-        _selectedMyNotification.value = null
+        deselectMyNotification()
     }
 
     private fun loadMyNotifications(db: FirebaseFirestore) {

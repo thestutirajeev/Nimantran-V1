@@ -23,6 +23,7 @@ class NotificationListViewModel : ViewModel() {
 
     fun getNotifications(db: FirebaseFirestore) {
         loadNotifications(db)
+        deselectNotification()
     }
 
     private fun loadNotifications(db: FirebaseFirestore) {
