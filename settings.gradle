@@ -12,6 +12,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         flatDir(name: 'libs', dirs: 'libs')
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Nimantran"

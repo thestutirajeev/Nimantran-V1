@@ -41,7 +41,7 @@ class NotificationListViewModel : ViewModel() {
 
     fun selectNotification(notification: Notification) {
         _selectedNotification.value = notification
-        Log.e("TAGX", "Selected notification ${notification.subject}")
+        Log.e("TAG", "Selected notification ${notification.subject}")
     }
 
     fun deselectNotification() {
@@ -67,7 +67,8 @@ class NotificationListViewModel : ViewModel() {
                         }.addOnFailureListener {
                             Log.e(
                                 "NotificationListViewModel",
-                                "Error deleting notification ${it.message}"
+                                "Error deleting notification ${
+                                    it.message}"
                             )
                         }.addOnCanceledListener {
                             Log.e("NotificationListViewModel", "Cancelled deleting notification")

@@ -6,8 +6,8 @@
 
    <data>
        <variable
-           name="addMyGuestViewModel"
-           type="com.example.nimantran.ui.main.clientGuests.AddMyGuestViewModel" />
+           name="myGuestViewModel"
+           type="com.example.nimantran.ui.main.clientGuests.MyGuestViewModel" />
    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

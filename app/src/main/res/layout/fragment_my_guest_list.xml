@@ -5,8 +5,8 @@
     tools:context=".ui.main.clientGuests.MyGuestListFragment">
     <data>
         <variable
-            name="myGuestListViewModel"
-            type="com.example.nimantran.ui.main.clientGuests.MyGuestListViewModel" />
+            name="myGuestViewModel"
+            type="com.example.nimantran.ui.main.clientGuests.MyGuestViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -16,7 +16,7 @@ class MyGuestListFragment : Fragment() {
     private var _binding: FragmentMyGuestListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val myGuestListViewModel: MyGuestListViewModel by viewModels()
+    private val myGuestListViewModel: MyGuestViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

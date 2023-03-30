@@ -72,4 +72,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     // easypermissions
     implementation 'pub.devrel:easypermissions:3.0.0'
+
+    //contacts
+    implementation 'com.github.vestrel00:contacts-android:0.2.4'
+
+
 }

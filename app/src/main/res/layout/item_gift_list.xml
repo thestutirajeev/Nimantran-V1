@@ -63,6 +63,7 @@
                        android:id="@+id/textView1"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:layout_marginStart="2dp"
                        android:text="Qty : "
                        android:textSize="8sp"
                        android:textStyle="italic"
