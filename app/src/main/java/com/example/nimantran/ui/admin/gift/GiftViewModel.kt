@@ -19,8 +19,8 @@ class GiftViewModel : ViewModel() {
     private val _gifts = MutableLiveData<List<Gift>>()
     val gifts: LiveData<List<Gift>> = _gifts
 
-    private val _selectedGift = MutableLiveData<Gift>()
-    val selectedGift: LiveData<Gift> = _selectedGift
+    private val _selectedGift = MutableLiveData<Gift?>()
+    val selectedGift: LiveData<Gift?> = _selectedGift
 
     private val _isLoading = MutableLiveData(false)
     val isLoading: MutableLiveData<Boolean> = _isLoading
@@ -35,6 +35,33 @@ class GiftViewModel : ViewModel() {
     val downloadUri: MutableLiveData<Uri> = _downloadUri
 
 
+    fun getGifts(db: FirebaseFirestore) {
+        loadGifts(db)
+        resetStatus()
+
+    }
+    private fun loadGifts(db: FirebaseFirestore) {
+        // fetch data from firebase firestore
+        db.collection(COLL_GIFTS)
+            .orderBy("price", Query.Direction.ASCENDING)
+            .get().addOnFailureListener {
+                Log.e("GiftViewModel", "Error fetching gifts ${it.message}")
+            }.addOnCanceledListener {
+                Log.e("GiftViewModel", "Cancelled fetching gifts")
+            }.addOnSuccessListener {
+                val giftLoaded = it.toObjects(Gift::class.java)
+                _gifts.value = giftLoaded
+                Log.d("GiftViewModel", "Gifts loaded ${giftLoaded.size}")
+            }
+    }
+
+    fun selectGift(gift: Gift) {
+        _selectedGift.value = gift
+    }
+
+    fun deselectGift() {
+        _selectedGift.value = null
+    }
     fun saveGift(
         context: Context,
         storage: FirebaseStorage,
@@ -65,30 +92,7 @@ class GiftViewModel : ViewModel() {
         return item.isNotEmpty() && quantity.isNotEmpty() && description.isNotEmpty() && price.isNotEmpty()
     }
 
-    fun getGifts(db: FirebaseFirestore) {
-        loadGifts(db)
-        resetStatus()
 
-    }
-
-    private fun loadGifts(db: FirebaseFirestore) {
-        // fetch data from firebase firestore
-        db.collection(COLL_GIFTS)
-            .orderBy("price", Query.Direction.ASCENDING)
-            .get().addOnFailureListener {
-                Log.e("GiftViewModel", "Error fetching gifts ${it.message}")
-            }.addOnCanceledListener {
-                Log.e("GiftViewModel", "Cancelled fetching gifts")
-            }.addOnSuccessListener {
-                val giftLoaded = it.toObjects(Gift::class.java)
-                _gifts.value = giftLoaded
-                Log.d("GiftViewModel", "Gifts loaded ${giftLoaded.size}")
-            }
-    }
-
-    fun selectGift(gift: Gift) {
-        _selectedGift.value = gift
-    }
 
     private fun resetStatus() {
         _isSaved.value = false

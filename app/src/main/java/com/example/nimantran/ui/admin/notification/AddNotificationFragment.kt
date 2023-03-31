@@ -34,13 +34,13 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
     ): View {
         _binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_add_notification, container, false)
+        binding.viewModelAddNotification = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewModelAddNotification = viewModel
-
         binding.buttonSend.setOnClickListener{
             val subject = binding.editTextNotificationSubject.text.toString()
             val body = binding.editTextNotificationBody.text.toString()
@@ -48,6 +48,7 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
         }
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {
+                viewModel.resetState()
                 findNavController().navigateUp() // Navigate back to NotificationListFragment
                 viewModel.getNotifications(db)
             } else {

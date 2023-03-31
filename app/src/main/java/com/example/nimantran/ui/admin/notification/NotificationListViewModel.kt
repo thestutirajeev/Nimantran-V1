@@ -107,11 +107,13 @@ class NotificationListViewModel : ViewModel() {
             }
         }
     }
-
     private fun validateNotification(
         subject: String,
         body: String,
     ): Boolean {
         return body.isNotEmpty() && subject.isNotEmpty()
+    }
+    fun resetState() {
+        _isSaved.value = false
     }
 }
