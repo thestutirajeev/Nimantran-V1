@@ -42,11 +42,12 @@
 
         <ImageView
             android:id="@+id/imageViewEditUser"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginBottom="0dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="-8dp"
             android:background="@drawable/circle_1"
-            android:padding="2dp"
+            android:padding="8dp"
             android:src="@drawable/ic_edit"
             app:layout_constraintBottom_toBottomOf="@+id/ImageViewUser"
             app:layout_constraintStart_toEndOf="@+id/ImageViewUser" />
@@ -78,7 +79,7 @@
                 app:layout_constraintTop_toTopOf="@id/imageView1"/>
 
             <EditText
-                android:id="@+id/TextViewEditName"
+                android:id="@+id/editTextEditName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -114,6 +115,7 @@
                 app:layout_constraintTop_toTopOf="@id/imageViewSendNotification"/>
 
             <EditText
+                android:id="@+id/editTextEditPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
