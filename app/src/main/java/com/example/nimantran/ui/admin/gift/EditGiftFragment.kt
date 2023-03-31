@@ -101,10 +101,9 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 val price = editGiftPrice.text.toString().trim()
                 val quantity = editGiftQuantity.text.toString().trim()
                 val description = editGiftDescription.text.toString().trim()
-                // val image =
+
                 btnSaveGift.text = "Saving..."
                 viewModel.updateGift(
-
                     db,
                     item,
                     price,
@@ -113,13 +112,11 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 )  // Save gift to Firestore
 
 
-                viewModel.isSaved.observe(viewLifecycleOwner) { state ->
-                    if (state) {
-                        findNavController().navigateUp() // Navigate back to NotificationListFragment
-                        viewModel.getGifts(db)
-                    } else {
-                        binding.editGiftContainer.isEnabled = true }
-                }
+                //To Disable Edit Mode after saving
+                Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
+                disableEdit()
+                btnSaveGift.text = "Save"
+
             }
         }
 

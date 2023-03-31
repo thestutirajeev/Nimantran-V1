@@ -64,14 +64,6 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 binding.buttonSaveGift.text = "Save"
             }
         }
-        /*
-          if(gift.id != null) {
-              binding.editTextItemName.setText(gift.item)
-              binding.editTextItemPrice.setText(gift.price)
-              binding.editTextItemQuantity.setText(gift.quantity)
-              binding.editTextItemDescription.setText(gift.description)
-          }
-  */
         binding.apply {
             buttonSaveGift.setOnClickListener {
                 addGiftContainer.isEnabled = false
@@ -79,7 +71,6 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 val price = editTextItemPrice.text.toString().trim()
                 val quantity = editTextItemQuantity.text.toString().trim()
                 val description = editTextItemDescription.text.toString().trim()
-                // val image =
                 buttonSaveGift.text = "Saving..."
                 viewModel.saveGift(
                     requireContext(),
@@ -91,9 +82,7 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                     description,
                     imageUri
                 )  // Save gift to Firestore
-
             }
-
             viewModel.isSaved.observe(viewLifecycleOwner) { state ->
                 if (state) {
                     //findNavController().navigateUp() // Navigate back to NotificationListFragment
@@ -101,10 +90,7 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 } else {
                     binding.addGiftContainer.isEnabled = true }
             }
-
-
             imageViewEditGift.setOnClickListener { selectImage() }
-
             imageViewBackFromAddGift.setOnClickListener {
                 findNavController().navigateUp()
                 viewModel.getGifts(db)
@@ -154,7 +140,6 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

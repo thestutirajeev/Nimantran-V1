@@ -38,7 +38,6 @@ class GiftViewModel : ViewModel() {
     fun getGifts(db: FirebaseFirestore) {
         loadGifts(db)
         resetStatus()
-
     }
     private fun loadGifts(db: FirebaseFirestore) {
         // fetch data from firebase firestore
@@ -189,7 +188,7 @@ class GiftViewModel : ViewModel() {
         price: String,
         quantity: String,
         description: String,
-    ) {
+    ){
 /*
         _isLoading.value = true
 
@@ -217,7 +216,8 @@ class GiftViewModel : ViewModel() {
         description: String,
     )  {
 
- */       val gift = selectedGift.value
+ */
+        val gift = selectedGift.value
         db.collection(COLL_GIFTS)
             .whereEqualTo("item", gift?.item).get().addOnFailureListener {
                 Log.e("GiftViewModel", "Error updating gift ${it.message}")
@@ -225,9 +225,6 @@ class GiftViewModel : ViewModel() {
             }.addOnCanceledListener {
                 Log.e("GiftViewModel", "Cancelled updating gift")
             }.addOnSuccessListener {
-
-
-
 
                 try {
                     db.collection(COLL_GIFTS)
