@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.dsphotoeditor.sdk.activity.DsPhotoEditorActivity
 import com.dsphotoeditor.sdk.utils.DsPhotoEditorConstants
+import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentCardEditorBinding
 import com.example.nimantran.getTempFileUri
 import com.google.firebase.firestore.FirebaseFirestore
@@ -61,10 +63,11 @@ class CardEditorFragment : Fragment() {
             binding.cLEdit.setOnClickListener {
                 launchPhotoEditor(mUri!!)
             }
-
+        }
+        binding.cLShare.setOnClickListener {
+            findNavController().navigate(R.id.action_cardEditorFragment_to_selectGuestForCardFragment)
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

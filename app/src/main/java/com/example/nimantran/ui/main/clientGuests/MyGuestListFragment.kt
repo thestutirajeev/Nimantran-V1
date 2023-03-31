@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.example.nimantran.R
 import com.example.nimantran.adapters.MyGuestListAdapter
 import com.example.nimantran.databinding.FragmentMyGuestListBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,7 +19,7 @@ class MyGuestListFragment : Fragment() {
     private var _binding: FragmentMyGuestListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
-    private val myGuestListViewModel: MyGuestViewModel by viewModels()
+    private val myGuestListViewModel: MyGuestViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,7 @@ class MyGuestListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMyGuestListBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_guest_list, container, false)
         return binding.root
     }
 

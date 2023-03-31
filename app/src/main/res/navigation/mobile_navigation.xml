@@ -37,7 +37,11 @@
         android:id="@+id/cardEditorFragment"
         android:name="com.example.nimantran.ui.main.addcard.CardEditorFragment"
         android:label="fragment_card_editor"
-        tools:layout="@layout/fragment_card_editor" />
+        tools:layout="@layout/fragment_card_editor" >
+        <action
+            android:id="@+id/action_cardEditorFragment_to_selectGuestForCardFragment"
+            app:destination="@id/selectGuestForCardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myGiftsFragment"
         android:name="com.example.nimantran.ui.main.clientGifts.MyGiftsFragment"
@@ -99,6 +103,9 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <action
+            android:id="@+id/action_myGiftDetailsFragment_to_selectGuestForGiftFragment"
+            app:destination="@id/selectGuestForGiftFragment" />
     </dialog>
     <fragment
         android:id="@+id/myNotificationFragment"
@@ -114,4 +121,13 @@
         android:name="com.example.nimantran.ui.main.notification.MyReadNotificationFragment"
         android:label="fragment_my_read_notification"
         tools:layout="@layout/fragment_my_read_notification" />
+    <fragment
+        android:id="@+id/selectGuestForGiftFragment"
+        android:name="com.example.nimantran.ui.main.clientGifts.SelectGuestForGiftFragment"
+        android:label="fragment_select_my_guest_for_gift"
+        tools:layout="@layout/fragment_select_my_guest_for_gift" />
+    <fragment
+        android:id="@+id/selectGuestForCardFragment"
+        android:name="com.example.nimantran.ui.main.addcard.SelectGuestForCardFragment"
+        android:label="SelectGuestForCardFragment" />
 </navigation>

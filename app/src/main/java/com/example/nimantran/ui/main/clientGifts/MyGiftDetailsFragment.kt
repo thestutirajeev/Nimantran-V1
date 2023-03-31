@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.nimantran.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,6 +32,10 @@ class MyGiftDetailsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.selectedMyGift.observe(viewLifecycleOwner) {
+        }
+        binding.buttonOrder.setOnClickListener {
+            //navigate to selectMyGuestsFragment
+            findNavController().navigate(R.id.action_myGiftDetailsFragment_to_selectGuestForGiftFragment)
         }
     }
 

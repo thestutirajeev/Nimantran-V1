@@ -4,9 +4,8 @@
     tools:context=".ui.main.clientOrders.MyOrderDetailsFragment">
 
     <data>
-
         <variable
-            name="viewModel"
+            name="viewModelMyOrders"
             type="com.example.nimantran.ui.main.clientOrders.MyOrdersViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
