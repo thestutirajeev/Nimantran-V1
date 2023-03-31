@@ -26,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/imageViewBackFromAddGift"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentLeft="true"
@@ -33,6 +34,7 @@
             />
 
         <TextView
+            android:layout_marginTop="4dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -94,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_margin="30dp"
-        android:padding="10dp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout2">
@@ -133,11 +135,11 @@
             android:hint="Name"
             android:inputType="text"
             android:minHeight="48dp"
-            android:paddingLeft="5dp"
-            android:textColor="@android:color/darker_gray"
+            android:paddingLeft="8dp"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@id/TextView1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/TextView1"
+            app:layout_constraintStart_toEndOf="@+id/TextView3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -175,11 +177,11 @@
             android:hint="1000"
             android:inputType="number"
             android:minHeight="48dp"
-            android:paddingLeft="5dp"
-            android:textColor="@android:color/darker_gray"
+            android:paddingLeft="8dp"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@id/TextView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/TextView2"
+            app:layout_constraintStart_toEndOf="@+id/TextView3"
             app:layout_constraintTop_toTopOf="@id/TextView2" />
 
 
@@ -217,8 +219,8 @@
             android:hint="10000"
             android:inputType="number"
             android:minHeight="48dp"
-            android:paddingLeft="5dp"
-            android:textColor="@android:color/darker_gray"
+            android:paddingLeft="8dp"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@id/TextView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/TextView3"
@@ -265,7 +267,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:paddingLeft="5dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/black"
                 />
         </ScrollView>
 

@@ -89,14 +89,23 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 )  // Save gift to Firestore
 
             }
+            /*
             viewModel.isSaved.observe(viewLifecycleOwner) { state ->
                 if (state) {
+                    //findNavController().navigateUp() // Navigate back to NotificationListFragment
                     viewModel.getGifts(db)
-                    findNavController().navigateUp() // Navigate back to NotificationListFragment
                 } else {
                     binding.addGiftContainer.isEnabled = true }
             }
+
+             */
             imageViewEditGift.setOnClickListener { selectImage() }
+
+            imageViewBackFromAddGift.setOnClickListener {
+                findNavController().navigateUp()
+                viewModel.getGifts(db)
+            }
+
         }
     }
 

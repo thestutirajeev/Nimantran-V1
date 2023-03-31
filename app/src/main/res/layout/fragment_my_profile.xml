@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/textViewAccountDetails"
-            android:layout_width="114dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_weight="1"
@@ -53,7 +53,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="48dp"
             app:layout_constraintTop_toBottomOf="@id/ImageViewUser"
             >
             <ImageView
@@ -81,19 +81,24 @@
                 android:id="@+id/TextViewEditName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:text="Name"
-                android:inputType="text"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:enabled="false"
-                app:layout_constraintStart_toEndOf="@id/textView1"
-                app:layout_constraintTop_toTopOf="@id/textView1"
-                app:layout_constraintBottom_toBottomOf="@id/textView1"/>
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:text="Name"
+                app:layout_constraintBottom_toBottomOf="@id/textView1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView3"
+                app:layout_constraintTop_toTopOf="@id/textView1" />
+
+
             <ImageView
                 android:id="@+id/imageViewSendNotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_contact_phone"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="48dp"
                 app:layout_constraintTop_toBottomOf="@id/imageView1"
                 app:layout_constraintStart_toStartOf="@id/imageView1"/>
             <TextView
@@ -107,22 +112,28 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/imageViewSendNotification"
                 app:layout_constraintTop_toTopOf="@id/imageViewSendNotification"/>
+
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:text="Phone"
-                android:inputType="phone"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:enabled="false"
-                app:layout_constraintStart_toEndOf="@id/textView2"
-                app:layout_constraintTop_toTopOf="@id/textView2"
-                app:layout_constraintBottom_toBottomOf="@id/textView2"/>
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:text="Phone"
+                app:layout_constraintBottom_toBottomOf="@id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView3"
+                app:layout_constraintTop_toTopOf="@id/textView2" />
+
+
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_gender"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="48dp"
                 app:layout_constraintTop_toBottomOf="@id/imageViewSendNotification"
                 app:layout_constraintStart_toStartOf="@id/imageViewSendNotification"/>
             <TextView
@@ -138,41 +149,69 @@
                 app:layout_constraintTop_toTopOf="@id/imageView3"/>
             <RadioGroup
                 android:id="@+id/genderGroup"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 app:layout_constraintTop_toTopOf="@id/textView3"
                 app:layout_constraintStart_toEndOf="@id/textView3"
                 app:layout_constraintBottom_toBottomOf="@id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
                 >
+
                 <RadioButton
                     android:id="@+id/radioFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:text="Female"></RadioButton>
+                    android:text="Female" />
+
                 <RadioButton
                     android:id="@+id/radioMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
                     android:enabled="false"
                     android:text="Male"
                     android:layout_marginLeft="10dp"/>
             </RadioGroup>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSaveEditUser"
+                android:id="@+id/buttonEditUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/round_border"
                 android:text="Edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/genderGroup"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSaveEditUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/round_border"
+                android:text="Save"
+                app:layout_constraintEnd_toStartOf="@id/buttonCancelEditUser"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genderGroup"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonCancelEditUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/round_border"
+                android:text="Cancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buttonSaveEditUser"
+                app:layout_constraintTop_toBottomOf="@id/genderGroup"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

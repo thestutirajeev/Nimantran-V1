@@ -49,6 +49,7 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {
                 findNavController().navigateUp() // Navigate back to NotificationListFragment
+                viewModel.getNotifications(db)
             } else {
                 binding.addNotificationContainer.isEnabled = true }
         }
