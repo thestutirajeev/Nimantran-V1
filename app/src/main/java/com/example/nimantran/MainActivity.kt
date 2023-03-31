@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         }
         //Notification
         binding.appBarMain.imageViewMyNotifications.setOnClickListener {
-            findNavController(R.id.action_homeFragment_to_myNotificationFragment)
+            navController.navigate(R.id.myNotificationFragment)
         }
         // Passing each menu ID as a set of Ids because each
         appBarConfiguration = AppBarConfiguration(

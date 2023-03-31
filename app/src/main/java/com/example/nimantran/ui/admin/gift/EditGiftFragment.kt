@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -37,6 +37,8 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private lateinit var storage: FirebaseStorage
     private lateinit var auth: FirebaseAuth
     private val viewModel: GiftViewModel by activityViewModels()
+    private var imageUri: Uri? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,29 +53,33 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_gift, container, false)
+        binding.viewModelEditGift = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getGifts(db)
+
+//        viewModel.getGifts(db)
 
         Log.d("TAG", "onViewCreated: ${viewModel.selectedGift.value?.item}")
         Log.d("TAGX", "onViewCreated: ${viewModel.selectedGift.value}")
 
-        binding.viewModelEditGift = viewModel
-/*
+
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {
                 findNavController().navigateUp() // Navigate back to GiftListFragment
+            } else {
+                binding.editGiftContainer.isEnabled = true
+                binding.btnSaveGift.text = "Save"
             }
         }
-*/
 
         disableEdit()
 
 
-        binding.imageViewDelete.setOnClickListener{
+        binding.imageViewDelete.setOnClickListener {
             Toast.makeText(context, "Gift Deleted", Toast.LENGTH_SHORT).show()
             viewModel.deleteGift(db)
 
@@ -87,14 +93,39 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
         }
 
-        binding.btnSaveGift.setOnClickListener {
-            disableEdit()
-            Toast.makeText(context, "Changes Save", Toast.LENGTH_LONG).show()
+        binding.apply {
+            btnSaveGift.setOnClickListener {
+                editGiftContainer.isEnabled = false
+
+                val item = editGiftName.text.toString().trim()
+                val price = editGiftPrice.text.toString().trim()
+                val quantity = editGiftQuantity.text.toString().trim()
+                val description = editGiftDescription.text.toString().trim()
+                // val image =
+                btnSaveGift.text = "Saving..."
+                viewModel.updateGift(
+
+                    db,
+                    item,
+                    price,
+                    quantity,
+                    description,
+                )  // Save gift to Firestore
+
+
+                viewModel.isSaved.observe(viewLifecycleOwner) { state ->
+                    if (state) {
+                        findNavController().navigateUp() // Navigate back to NotificationListFragment
+                        viewModel.getGifts(db)
+                    } else {
+                        binding.editGiftContainer.isEnabled = true }
+                }
+            }
         }
 
         binding.btnCancel.setOnClickListener {
-            Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
-            disableEdit()
+                Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show()
+                disableEdit()
         }
 
         binding.imageViewBackToGiftList.setOnClickListener {
@@ -102,8 +133,8 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             findNavController().navigateUp()
             viewModel.getGifts(db)
         }
-    }
 
+    }
     private fun disableEdit() {
         binding.editGiftName.isEnabled = false
         binding.editGiftDescription.isEnabled = false
@@ -124,15 +155,15 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         binding.btnEditGift.isVisible = false
     }
 
-
-    private val getContent =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            binding.ImageViewGift.load(uri) {
-                crossfade(true)
-                transformations(CircleCropTransformation())
-                viewModel.uploadToFirebase(requireActivity(), storage, uri)
+        private val getContent =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+                binding.ImageViewGift.load(uri) {
+                    crossfade(true)
+                    transformations(CircleCropTransformation())
+                }
+                imageUri = uri
             }
-        }
+
 
     @AfterPermissionGranted(AddGiftFragment.REQUEST_IMAGE_GET)
     private fun selectImage() {

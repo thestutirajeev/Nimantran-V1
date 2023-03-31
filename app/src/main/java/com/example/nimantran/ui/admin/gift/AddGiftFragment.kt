@@ -1,16 +1,15 @@
 package com.example.nimantran.ui.admin.gift
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -34,7 +33,7 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private lateinit var storage: FirebaseStorage
     private lateinit var auth: FirebaseAuth
     private val viewModel: GiftViewModel by activityViewModels()
-
+    private var imageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         db = Firebase.firestore
@@ -48,12 +47,13 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_gift, container, false)
+        binding.viewModelAddGift = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewModelAddGift = viewModel
 
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {
@@ -78,18 +78,21 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 val price = editTextItemPrice.text.toString().trim()
                 val quantity = editTextItemQuantity.text.toString().trim()
                 val description = editTextItemDescription.text.toString().trim()
-               // val image =
+                // val image =
                 buttonSaveGift.text = "Saving..."
                 viewModel.saveGift(
+                    requireContext(),
+                    storage,
                     db,
                     item,
                     price,
                     quantity,
-                    description
+                    description,
+                    imageUri
                 )  // Save gift to Firestore
 
             }
-            /*
+
             viewModel.isSaved.observe(viewLifecycleOwner) { state ->
                 if (state) {
                     //findNavController().navigateUp() // Navigate back to NotificationListFragment
@@ -98,14 +101,13 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                     binding.addGiftContainer.isEnabled = true }
             }
 
-             */
+
             imageViewEditGift.setOnClickListener { selectImage() }
 
             imageViewBackFromAddGift.setOnClickListener {
                 findNavController().navigateUp()
                 viewModel.getGifts(db)
             }
-
         }
     }
 
@@ -114,8 +116,8 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             binding.ImageViewGift.load(uri) {
                 crossfade(true)
                 transformations(CircleCropTransformation())
-                viewModel.uploadToFirebase(requireActivity(), storage, uri)
             }
+            imageUri = uri
         }
 
     @AfterPermissionGranted(REQUEST_IMAGE_GET)
@@ -133,7 +135,6 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             )
         }
     }
-
 
 
     override fun onRequestPermissionsResult(
@@ -159,7 +160,7 @@ class AddGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         _binding = null
     }
 
-    companion object{
+    companion object {
         const val REQUEST_IMAGE_GET = 12
     }
 }

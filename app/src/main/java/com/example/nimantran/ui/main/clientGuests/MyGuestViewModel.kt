@@ -22,9 +22,7 @@ class MyGuestViewModel : ViewModel() {
 
     private val _isSaved = MutableLiveData(false)
     val isSaved: MutableLiveData<Boolean> = _isSaved
-
-
-
+    
     fun getGuests(db: FirebaseFirestore) {
         loadGuests(db)
         deselectGuest()

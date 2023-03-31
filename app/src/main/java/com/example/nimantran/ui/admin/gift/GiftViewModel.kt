@@ -3,15 +3,11 @@ package com.example.nimantran.ui.admin.gift
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import androidx.fragment.app.Fragment
 import android.provider.OpenableColumns
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.example.nimantran.R
 import com.example.nimantran.models.admin.Gift
 import com.example.nimantran.ui.admin.gift.GiftListFragment.Companion.COLL_GIFTS
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,30 +36,22 @@ class GiftViewModel : ViewModel() {
 
 
     fun saveGift(
+        context: Context,
+        storage: FirebaseStorage,
         db: FirebaseFirestore,
         item: String,
         price: String,
         quantity: String,
         description: String,
+        imageUri: Uri?,
     ) {
         _isLoading.value = true
 
-        if (!validateGift(item, quantity, description, price)) {
+        if (!validateGift(item, quantity, description, price, imageUri)) {
             _isLoading.value = false
             _isSaved.value = false
         } else {
-            val gift =
-                Gift(item, description, quantity = quantity.toInt(), price = price.toDouble())
-            db.collection(COLL_GIFTS).add(gift).addOnSuccessListener {
-                _isLoading.value = false
-                _isSaved.value = true
-            }.addOnFailureListener {
-                _isLoading.value = false
-                _isSaved.value = false
-            }.addOnCanceledListener {
-                _isLoading.value = false
-                _isSaved.value = false
-            }
+            uploadToFirebase(context, storage, imageUri, item, price, quantity, description, db)
         }
     }
 
@@ -71,14 +59,16 @@ class GiftViewModel : ViewModel() {
         item: String,
         quantity: String,
         description: String,
-        price: String
+        price: String,
+        imageUri: Uri?
     ): Boolean {
         return item.isNotEmpty() && quantity.isNotEmpty() && description.isNotEmpty() && price.isNotEmpty()
     }
 
     fun getGifts(db: FirebaseFirestore) {
         loadGifts(db)
-//        deselectGift()
+        resetStatus()
+
     }
 
     private fun loadGifts(db: FirebaseFirestore) {
@@ -86,22 +76,22 @@ class GiftViewModel : ViewModel() {
         db.collection(COLL_GIFTS)
             .orderBy("price", Query.Direction.ASCENDING)
             .get().addOnFailureListener {
-            Log.e("GiftViewModel", "Error fetching gifts ${it.message}")
-        }.addOnCanceledListener {
-            Log.e("GiftViewModel", "Cancelled fetching gifts")
-        }.addOnSuccessListener {
-            val giftLoaded = it.toObjects(Gift::class.java)
-            _gifts.value = giftLoaded
-            Log.d("GiftViewModel", "Gifts loaded ${giftLoaded.size}")
-        }
+                Log.e("GiftViewModel", "Error fetching gifts ${it.message}")
+            }.addOnCanceledListener {
+                Log.e("GiftViewModel", "Cancelled fetching gifts")
+            }.addOnSuccessListener {
+                val giftLoaded = it.toObjects(Gift::class.java)
+                _gifts.value = giftLoaded
+                Log.d("GiftViewModel", "Gifts loaded ${giftLoaded.size}")
+            }
     }
 
     fun selectGift(gift: Gift) {
         _selectedGift.value = gift
     }
 
-    fun deselectGift() {
-        _selectedGift.value = Gift()
+    private fun resetStatus() {
+        _isSaved.value = false
     }
 
     @SuppressLint("Range")
@@ -114,27 +104,50 @@ class GiftViewModel : ViewModel() {
         return fileName
     }
 
-    fun uploadToFirebase(context: Context, storage: FirebaseStorage, imageUri: Uri?) {
+    fun uploadToFirebase(
+        context: Context,
+        storage: FirebaseStorage,
+        imageUri: Uri?,
+        item: String,
+        price: String,
+        quantity: String,
+        description: String,
+        db: FirebaseFirestore
+    ) {
         val storageRef = storage.reference
         imageUri?.let { uri ->
             val filename = context.let { getFileNameFromUri(it, uri) }
-            val fileRef = storageRef.child(filename.toString())
+            val fileRef = storageRef.child("gifts/" + filename.toString())
             val uploadTask = fileRef.putFile(imageUri)
             uploadTask.addOnFailureListener {
                 _isImgUploaded.value = false
                 it.message?.let {
 
                 }
-            }.continueWithTask { task ->
-                if (!task.isSuccessful) {
-                    _isImgUploaded.value = false
-                }
-                fileRef.downloadUrl
             }.addOnCompleteListener { task2 ->
                 if (task2.isSuccessful) {
-                    _downloadUri.value = task2.result
+                    fileRef.downloadUrl.addOnSuccessListener {
+                        _downloadUri.value = it
+                        val gift =
+                            Gift(
+                                item,
+                                description,
+                                quantity = quantity.toInt(),
+                                price = price.toDouble(),
+                                image = downloadUri.value.toString()
+                            )
+                        db.collection(COLL_GIFTS).add(gift).addOnSuccessListener {
+                            _isLoading.value = false
+                            _isSaved.value = true
+                        }.addOnFailureListener {
+                            _isLoading.value = false
+                            _isSaved.value = false
+                        }.addOnCanceledListener {
+                            _isLoading.value = false
+                            _isSaved.value = false
+                        }
+                    }
                     _isImgUploaded.value = true
-
                 } else {
                     _isImgUploaded.value = false
                 }
@@ -142,9 +155,9 @@ class GiftViewModel : ViewModel() {
         }
     }
 
-    fun deleteGift(db:  FirebaseFirestore) {
+    fun deleteGift(db: FirebaseFirestore) {
         Log.d("GiftViewModel", "Deleting gift ${selectedGift.value?.item}")
-        db.collection(GiftListFragment.COLL_GIFTS)
+        db.collection(COLL_GIFTS)
             .whereEqualTo("item", selectedGift.value?.item).get().addOnFailureListener {
                 Log.e("GiftViewModel", "Error deleting gift ${it.message}")
                 getGifts(db)
@@ -152,7 +165,7 @@ class GiftViewModel : ViewModel() {
                 Log.e("GiftViewModel", "Cancelled deleting gift")
             }.addOnSuccessListener {
                 try {
-                    db.collection(GiftListFragment.COLL_GIFTS)
+                    db.collection(COLL_GIFTS)
                         .document(it.documents[0].id).delete().addOnCanceledListener {
                             Log.e("GiftViewModel", "Cancelled deleting gift")
                         }.addOnFailureListener {
@@ -160,8 +173,76 @@ class GiftViewModel : ViewModel() {
                         }.addOnSuccessListener {
                             Log.d("GiftViewModel", "Gift deleted ${selectedGift.value?.item}")
                         }
-                }catch (e: Exception) {
+                } catch (e: Exception) {
                     Log.e("GiftViewModel", "Error deleting gift ${e.message}")
+                }
+            }
+    }
+
+    fun updateGift(
+        db: FirebaseFirestore,
+        item: String,
+        price: String,
+        quantity: String,
+        description: String,
+    ) {
+/*
+        _isLoading.value = true
+
+        if (!validateGiftUpdate(quantity, description, price)) {
+            _isLoading.value = false
+            _isSaved.value = false
+        } else {
+            updateToFirebase(db, item, price, quantity, description)
+        }
+
+    }
+
+    private fun validateGiftUpdate(
+        quantity: String,
+        description: String,
+        price: String
+    ): Boolean {
+        return quantity.isNotEmpty() && description.isNotEmpty() && price.isNotEmpty()
+    }
+    fun updateToFirebase(
+        db: FirebaseFirestore,
+        item: String,
+        price: String,
+        quantity: String,
+        description: String,
+    )  {
+
+ */       val gift = selectedGift.value
+        db.collection(COLL_GIFTS)
+            .whereEqualTo("item", gift?.item).get().addOnFailureListener {
+                Log.e("GiftViewModel", "Error updating gift ${it.message}")
+                getGifts(db)
+            }.addOnCanceledListener {
+                Log.e("GiftViewModel", "Cancelled updating gift")
+            }.addOnSuccessListener {
+
+
+
+
+                try {
+                    db.collection(COLL_GIFTS)
+                        .document(it.documents[0].id).update(
+                            mapOf(
+                                "item" to item,
+                                "price" to price.toDouble(),
+                                "quantity" to quantity.toInt(),
+                                "description" to description
+                            )
+                        ).addOnCanceledListener {
+                            Log.e("GiftViewModel", "Cancelled updating gift")
+                        }.addOnFailureListener {
+                            Log.e("GiftViewModel", "Error updating gift ${it.message}")
+                        }.addOnSuccessListener {
+                            Log.d("GiftViewModel", "Gift updated ${selectedGift.value?.item}")
+                        }
+                } catch (e: Exception) {
+                    Log.e("GiftViewModel", "Error updating gift ${e.message}")
                 }
             }
     }
