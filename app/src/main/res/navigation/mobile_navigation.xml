@@ -125,9 +125,18 @@
         android:id="@+id/selectGuestForGiftFragment"
         android:name="com.example.nimantran.ui.main.clientGifts.SelectGuestForGiftFragment"
         android:label="fragment_select_my_guest_for_gift"
-        tools:layout="@layout/fragment_select_my_guest_for_gift" />
+        tools:layout="@layout/fragment_select_my_guest_for_gift" >
+        <action
+            android:id="@+id/action_selectGuestForGiftFragment_to_getOrderDetailsFragment"
+            app:destination="@id/getOrderDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/selectGuestForCardFragment"
         android:name="com.example.nimantran.ui.main.addcard.SelectGuestForCardFragment"
         android:label="SelectGuestForCardFragment" />
+    <fragment
+        android:id="@+id/getOrderDetailsFragment"
+        android:name="com.example.nimantran.ui.main.clientGifts.GetOrderDetailsFragment"
+        android:label="fragment_get_order_details"
+        tools:layout="@layout/fragment_get_order_details" />
 </navigation>
