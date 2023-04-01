@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentSelectGuestForCardBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -19,7 +21,7 @@ class SelectGuestForCardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSelectGuestForCardBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_select_guest_for_card, container, false)
         return binding.root
     }
 
