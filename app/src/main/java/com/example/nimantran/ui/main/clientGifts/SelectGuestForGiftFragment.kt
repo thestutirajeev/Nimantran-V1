@@ -28,7 +28,7 @@ class SelectGuestForGiftFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.fabSendGift.setOnClickListener {
+        binding.buttonSendGift.setOnClickListener {
             findNavController().navigate(R.id.action_selectGuestForGiftFragment_to_getOrderDetailsFragment)
         }
     }
