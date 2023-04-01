@@ -99,7 +99,7 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Destinations"
+                    android:text="Total Recipients"
                     android:textColor="@color/primaryTextColor"
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="parent"

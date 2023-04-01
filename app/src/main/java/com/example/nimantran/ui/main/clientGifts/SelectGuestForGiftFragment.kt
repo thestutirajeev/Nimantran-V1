@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -23,13 +24,39 @@ class SelectGuestForGiftFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_select_my_guest_for_gift, container, false)
+        Toast.makeText(context, "Select an option above.", Toast.LENGTH_SHORT).show()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.buttonSendGift.setOnClickListener {
             findNavController().navigate(R.id.action_selectGuestForGiftFragment_to_getOrderDetailsFragment)
+        }
+        binding.radioButtonSendToMe.setOnClickListener{
+            if(binding.radioButtonSendToMe.isChecked){
+                binding.radioButtonSendToGuest.isChecked = false
+                //make containerSendToMe visible
+                binding.containerSendToMe.visibility = View.VISIBLE
+                binding.containerSendToGuest.visibility = View.GONE
+                binding.buttonSendGift.isEnabled = true
+            }
+            else{
+                binding.radioButtonSendToGuest.callOnClick()
+            }
+        }
+        binding.radioButtonSendToGuest.setOnClickListener{
+            if(binding.radioButtonSendToGuest.isChecked){
+                binding.radioButtonSendToMe.isChecked = false
+                //make containerSendToMe visible
+                binding.containerSendToMe.visibility = View.GONE
+                binding.containerSendToGuest.visibility = View.VISIBLE
+                binding.buttonSendGift.isEnabled = true
+            }
+            else{
+                binding.radioButtonSendToMe.callOnClick()
+            }
         }
     }
 

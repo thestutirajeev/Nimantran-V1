@@ -134,4 +134,9 @@
         android:name="com.example.nimantran.ui.main.clientGifts.GetOrderDetailsFragment"
         android:label="fragment_get_order_details"
         tools:layout="@layout/fragment_get_order_details" />
+    <fragment
+        android:id="@+id/addMyGuestFragment"
+        android:name="com.example.nimantran.ui.main.clientGuests.AddMyGuestFragment"
+        android:label="fragment_add_my_guest"
+        tools:layout="@layout/fragment_add_my_guest" />
 </navigation>
