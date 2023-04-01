@@ -32,6 +32,15 @@ class SelectGuestForGiftFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSendGift.setOnClickListener {
+            if(binding.radioButtonSendToMe.isChecked){
+                myGiftsViewModel.sendToMe()
+            }
+            else if(binding.radioButtonSendToGuest.isChecked){
+                myGiftsViewModel.sendToGuest()
+            }
+            else{
+                Toast.makeText(context, "Select an option above.", Toast.LENGTH_SHORT).show()
+            }
             findNavController().navigate(R.id.action_selectGuestForGiftFragment_to_getOrderDetailsFragment)
         }
         binding.radioButtonSendToMe.setOnClickListener{

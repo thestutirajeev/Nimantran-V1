@@ -15,6 +15,9 @@ class MyGiftsViewModel : ViewModel() {
     private val _selectedMyGift = MutableLiveData<Gift?>()
     val selectedMyGift: MutableLiveData<Gift?> = _selectedMyGift
 
+    private val _giftForMe = true
+    var giftForMe: Boolean = _giftForMe
+
     fun getMyGifts(db: FirebaseFirestore){
         loadMyGifts(db)
         deselectGift()
@@ -32,7 +35,15 @@ class MyGiftsViewModel : ViewModel() {
             Log.d("MyGiftsViewModel", "Gifts loaded ${giftLoaded.size}")
         }
     }
+    fun sendToMe(){
+        // send gift to me
+        giftForMe = true
+    }
 
+    fun sendToGuest(){
+        // send gift to guest
+        giftForMe = false
+    }
     fun selectMyGift(gift: Gift){
         _selectedMyGift.value = gift
     }

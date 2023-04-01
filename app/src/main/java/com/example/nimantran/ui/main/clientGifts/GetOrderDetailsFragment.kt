@@ -20,5 +20,16 @@ class GetOrderDetailsFragment : Fragment() {
         _binding = FragmentGetOrderDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(myGiftsViewModel.giftForMe){
+            binding.containerOrderForMe.visibility = View.VISIBLE
+            binding.containerOrderForGuest.visibility = View.GONE
+        }
+        else{
+            binding.containerOrderForMe.visibility = View.GONE
+            binding.containerOrderForGuest.visibility = View.VISIBLE
+        }
+    }
 
 }

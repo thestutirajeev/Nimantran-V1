@@ -81,15 +81,116 @@
                     </ScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-        <ScrollView
-            android:id="@+id/scrollView2"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerOrderForMe"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/cardViewGift"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/buttonOrderGift">
+            app:layout_constraintBottom_toTopOf="@id/textView2"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/tvn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_margin="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tvp"/>
+                <TextView
+                    android:id="@+id/textViewMyGuestName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/tvg"
+                    app:layout_constraintBottom_toBottomOf="@id/tvn"
+                    app:layout_constraintTop_toTopOf="@id/tvn" />
+            <TextView
+                android:id="@+id/tvp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tvn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tva"
+                />
+
+                <TextView
+                    android:id="@+id/textViewMyGuestPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="9984800187"
+                    app:layout_constraintStart_toEndOf="@id/tvg"
+                    app:layout_constraintBottom_toBottomOf="@id/tvp"
+                    app:layout_constraintTop_toTopOf="@id/tvp" />
+
+            <TextView
+                android:id="@+id/tva"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tvp"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+                <TextView
+                    android:id="@+id/textViewMyGuestAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="LDA, Lucknow, UP, India 226016"
+                    app:layout_constraintStart_toEndOf="@id/tvg"
+                    app:layout_constraintTop_toTopOf="@id/tva"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tva"
+                    />
+            <TextView
+                android:id="@+id/tvg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textSize="18dp"
+                android:layout_margin="16dp"
+                android:textColor="@color/primaryTextColor"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tva"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+            <TextView
+                android:id="@+id/textViewNoOfGuest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="20"
+                app:layout_constraintStart_toEndOf="@id/tvg"
+                app:layout_constraintTop_toTopOf="@id/tvg"
+                app:layout_constraintBottom_toBottomOf="@id/tvg"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:id="@+id/containerOrderForGuest"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/cardViewGift"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textView2"
+            android:visibility="invisible">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -116,28 +217,7 @@
                     app:layout_constraintTop_toTopOf="@id/textView1"
                     app:layout_constraintStart_toEndOf="@id/textView1"
                     />
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pay"
-                    android:textColor="@color/primaryTextColor"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintBottom_toBottomOf="@id/textView1"
-                    app:layout_constraintTop_toTopOf="@id/textView1"
-                    app:layout_constraintEnd_toStartOf="@id/textViewTotPayableAmount"
-                    />
-                <TextView
-                    android:id="@+id/textViewTotPayableAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="10000"
-                    android:textColor="@color/secondaryColor"
-                    app:layout_constraintBottom_toBottomOf="@id/textView1"
-                    app:layout_constraintTop_toTopOf="@id/textView1"
-                    />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewSelectedMyGuestForGift"
                     android:layout_width="match_parent"
@@ -148,6 +228,27 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:textColor="@color/primaryTextColor"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonOrderGift"
+            app:layout_constraintEnd_toStartOf="@id/textViewTotPayableAmount"
+            />
+        <TextView
+            android:id="@+id/textViewTotPayableAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10000"
+            android:textColor="@color/secondaryColor"
+            app:layout_constraintBottom_toBottomOf="@id/textView2"
+            app:layout_constraintStart_toEndOf="@id/textView2"
+            app:layout_constraintTop_toTopOf="@id/textView2" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonOrderGift"
@@ -162,6 +263,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scrollView2"/>
+            app:layout_constraintTop_toBottomOf="@id/containerOrderForGuest"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
