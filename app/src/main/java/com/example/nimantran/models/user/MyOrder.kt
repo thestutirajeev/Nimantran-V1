@@ -13,7 +13,9 @@ data class MyOrder(
     val orderStatus: String = "",
     //<gift,qty>
     //total amt
-    //val card: MyCards = MyCards(),
+    val sentTo: String = "",
+    val totalAmount: Double = 0.0,
+    val giftQty: String = "",
     val gift: Gift = Gift(),
     val guest: List<Guest> = emptyList(),//= listOf(Guest()),
     val paymentRefId: String = "",

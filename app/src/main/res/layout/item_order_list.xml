@@ -25,6 +25,28 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textViewUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                tools:text="User Name"
+                android:text="@{order.client.name}"
+                app:layout_constraintStart_toStartOf="@id/imageViewOrderedGift"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/textViewUserPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                tools:text="99******99"
+                android:text="@{order.client.phone}"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintStart_toEndOf="@id/imageViewOrderedGift"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <TextView
                 android:id="@+id/textViewOrderListID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -35,7 +57,7 @@
                 android:textSize="10sp"
                 tools:text="Order ID"
                 app:layout_constraintStart_toEndOf="@id/imageViewOrderedGift"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/imageViewOrderedGift" />
 
             <TextView
                 android:id="@+id/textViewOrderListTitle"
@@ -117,12 +139,12 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageViewOrderedGift"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:layout_marginStart="12dp"
                 tools:src="@drawable/ic_gift"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewUserName"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <!--    <com.google.android.material.imageview.ShapeableImageView
