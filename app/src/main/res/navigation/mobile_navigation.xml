@@ -64,11 +64,6 @@
             app:destination="@id/addMyGuestFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addMyGuestFragment"
-        android:name="com.example.nimantran.ui.main.clientGuests.AddMyGuestFragment"
-        android:label="fragment_add_my_guest"
-        tools:layout="@layout/fragment_add_my_guest" />
-    <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.nimantran.ui.main.settings.MyProfileFragment"
         android:label="fragment_my_profile"

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentSelectMyGuestForGiftBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,6 +24,13 @@ class SelectGuestForGiftFragment : Fragment() {
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_select_my_guest_for_gift, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.fabSendGift.setOnClickListener {
+            findNavController().navigate(R.id.action_selectGuestForGiftFragment_to_getOrderDetailsFragment)
+        }
     }
 
     companion object {
