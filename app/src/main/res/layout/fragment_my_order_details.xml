@@ -227,7 +227,6 @@
             android:layout_marginLeft="16dp"
             android:textSize="20sp"
             android:textColor="@color/secondaryColor"
-            app:layout_constraintBottom_toBottomOf="textView2"
             app:layout_constraintStart_toEndOf="@id/textView2"
             app:layout_constraintTop_toTopOf="@id/textView2" />
 
