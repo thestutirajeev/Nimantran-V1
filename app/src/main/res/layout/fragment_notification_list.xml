@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:backgroundTint="@color/primaryColor"
-            android:src="@drawable/ic_notification_add"
+            android:background="@drawable/ic_notification_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="16dp"
