@@ -111,11 +111,19 @@ class GetClientDetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks
                     binding.TextViewSetName.requestFocus()
                     return@setOnClickListener
                 }
-                if (phone.isEmpty()) {
-                    binding.TextViewSetPhone.error = "Please enter your phone number"
-                    binding.TextViewSetPhone.requestFocus()
-                    return@setOnClickListener
-                }
+
+                viewModel.saveClient(
+                    requireContext(),
+                    storage,
+                    db,
+                    clientId,
+                    name,
+                    phone,
+                    gender,
+                    imageUri
+                ) // save client details to firestore
+
+/*
 
                 val client= Client(clientId, name, phone, gender)
                 db.collection(COLL_CLIENT).document(clientId).set(client).addOnSuccessListener {
@@ -130,7 +138,7 @@ class GetClientDetailsFragment : Fragment(), EasyPermissions.PermissionCallbacks
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
+*/
             }
         }
 

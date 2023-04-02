@@ -106,9 +106,10 @@ class ClientViewModel: ViewModel() {
                                 gender,
                                 profileImg = downloadUri.value.toString()
                             )
-                        db.collection(COLL_CLIENT).add(client).addOnSuccessListener {
+                        db.collection(COLL_CLIENT).document(id).set(client).addOnSuccessListener {
                             _isLoading.value = false
                             _isSaved.value = true
+
                         }.addOnFailureListener {
                             _isLoading.value = false
                             _isSaved.value = false
