@@ -14,29 +14,31 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/textViewInsights"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Insights"
-            android:layout_marginEnd="40dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewInsights"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.57"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imageViewInsights"
-            app:layout_constraintBottom_toBottomOf="@id/imageViewInsights"/>
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/imageViewInsights"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/insights"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:padding="4dp"
+            android:layout_marginEnd="4dp"
             android:background="@drawable/circle_1"
-            app:layout_constraintStart_toEndOf="@id/textViewInsights"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:padding="4dp"
+            android:src="@drawable/insights"
+            app:layout_constraintEnd_toStartOf="@+id/textViewInsights"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider"

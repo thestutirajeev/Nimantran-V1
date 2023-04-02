@@ -74,7 +74,11 @@
         android:id="@+id/orderListFragment"
         android:name="com.example.nimantran.ui.admin.order.OrderListFragment"
         android:label="fragment_order_list"
-        tools:layout="@layout/fragment_order_list" />
+        tools:layout="@layout/fragment_order_list" >
+        <action
+            android:id="@+id/action_orderListFragment_to_orderStatusFragment"
+            app:destination="@id/orderStatusFragment" />
+    </fragment>
     <dialog
         android:id="@+id/readNotificationFragment"
         android:name="com.example.nimantran.ui.admin.notification.ReadNotificationFragment"
@@ -96,4 +100,18 @@
             android:id="@+id/action_editGiftFragment_to_giftListFragment"
             app:destination="@id/giftListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/orderStatusFragment"
+        android:name="com.example.nimantran.ui.admin.order.OrderStatusFragment"
+        android:label="fragment_order_status"
+        tools:layout="@layout/fragment_order_status" >
+        <action
+            android:id="@+id/action_orderStatusFragment_to_updateOrderStatusFragment"
+            app:destination="@id/updateOrderStatusFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/updateOrderStatusFragment"
+        android:name="com.example.nimantran.ui.admin.order.UpdateOrderStatusFragment"
+        android:label="fragment_update_order_status"
+        tools:layout="@layout/fragment_update_order_status" />
 </navigation>

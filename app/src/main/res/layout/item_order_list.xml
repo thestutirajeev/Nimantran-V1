@@ -106,7 +106,7 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/imageViewOrderedGift"
                 app:layout_constraintEnd_toEndOf="@id/textViewOrderListDate"
-                tools:text="Guests/Me" />
+                tools:text="Guests/User" />
 
 
             <TextView
