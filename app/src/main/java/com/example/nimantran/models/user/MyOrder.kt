@@ -9,6 +9,7 @@ import java.util.UUID
 
 data class MyOrder(
     val id: String = UUID.randomUUID().toString(),
+    val clientID: String = "",
     val orderDate: Date = Timestamp(System.currentTimeMillis()),
     //timestamp
     val orderStatus: String = "",
