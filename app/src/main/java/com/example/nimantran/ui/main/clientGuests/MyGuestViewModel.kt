@@ -54,24 +54,28 @@ class MyGuestViewModel : ViewModel() {
         name: String,
         phone: String,
         address: String,
-        id: String,
+        uid: String,
     )  {
         _isLoading.value = true
 
-        if (!validateGuest(name, phone, address, id)) {
+        if (!validateGuest(name, phone, address, uid)) {
             _isLoading.value = false
             _isSaved.value = false
+            Log.e("MyGuestViewModel", "Invalid guest")
         } else {
-            val guest = Guest()
+            val guest = Guest(name, phone, address, userId = uid)
             db.collection(AddMyGuestFragment.COLL_MY_GUESTS).add(guest).addOnSuccessListener {
                 _isLoading.value = false
                 _isSaved.value = true
+                Log.d("MyGuestViewModel", "Guest saved")
             }.addOnFailureListener {
                 _isLoading.value = false
                 _isSaved.value = false
+                Log.e("MyGuestViewModel", "Error saving guest ${it.message}")
             }.addOnCanceledListener {
                 _isLoading.value = false
                 _isSaved.value = false
+                Log.e("MyGuestViewModel", "Cancelled saving guest")
             }
         }
     }

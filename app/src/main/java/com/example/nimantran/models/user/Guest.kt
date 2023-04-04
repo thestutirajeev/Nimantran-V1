@@ -7,4 +7,5 @@ data class Guest(
     val phone: String = "",
     val address: String = "",
     val id: String = UUID.randomUUID().toString(),
+    val userId: String = "",
 )
