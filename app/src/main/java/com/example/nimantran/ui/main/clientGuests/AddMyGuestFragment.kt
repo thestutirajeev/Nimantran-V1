@@ -36,7 +36,8 @@ class AddMyGuestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val address = binding.TextViewEditHouseNo.text.toString().trim() + ", " + binding.TextViewEditStreet.text.toString().trim() + ", " + binding.TextViewEditCity.text.toString().trim() + ", " + binding.TextViewEditState.text.toString().trim() + ", " + binding.TextViewEditPincode.text.toString().trim()
-
+        val id = myGuestViewModel.getUid()
+        val clientId = "111"
 
         binding.buttonAddGuest.setOnClickListener {
             binding.addGuestContainer.isEnabled = false
@@ -44,7 +45,9 @@ class AddMyGuestFragment : Fragment() {
                 db,
                 binding.TextViewEditName.text.toString().trim(),
                 binding.TextViewEditPhone.text.toString().trim(),
-                address
+                address,
+                id,
+                clientId
             )
         }
 
