@@ -1,14 +1,17 @@
 package com.example.nimantran.ui.main.clientGuests
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.databinding.FragmentAddMyGuestBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 class AddMyGuestFragment : Fragment() {
 
@@ -16,10 +19,12 @@ class AddMyGuestFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
     private val myGuestViewModel: MyGuestViewModel by viewModels()
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         db = FirebaseFirestore.getInstance()
+        auth = Firebase.auth
     }
 
     override fun onCreateView(
@@ -35,9 +40,13 @@ class AddMyGuestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val address = binding.TextViewEditHouseNo.text.toString().trim() + ", " + binding.TextViewEditStreet.text.toString().trim() + ", " + binding.TextViewEditCity.text.toString().trim() + ", " + binding.TextViewEditState.text.toString().trim() + ", " + binding.TextViewEditPincode.text.toString().trim()
+        val address = binding.TextViewEditHouseNo.text.toString()
+            .trim() + ", " + binding.TextViewEditStreet.text.toString()
+            .trim() + ", " + binding.TextViewEditCity.text.toString()
+            .trim() + ", " + binding.TextViewEditState.text.toString()
+            .trim() + ", " + binding.TextViewEditPincode.text.toString().trim()
         val id = myGuestViewModel.getUid()
-        val clientId = "111"
+        val clientId = auth.currentUser!!.uid
 
         binding.buttonAddGuest.setOnClickListener {
             binding.addGuestContainer.isEnabled = false
@@ -68,7 +77,7 @@ class AddMyGuestFragment : Fragment() {
     }
 
     companion object {
-       const val COLL_MY_GUESTS = "myGuests"
+        const val COLL_MY_GUESTS = "myGuests"
     }
 
 }

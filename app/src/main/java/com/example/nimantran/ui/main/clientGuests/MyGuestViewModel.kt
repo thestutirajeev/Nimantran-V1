@@ -23,15 +23,16 @@ class MyGuestViewModel : ViewModel() {
 
     private val _isSaved = MutableLiveData(false)
     val isSaved: MutableLiveData<Boolean> = _isSaved
-    
+
     fun getGuests(db: FirebaseFirestore) {
         loadGuests(db)
         deselectGuest()
     }
 
-    private fun loadGuests(db: FirebaseFirestore) {
+    private fun loadGuests(db: FirebaseFirestore, uid: String = "") {
         // fetch data from firebase firestore
-        db.collection(MyGuestListFragment.COLL_MY_GUESTS).get().addOnFailureListener {
+        db.collection(MyGuestListFragment.COLL_MY_GUESTS)
+            .whereEqualTo("clientId",uid).get().addOnFailureListener {
             Log.e("MyGuestListViewModel", "Error fetching guests ${it.message}")
         }.addOnCanceledListener {
             Log.e("MyGuestListViewModel", "Cancelled fetching guests")
@@ -58,15 +59,15 @@ class MyGuestViewModel : ViewModel() {
         address: String,
         id: String,
         clientId: String
-    )  {
+    ) {
         _isLoading.value = true
 
-        if (!validateGuest(name, phone, address,id)) {
+        if (!validateGuest(name, phone, address, id)) {
             _isLoading.value = false
             _isSaved.value = false
             Log.e("MyGuestViewModel", "Invalid guest")
         } else {
-            val guest = Guest(name,phone,address,id, clientId)
+            val guest = Guest(name, phone, address, id, clientId)
             db.collection(AddMyGuestFragment.COLL_MY_GUESTS).add(guest).addOnSuccessListener {
                 _isLoading.value = false
                 _isSaved.value = true

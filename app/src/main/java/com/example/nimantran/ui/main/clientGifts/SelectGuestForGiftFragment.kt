@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.adapters.MyGuestListAdapter
+import com.example.nimantran.adapters.SelectGuestAdapter
 import com.example.nimantran.databinding.FragmentSelectMyGuestForGiftBinding
 import com.example.nimantran.ui.main.clientGuests.MyGuestListFragmentDirections
 import com.example.nimantran.ui.main.clientGuests.MyGuestViewModel
@@ -102,11 +103,11 @@ class SelectGuestForGiftFragment : Fragment() {
         myGuestViewModel.guests.observe(viewLifecycleOwner) { guests ->
             if (guests.isNotEmpty()) {
                 binding.recyclerViewSelectMyGuest.adapter =
-                    MyGuestListAdapter(requireActivity()) {
+                    SelectGuestAdapter() {
                         myGuestViewModel.selectGuest(it)
                     }
 
-                (binding.recyclerViewSelectMyGuest.adapter as MyGuestListAdapter).submitList(
+                (binding.recyclerViewSelectMyGuest.adapter as SelectGuestAdapter).submitList(
                     guests
                 )
             } else {
