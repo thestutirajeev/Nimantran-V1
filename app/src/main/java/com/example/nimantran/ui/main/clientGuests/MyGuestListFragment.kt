@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.adapters.MyGuestListAdapter
 import com.example.nimantran.databinding.FragmentMyGuestListBinding
@@ -27,9 +28,10 @@ class MyGuestListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_guest_list, container, false)
         return binding.root
     }
@@ -37,6 +39,26 @@ class MyGuestListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myGuestListViewModel.getGuests(db) // fetch data only
+        myGuestListViewModel.guests.observe(viewLifecycleOwner) { guests ->
+            if (guests.isNotEmpty()) {
+                binding.recyclerViewMyGuestList.adapter =
+                    MyGuestListAdapter(requireActivity(), {
+                        myGuestListViewModel.selectGuest(it)
+                        val dir = MyGuestListFragmentDirections.actionMyGuestListFragmentToEditGuestFragment(it.id)
+                        findNavController().navigate(dir)
+                    })
+
+                (binding.recyclerViewMyGuestList.adapter as MyGuestListAdapter).submitList(
+                    guests
+                )
+            } else {
+                binding.recyclerViewMyGuestList.visibility = View.GONE
+            }
+            if (binding.swipeRefreshLayoutMyGuestList.isRefreshing) {
+                binding.swipeRefreshLayoutMyGuestList.isRefreshing = false
+            }
+        }
+
 
         binding.fabMyGuestList.setOnClickListener{
 
@@ -61,6 +83,15 @@ class MyGuestListFragment : Fragment() {
                 binding.swipeRefreshLayoutMyGuestList.isRefreshing = false
             }
         }
+
+        binding.swipeRefreshLayoutMyGuestList.setOnRefreshListener {
+            myGuestListViewModel.getGuests(db)
+        }
+
+        binding.cardViewAddGuest.setOnClickListener{
+            val dir = MyGuestListFragmentDirections.actionMyGuestListFragmentToAddMyGuestFragment()
+            findNavController().navigate(dir)
+        }
     }
 
     override fun onDestroyView() {
@@ -68,9 +99,7 @@ class MyGuestListFragment : Fragment() {
         _binding = null
     }
 
-
-
     companion object {
-        const val COLL_GUESTS = "guests"
+        const val COLL_MY_GUESTS = "myGuests"
     }
 }
