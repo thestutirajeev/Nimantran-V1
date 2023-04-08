@@ -27,9 +27,9 @@ class MyProfileViewModel : ViewModel(){
     private val _downloadUri = MutableLiveData<Uri>()
     val downloadUri: MutableLiveData<Uri> = _downloadUri
 
-    fun getClient(db: FirebaseFirestore){
+    fun getClient(db: FirebaseFirestore, uid: String?){
         _isLoading.value = true
-        db.collection(COLL_CLIENT).document("client").get().addOnSuccessListener {
+        db.collection(COLL_CLIENT).document(uid!!).get().addOnSuccessListener {
             _isLoading.value = false
             _client.value = it.toObject(Client::class.java)
         }.addOnFailureListener {

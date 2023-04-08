@@ -47,6 +47,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMyProfileBinding.inflate(inflater, container, false)
+        binding.myProfileViewModel = myProfileViewModel
         return binding.root
     }
 
@@ -55,7 +56,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
         disableEdit()
 
-//        myProfileViewModel.getClient(db)
+        myProfileViewModel.getClient(db, auth.currentUser?.uid)
         val currUser = auth.currentUser
         if (currUser != null) {
             userId = currUser.uid
@@ -95,7 +96,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
         binding.buttonCancelEditUser.setOnClickListener {
             disableEdit()
-            myProfileViewModel.getClient(db)
+            myProfileViewModel.getClient(db, auth.currentUser?.uid)
         }
 
 
