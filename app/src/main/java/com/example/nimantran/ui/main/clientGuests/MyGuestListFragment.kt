@@ -131,7 +131,7 @@ class MyGuestListFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             selectContact()
         }
 
-
+/*
         myGuestListViewModel.guests.observe(viewLifecycleOwner) { guests ->
             if (guests.isNotEmpty()) {
                 binding.recyclerViewMyGuestList.adapter =
@@ -149,6 +149,7 @@ class MyGuestListFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 binding.swipeRefreshLayoutMyGuestList.isRefreshing = false
             }
         }
+ */
 
         binding.swipeRefreshLayoutMyGuestList.setOnRefreshListener {
             myGuestListViewModel.getGuests(db)

@@ -10,7 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
+import com.example.nimantran.adapters.MyGuestListAdapter
 import com.example.nimantran.databinding.FragmentSelectMyGuestForGiftBinding
+import com.example.nimantran.ui.main.clientGuests.MyGuestListFragmentDirections
+import com.example.nimantran.ui.main.clientGuests.MyGuestViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SelectGuestForGiftFragment : Fragment() {
@@ -18,6 +21,7 @@ class SelectGuestForGiftFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
     private val myGiftsViewModel: MyGiftsViewModel by activityViewModels()
+    private val myGuestViewModel: MyGuestViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,13 +66,75 @@ class SelectGuestForGiftFragment : Fragment() {
                 binding.containerSendToMe.visibility = View.GONE
                 binding.containerSendToGuest.visibility = View.VISIBLE
                 binding.buttonSendGift.isEnabled = true
+
             }
             else{
                 binding.radioButtonSendToMe.callOnClick()
+
             }
         }
+
+        /*
+        myGuestViewModel.guests.observe(viewLifecycleOwner) { guests ->
+            if (guests.isNotEmpty()) {
+                binding.recyclerViewSelectMyGuest.adapter =
+                    MyGuestListAdapter(requireActivity()) {
+                        myGuestViewModel.selectGuest(it)
+                        val dir =
+                            MyGuestListFragmentDirections.actionMyGuestListFragmentToEditGuestFragment(
+                                it.id
+                            )
+                        findNavController().navigate(dir)
+                    }
+
+                (binding.recyclerViewSelectMyGuest.adapter as MyGuestListAdapter).submitList(
+                    guests
+                )
+            } else {
+                binding.recyclerViewSelectMyGuest.visibility = View.GONE
+            }
+            if (binding.swipeRefreshLayoutMyGuest.isRefreshing) {
+                binding.swipeRefreshLayoutMyGuest.isRefreshing = false
+            }
+        }
+         */
+
+        myGuestViewModel.guests.observe(viewLifecycleOwner) { guests ->
+            if (guests.isNotEmpty()) {
+                binding.recyclerViewSelectMyGuest.adapter =
+                    MyGuestListAdapter(requireActivity()) {
+                        myGuestViewModel.selectGuest(it)
+                    }
+
+                (binding.recyclerViewSelectMyGuest.adapter as MyGuestListAdapter).submitList(
+                    guests
+                )
+            } else {
+                binding.recyclerViewSelectMyGuest.visibility = View.GONE
+            }
+            if (binding.swipeRefreshLayoutMyGuest.isRefreshing) {
+                binding.swipeRefreshLayoutMyGuest.isRefreshing = false
+            }
+        }
+
     }
 
     companion object {
+    }
+
+    private fun loadGuestList(){
+        //load guest list
+    }
+
+    private fun loadMyDetails(){
+        //load my details
+    }
+
+    private fun removeGuestList(){
+        //remove Guest List
+    }
+
+    private fun removeMyDetails(){
+        //remove my details
     }
 }
