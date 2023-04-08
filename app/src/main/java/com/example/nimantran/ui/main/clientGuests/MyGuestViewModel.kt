@@ -9,7 +9,6 @@ import com.example.nimantran.models.user.Guest
 import com.google.firebase.firestore.FirebaseFirestore
 import contacts.core.*
 import contacts.core.entities.EventEntity
-import java.util.*
 
 class MyGuestViewModel : ViewModel() {
     private val _guests = MutableLiveData<List<Guest>>()
@@ -31,7 +30,7 @@ class MyGuestViewModel : ViewModel() {
 
     private fun loadGuests(db: FirebaseFirestore) {
         // fetch data from firebase firestore
-        db.collection(MyGuestListFragment.COLL_MY_GUESTS).get().addOnFailureListener {
+        db.collection(MyGuestListFragment.COLL_GUESTS).get().addOnFailureListener {
             Log.e("MyGuestListViewModel", "Error fetching guests ${it.message}")
         }.addOnCanceledListener {
             Log.e("MyGuestListViewModel", "Cancelled fetching guests")
@@ -44,7 +43,6 @@ class MyGuestViewModel : ViewModel() {
 
     fun selectGuest(guest: Guest) {
         _selectedGuest.value = guest
-        Log.e("TAG", "Selected guest ${guest.name}")
     }
 
     fun deselectGuest() {
@@ -56,15 +54,15 @@ class MyGuestViewModel : ViewModel() {
         name: String,
         phone: String,
         address: String,
+        id: String,
     )  {
-        val id = UUID.randomUUID().toString()
         _isLoading.value = true
 
-        if (!validateGuest(name, phone, address)) {
+        if (!validateGuest(name, phone, address, id)) {
             _isLoading.value = false
             _isSaved.value = false
         } else {
-            val guest = Guest(name,phone,address,id, clientId = "1")
+            val guest = Guest()
             db.collection(AddMyGuestFragment.COLL_MY_GUESTS).add(guest).addOnSuccessListener {
                 _isLoading.value = false
                 _isSaved.value = true
@@ -82,12 +80,9 @@ class MyGuestViewModel : ViewModel() {
         name: String,
         phone: String,
         address: String,
+        id: String,
     ): Boolean {
-        return name.isNotEmpty() && phone.isNotEmpty()
-    }
-
-    fun resetSaveStatus() {
-        _isSaved.value = false
+        return name.isNotEmpty() && phone.isNotEmpty() && id.isNotEmpty()
     }
 
 /*
@@ -118,6 +113,4 @@ class MyGuestViewModel : ViewModel() {
         .find()
 
   */
-
-
 }
