@@ -4,6 +4,7 @@ pluginManagement {
         google()
         mavenCentral()
         flatDir(name: 'libs', dirs: 'libs')
+        maven { url 'https://www.jitpack.io' }
     }
 }
 dependencyResolutionManagement {

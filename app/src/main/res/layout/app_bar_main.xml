@@ -41,10 +41,23 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <include layout="@layout/content_main" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/main_bottom_menu" />
+<!--
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:iconMargin="8dp"
+        app:iconSize="24dp"
+        app:indicatorRadius="16dp"
+        app:backgroundColor="@color/colorPrimary"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav"/>
+-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

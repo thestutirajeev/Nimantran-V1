@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_myGuestListFragment_to_addMyGuestFragment"
             app:destination="@id/addMyGuestFragment" />
+        <action
+            android:id="@+id/action_myGuestListFragment_to_editGuestFragment"
+            app:destination="@id/editGuestFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -81,7 +84,11 @@
         android:id="@+id/myOrderDetailsFragment"
         android:name="com.example.nimantran.ui.main.clientOrders.MyOrderDetailsFragment"
         android:label="fragment_my_order_details"
-        tools:layout="@layout/fragment_my_order_details" />
+        tools:layout="@layout/fragment_my_order_details" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <dialog
         android:id="@+id/myGiftDetailsFragment"
         android:name="com.example.nimantran.ui.main.clientGifts.MyGiftDetailsFragment"
@@ -91,13 +98,6 @@
             android:name="item"
             app:argType="string"
             android:defaultValue="Gift Name" />
-        <argument
-            android:name="price"
-            app:argType="float"
-            android:defaultValue="1000" />
-        <argument
-            android:name="description"
-            app:argType="string" />
         <action
             android:id="@+id/action_myGiftDetailsFragment_to_selectGuestForGiftFragment"
             app:destination="@id/selectGuestForGiftFragment" />
@@ -124,6 +124,9 @@
         <action
             android:id="@+id/action_selectGuestForGiftFragment_to_getOrderDetailsFragment"
             app:destination="@id/getOrderDetailsFragment" />
+        <argument
+            android:name="item"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/selectGuestForCardFragment"
@@ -139,4 +142,13 @@
         android:name="com.example.nimantran.ui.main.clientGuests.AddMyGuestFragment"
         android:label="fragment_add_my_guest"
         tools:layout="@layout/fragment_add_my_guest" />
+    <fragment
+        android:id="@+id/editGuestFragment"
+        android:name="com.example.nimantran.ui.main.clientGuests.EditMyGuestFragment"
+        android:label="fragment_edit_guest"
+        tools:layout="@layout/fragment_edit_my_guest" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

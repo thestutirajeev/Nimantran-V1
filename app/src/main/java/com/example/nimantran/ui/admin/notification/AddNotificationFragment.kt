@@ -42,8 +42,9 @@ class AddNotificationFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonSend.setOnClickListener{
-            val subject = binding.editTextNotificationSubject.text.toString()
-            val body = binding.editTextNotificationBody.text.toString()
+            binding.addNotificationContainer.isEnabled = false
+            val subject = binding.editTextNotificationSubject.text.toString().trim()
+            val body = binding.editTextNotificationBody.text.toString().trim()
             viewModel.saveNotification(db, subject, body)
         }
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->

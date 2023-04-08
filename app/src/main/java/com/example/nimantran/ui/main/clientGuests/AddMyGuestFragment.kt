@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.nimantran.databinding.FragmentAddMyGuestBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -26,13 +27,36 @@ class AddMyGuestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAddMyGuestBinding.inflate(inflater, container, false)
+        binding.myGuestViewModel = myGuestViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val address = binding.TextViewEditHouseNo.text.toString().trim() + ", " + binding.TextViewEditStreet.text.toString().trim() + ", " + binding.TextViewEditCity.text.toString().trim() + ", " + binding.TextViewEditState.text.toString().trim() + ", " + binding.TextViewEditPincode.text.toString().trim()
 
+
+        binding.buttonAddGuest.setOnClickListener {
+            binding.addGuestContainer.isEnabled = false
+            myGuestViewModel.saveGuest(
+                db,
+                binding.TextViewEditName.text.toString().trim(),
+                binding.TextViewEditPhone.text.toString().trim(),
+                address
+            )
+        }
+
+        myGuestViewModel.isSaved.observe(viewLifecycleOwner) { state ->
+            if (state) {
+                myGuestViewModel.resetSaveStatus()
+                findNavController().navigateUp() // Navigate back to MyGuestFragment
+                myGuestViewModel.getGuests(db)
+            } else {
+                binding.addGuestContainer.isEnabled = true
+            }
+        }
     }
 
     override fun onDestroyView() {

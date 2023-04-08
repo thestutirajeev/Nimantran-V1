@@ -8,6 +8,7 @@ import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -82,6 +83,24 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         //hide action bar
         supportActionBar?.hide()
         binding.appBarMain.bottomNavigationView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener{
+            override fun onDestinationChanged(
+                controller: NavController,
+                destination: NavDestination,
+                arguments: Bundle?
+            ) {
+                title = when(destination.id){
+                    R.id.homeFragment -> "Home"
+                    R.id.myGuestListFragment -> "My Guest List"
+                    R.id.myGiftsFragment -> "My Gifts"
+                    R.id.myProfileFragment -> "My Profile"
+                    R.id.templateDesignsFragment -> "Template Designs"
+                    else -> "Nimantran"
+                }
+            }
+        })
+
         val userType = prefs.getString("userType", "user")
 
         // add listener to navigation drawer
