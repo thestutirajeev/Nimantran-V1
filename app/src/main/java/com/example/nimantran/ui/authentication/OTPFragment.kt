@@ -146,7 +146,7 @@ class OTPFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        _binding = com.example.nimantran.databinding.FragmentOtpBinding.inflate(inflater, container, false)
+        _binding = FragmentOtpBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -190,7 +190,7 @@ class OTPFragment : Fragment() {
 
         override fun onCodeSent(
             verificationId: String,
-            token: PhoneAuthProvider.ForceResendingToken
+            token: ForceResendingToken
         ) {
             // The SMS verification code has been sent to the provided phone number, we
             // now need to ask the user to enter the code and then construct a credential
@@ -205,11 +205,6 @@ class OTPFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val currUser = auth.currentUser
-        if (currUser != null) {
-            userId = currUser.uid
-            currUser.phoneNumber?.let { binding.textViewPhone.setText(it) }
-        }
 
         binding.otpEditText1.requestFocus()
         val bundle = OTPFragmentArgs.fromBundle(requireArguments())
@@ -220,6 +215,8 @@ class OTPFragment : Fragment() {
         addTextChangeListner()
         resendOtpTextViewVisibility()
         binding.progressBar2.visibility = View.INVISIBLE
+
+        binding.textViewPhone.text = bundle.phone
 
         binding.buttonOtp.setOnClickListener {
             val typedOTP =
@@ -251,6 +248,5 @@ class OTPFragment : Fragment() {
 
     }
 
-    companion object {
-    }
+    companion object
 }
