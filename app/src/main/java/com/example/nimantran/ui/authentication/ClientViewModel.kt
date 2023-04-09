@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.admin.Client
 import com.example.nimantran.ui.authentication.GetClientDetailsFragment.Companion.COLL_CLIENT
+import com.example.nimantran.ui.main.settings.MyProfileFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
@@ -123,6 +124,19 @@ class ClientViewModel: ViewModel() {
                     _isImgUploaded.value = false
                 }
             }
+        }
+    }
+
+    fun getClient(db: FirebaseFirestore, uid: String?){
+        _isLoading.value = true
+        db.collection(MyProfileFragment.COLL_CLIENT).document(uid!!).get().addOnSuccessListener {
+            _isLoading.value = false
+            _client.value = it.toObject(Client::class.java)
+        }.addOnFailureListener {
+            _isLoading.value = false
+
+        }.addOnCanceledListener {
+            _isLoading.value = false
         }
     }
 }

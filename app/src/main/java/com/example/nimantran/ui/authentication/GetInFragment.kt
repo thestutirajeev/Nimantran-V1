@@ -42,7 +42,7 @@ class GetInFragment : Fragment() {
 
         binding.buttonVerify.setOnClickListener {
             phoneNumber = "+91" + binding.editPhone.text.toString().trim()
-            if(phoneNumber.length == 13) {
+            if (phoneNumber.length == 13) {
                 val options = PhoneAuthOptions.newBuilder(auth)
                     .setPhoneNumber(phoneNumber)       // Phone number to verify
                     .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -52,9 +52,10 @@ class GetInFragment : Fragment() {
                 PhoneAuthProvider.verifyPhoneNumber(options)
                 binding.progressBar.visibility = View.VISIBLE
                 binding.buttonVerify.isEnabled = false
-                binding.editPhone.isEnabled= false
-            }else{
-                Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
+                binding.editPhone.isEnabled = false
+            } else {
+                Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -67,17 +68,15 @@ class GetInFragment : Fragment() {
         super.onStart()
         if (auth.currentUser != null) {
             Log.d("TAG", "onStart: ${auth.currentUser}")
-            Log.d("TAG",prefs.getString("userType", "user").toString())
-            when(prefs.getString("userType", "user")) {
+            Log.d("TAG", prefs.getString("userType", "user").toString())
+            when (prefs.getString("userType", "user")) {
                 "user" -> {
                     Log.d("TAG", "onStart: ${auth.currentUser}")
-                    Log.d("TAG",prefs.getString("userType", "user").toString())
-                    if (prefs.getBoolean("isFirstTime", true)) {
-                        findNavController().navigate(R.id.action_getInFragment_to_getDetailsFragment)
-                    } else {
-                        startActivity(Intent(activity, MainActivity::class.java))
-                        activity?.finish()
-                    }
+                    Log.d("TAG", prefs.getString("userType", "user").toString())
+
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    activity?.finish()
+
                 }
                 "admin" -> {
                     startActivity(Intent(activity, AdminActivity::class.java))
@@ -106,7 +105,7 @@ class GetInFragment : Fragment() {
     }
 
 
-    private fun sendToMain(){
+    private fun sendToMain() {
         startActivity(Intent(activity, MainActivity::class.java))
         activity?.finish()
     }
@@ -176,7 +175,11 @@ class GetInFragment : Fragment() {
             Log.d("TAG", "onCodeSent:$token")
             Log.d("TAG", "onCodeSent:$phoneNumber")
 //             get otp
-            val dir = GetInFragmentDirections.actionGetInFragmentToOTPFragment(verificationId, phoneNumber, token)
+            val dir = GetInFragmentDirections.actionGetInFragmentToOTPFragment(
+                verificationId,
+                phoneNumber,
+                token
+            )
             findNavController().navigate(dir)
         }
     }

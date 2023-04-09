@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.AdminActivity
 import com.example.nimantran.MainActivity
@@ -22,6 +24,8 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.concurrent.TimeUnit
 
@@ -32,15 +36,18 @@ class OTPFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var userId: String
+    private lateinit var db: FirebaseFirestore
     private lateinit var OTP: String
     private lateinit var resendingToken: ForceResendingToken
     private lateinit var phoneNumber: String
     private val prefs by lazy { requireActivity().getSharedPreferences("prefs", 0) }
+    private val viewModel: ClientViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
+        db = Firebase.firestore
     }
 
     private fun resendOtpTextViewVisibility() {
@@ -85,22 +92,30 @@ class OTPFragment : Fragment() {
     private fun sendToMain(user: FirebaseUser?) {
         if (user != null) {
             val phn = user.phoneNumber
-            Log.d("TAG", "sendToMain: $phn")
-            when (phn) {
-                "+919336843452" -> {
-                    prefs.edit().putString("userType", "admin").apply()
-                    startActivity(Intent(activity, AdminActivity::class.java))
-                    requireActivity().finish()
-                }
-                else -> {
-                    prefs.edit().putString("userType", "user").apply()
-                    Log.d("TAG", "sendToMain: ${prefs.getBoolean("isFirstTime", true)}")
-                    if (prefs.getBoolean("isFirstTime", true)) {
-                        prefs.edit().putBoolean("isFirstTime", false).apply()
-                        findNavController().navigate(R.id.action_OTPFragment_to_getDetailsFragment)
-                    } else {
-                        startActivity(Intent(activity, MainActivity::class.java))
+            viewModel.getClient(db, user.uid)
+            viewModel.client.observe(viewLifecycleOwner) {
+                Log.d("TAG", "sendToMain: $phn")
+                when (phn) {
+                    "+919336843452" -> {
+                        prefs.edit().putString("userType", "admin").apply()
+                        startActivity(Intent(activity, AdminActivity::class.java))
                         requireActivity().finish()
+                    }
+                    else -> {
+                        prefs.edit().putString("userType", "user").apply()
+                        Log.d("TAG", "sendToMain: ${prefs.getBoolean("isFirstTime", true)}")
+                        if (it == null) {
+                            prefs.edit().putBoolean("isFirstTime", false).apply()
+                            findNavController().navigate(R.id.action_OTPFragment_to_getDetailsFragment)
+                        }
+/*                        if (prefs.getBoolean("isFirstTime", true)) {
+                            prefs.edit().putBoolean("isFirstTime", false).apply()
+                            findNavController().navigate(R.id.action_OTPFragment_to_getDetailsFragment)
+                        }*/
+                        else {
+                            startActivity(Intent(activity, MainActivity::class.java))
+                            requireActivity().finish()
+                        }
                     }
                 }
             }
@@ -134,7 +149,13 @@ class OTPFragment : Fragment() {
                 R.id.otpEditText6 -> if (text.isEmpty()) binding.otpEditText5.requestFocus()
 
             }
-            if(binding.otpEditText1.text.toString().isEmpty() && binding.otpEditText2.text.toString().isEmpty() && binding.otpEditText3.text.toString().isEmpty() && binding.otpEditText4.text.toString().isEmpty() && binding.otpEditText5.text.toString().isEmpty() && binding.otpEditText6.text.toString().isEmpty()){
+            if (binding.otpEditText1.text.toString()
+                    .isEmpty() && binding.otpEditText2.text.toString()
+                    .isEmpty() && binding.otpEditText3.text.toString()
+                    .isEmpty() && binding.otpEditText4.text.toString()
+                    .isEmpty() && binding.otpEditText5.text.toString()
+                    .isEmpty() && binding.otpEditText6.text.toString().isEmpty()
+            ) {
                 binding.otpEditText1.requestFocus()
             }
         }
@@ -146,7 +167,9 @@ class OTPFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        _binding = FragmentOtpBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_otp, container, false)
+        binding.vm = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -235,7 +258,7 @@ class OTPFragment : Fragment() {
             resendOtpTextViewVisibility()
         }
 
-        binding.textViewClearOtp.setOnClickListener{
+        binding.textViewClearOtp.setOnClickListener {
             binding.otpEditText1.setText("")
             binding.otpEditText2.setText("")
             binding.otpEditText3.setText("")

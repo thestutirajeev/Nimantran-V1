@@ -1,29 +1,22 @@
 package com.example.nimantran.ui.main.settings
 
-import android.Manifest
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import coil.load
-import coil.transform.CircleCropTransformation
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentMyProfileBinding
 import com.example.nimantran.models.admin.Client
-import com.example.nimantran.ui.admin.gift.AddGiftFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
 class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
@@ -35,7 +28,6 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private lateinit var storage: FirebaseStorage
     private lateinit var db: FirebaseFirestore
     private val myProfileViewModel: MyProfileViewModel by viewModels()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +41,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     ): View? {
         _binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         binding.myProfileViewModel = myProfileViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -66,28 +59,19 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 */
         myProfileViewModel.getClient(db, currUser?.uid)
 
-        // get client data
-        val clt: Client = myProfileViewModel.client.value!!
 
-        binding.editTextEditName.setText(clt.name)
-        binding.editTextEditPhone.setText(clt.phone)
-        if(clt.gender == "Male") {
-            binding.radioMale.isChecked = true
-        } else if(clt.gender == "Female"){
-            binding.radioFemale.isChecked = true
+
+        /*
+        binding.imageViewUser.load(client.image) {
+            crossfade(true)
+            transformations(CircleCropTransformation())
         }
-  */
-                /*
-                binding.imageViewUser.load(client.image) {
-                    crossfade(true)
-                    transformations(CircleCropTransformation())
-                }
-        */
-                binding . buttonEditUser . setOnClickListener {
+*/
+        binding.buttonEditUser.setOnClickListener {
             enableEdit()
         }
 
-                binding . buttonSaveEditUser . setOnClickListener {
+        binding.buttonSaveEditUser.setOnClickListener {
             disableEdit()
             userId = currUser!!.uid
             val name = binding.editTextEditName.text.toString().trim()
@@ -114,7 +98,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             selectImage()
         }
 */
-                binding . buttonCancelEditUser . setOnClickListener {
+        binding.buttonCancelEditUser.setOnClickListener {
             disableEdit()
             myProfileViewModel.getClient(db, auth.currentUser?.uid)
         }

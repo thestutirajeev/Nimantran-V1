@@ -18,9 +18,6 @@
             android:id="@+id/action_getInFragment_to_OTPFragment"
             app:destination="@id/OTPFragment" />
         <action
-            android:id="@+id/action_getInFragment_to_getDetailsFragment"
-            app:destination="@id/getDetailsFragment" />
-        <action
             android:id="@+id/action_getInFragment_to_guestAuthenticationFragment"
             app:destination="@id/guestAuthenticationFragment" />
     </fragment>

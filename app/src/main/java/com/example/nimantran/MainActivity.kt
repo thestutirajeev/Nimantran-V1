@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth
 import pub.devrel.easypermissions.EasyPermissions
 
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
-
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -34,7 +33,6 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         READ_PHONE_STATE,
         ACCESS_NETWORK_STATE
     )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
