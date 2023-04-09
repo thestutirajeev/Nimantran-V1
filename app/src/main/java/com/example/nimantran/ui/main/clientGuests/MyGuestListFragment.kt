@@ -8,17 +8,18 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.adapters.MyGuestListAdapter
 import com.example.nimantran.databinding.FragmentMyGuestListBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -28,11 +29,13 @@ class MyGuestListFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private var _binding: FragmentMyGuestListBinding? = null
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
     private val myGuestListViewModel: MyGuestViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         db = Firebase.firestore
+        auth = Firebase.auth
     }
 
     override fun onCreateView(
@@ -40,7 +43,8 @@ class MyGuestListFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_guest_list, container, false)
+        _binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_my_guest_list, container, false)
         return binding.root
     }
 
@@ -102,7 +106,7 @@ class MyGuestListFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        myGuestListViewModel.getGuests(db) // fetch data only
+        myGuestListViewModel.getGuests(db,auth.currentUser?.uid) // fetch data only
         myGuestListViewModel.guests.observe(viewLifecycleOwner) { guests ->
             if (guests.isNotEmpty()) {
                 binding.recyclerViewMyGuestList.adapter =
@@ -127,7 +131,7 @@ class MyGuestListFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
 
 
-        binding.fabMyGuestList.setOnClickListener{
+        binding.fabMyGuestList.setOnClickListener {
             selectContact()
         }
 
@@ -152,17 +156,14 @@ class MyGuestListFragment : Fragment(), EasyPermissions.PermissionCallbacks {
  */
 
         binding.swipeRefreshLayoutMyGuestList.setOnRefreshListener {
-            myGuestListViewModel.getGuests(db)
+            myGuestListViewModel.getGuests(db, auth.currentUser?.uid)
         }
 
-        binding.cardViewAddGuest.setOnClickListener{
+        binding.cardViewAddGuest.setOnClickListener {
             val dir = MyGuestListFragmentDirections.actionMyGuestListFragmentToAddMyGuestFragment()
             findNavController().navigate(dir)
         }
     }
-
-
-
 
 
     override fun onDestroyView() {

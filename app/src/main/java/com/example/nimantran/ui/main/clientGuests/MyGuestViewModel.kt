@@ -1,22 +1,18 @@
 package com.example.nimantran.ui.main.clientGuests
 
-import android.accounts.Account
-import android.provider.ContactsContract
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nimantran.models.user.Guest
 import com.google.firebase.firestore.FirebaseFirestore
-import contacts.core.*
-import contacts.core.entities.EventEntity
 import java.util.*
 
 class MyGuestViewModel : ViewModel() {
     private val _guests = MutableLiveData<List<Guest>>()
     val guests: MutableLiveData<List<Guest>> = _guests
 
-    private val _selectedGuest = MutableLiveData<Guest?>()
-    val selectedGuest: MutableLiveData<Guest?> = _selectedGuest
+    private val _selectedGuest = MutableLiveData<Set<Guest>>()
+    val selectedGuest: MutableLiveData<Set<Guest>> = _selectedGuest
 
     private val _isLoading = MutableLiveData(false)
     val isLoading: MutableLiveData<Boolean> = _isLoading
@@ -24,32 +20,51 @@ class MyGuestViewModel : ViewModel() {
     private val _isSaved = MutableLiveData(false)
     val isSaved: MutableLiveData<Boolean> = _isSaved
 
-    fun getGuests(db: FirebaseFirestore) {
-        loadGuests(db)
-        deselectGuest()
+    fun getGuests(db: FirebaseFirestore, uid: String?) {
+        loadGuests(db, uid ?: "")
+        clearGuestList()
     }
 
     private fun loadGuests(db: FirebaseFirestore, uid: String = "") {
         // fetch data from firebase firestore
         db.collection(MyGuestListFragment.COLL_MY_GUESTS)
-            .whereEqualTo("clientId",uid).get().addOnFailureListener {
-            Log.e("MyGuestListViewModel", "Error fetching guests ${it.message}")
-        }.addOnCanceledListener {
-            Log.e("MyGuestListViewModel", "Cancelled fetching guests")
-        }.addOnSuccessListener {
-            val guestsLoaded = it.toObjects(Guest::class.java)
-            _guests.value = guestsLoaded
-            Log.d("MyGuestListViewModel", "Guest loaded ${guestsLoaded.size}")
-        }
+            .whereEqualTo("clientId", uid).get().addOnFailureListener {
+                Log.e("MyGuestListViewModel", "Error fetching guests ${it.message}")
+            }.addOnCanceledListener {
+                Log.e("MyGuestListViewModel", "Cancelled fetching guests")
+            }.addOnSuccessListener {
+                val guestsLoaded = it.toObjects(Guest::class.java)
+                _guests.value = guestsLoaded
+                Log.d("MyGuestListViewModel", "Guest loaded ${guestsLoaded.size}")
+            }
+    }
+
+    fun updateGuest(guest: Guest, isSelected: Boolean) {
+        if (isSelected) selectGuest(guest)
+        else unSelectGuest(guest)
     }
 
     fun selectGuest(guest: Guest) {
-        _selectedGuest.value = guest
+        if (_selectedGuest.value == null) {
+            _selectedGuest.value = setOf(guest)
+        } else {
+            _selectedGuest.value = _selectedGuest.value?.plus(guest)
+        }
         Log.e("TAG", "Selected guest ${guest.name}")
     }
 
-    fun deselectGuest() {
-        _selectedGuest.value = null
+    fun unSelectGuest(guest: Guest) {
+        if (_selectedGuest.value != null) {
+            _selectedGuest.value = _selectedGuest.value?.minus(guest)
+            Log.e("TAG", "Deselected guest ${guest.name}")
+        }
+    }
+
+    fun clearGuestList() {
+        if (_selectedGuest.value != null) {
+            _selectedGuest.value = setOf()
+            Log.e("TAG", "Deselected guest")
+        }
     }
 
     fun saveGuest(

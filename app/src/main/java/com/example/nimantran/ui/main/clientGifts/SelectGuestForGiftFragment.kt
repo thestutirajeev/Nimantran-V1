@@ -1,19 +1,17 @@
 package com.example.nimantran.ui.main.clientGifts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
-import com.example.nimantran.adapters.MyGuestListAdapter
 import com.example.nimantran.adapters.SelectGuestAdapter
 import com.example.nimantran.databinding.FragmentSelectMyGuestForGiftBinding
-import com.example.nimantran.ui.main.clientGuests.MyGuestListFragmentDirections
 import com.example.nimantran.ui.main.clientGuests.MyGuestViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -28,7 +26,12 @@ class SelectGuestForGiftFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_select_my_guest_for_gift, container, false)
+        _binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_select_my_guest_for_gift,
+            container,
+            false
+        )
         Toast.makeText(context, "Select an option above.", Toast.LENGTH_SHORT).show()
         return binding.root
     }
@@ -37,39 +40,35 @@ class SelectGuestForGiftFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSendGift.setOnClickListener {
-            if(binding.radioButtonSendToMe.isChecked){
+            if (binding.radioButtonSendToMe.isChecked) {
                 myGiftsViewModel.sendToMe()
-            }
-            else if(binding.radioButtonSendToGuest.isChecked){
+            } else if (binding.radioButtonSendToGuest.isChecked) {
                 myGiftsViewModel.sendToGuest()
-            }
-            else{
+            } else {
                 Toast.makeText(context, "Select an option above.", Toast.LENGTH_SHORT).show()
             }
             findNavController().navigate(R.id.action_selectGuestForGiftFragment_to_getOrderDetailsFragment)
         }
-        binding.radioButtonSendToMe.setOnClickListener{
-            if(binding.radioButtonSendToMe.isChecked){
+        binding.radioButtonSendToMe.setOnClickListener {
+            if (binding.radioButtonSendToMe.isChecked) {
                 binding.radioButtonSendToGuest.isChecked = false
                 //make containerSendToMe visible
                 binding.containerSendToMe.visibility = View.VISIBLE
                 binding.containerSendToGuest.visibility = View.GONE
                 binding.buttonSendGift.isEnabled = true
-            }
-            else{
+            } else {
                 binding.radioButtonSendToGuest.callOnClick()
             }
         }
-        binding.radioButtonSendToGuest.setOnClickListener{
-            if(binding.radioButtonSendToGuest.isChecked){
+        binding.radioButtonSendToGuest.setOnClickListener {
+            if (binding.radioButtonSendToGuest.isChecked) {
                 binding.radioButtonSendToMe.isChecked = false
                 //make containerSendToMe visible
                 binding.containerSendToMe.visibility = View.GONE
                 binding.containerSendToGuest.visibility = View.VISIBLE
                 binding.buttonSendGift.isEnabled = true
 
-            }
-            else{
+            } else {
                 binding.radioButtonSendToMe.callOnClick()
 
             }
@@ -102,14 +101,10 @@ class SelectGuestForGiftFragment : Fragment() {
 
         myGuestViewModel.guests.observe(viewLifecycleOwner) { guests ->
             if (guests.isNotEmpty()) {
-                binding.recyclerViewSelectMyGuest.adapter =
-                    SelectGuestAdapter() {
-                        myGuestViewModel.selectGuest(it)
-                    }
-
-                (binding.recyclerViewSelectMyGuest.adapter as SelectGuestAdapter).submitList(
-                    guests
-                )
+                val selectGuestAdapter =
+                    SelectGuestAdapter { guest, bool -> myGuestViewModel.updateGuest(guest, bool) }
+                binding.recyclerViewSelectMyGuest.adapter = selectGuestAdapter
+                selectGuestAdapter.submitList(guests)
             } else {
                 binding.recyclerViewSelectMyGuest.visibility = View.GONE
             }
@@ -123,19 +118,19 @@ class SelectGuestForGiftFragment : Fragment() {
     companion object {
     }
 
-    private fun loadGuestList(){
+    private fun loadGuestList() {
         //load guest list
     }
 
-    private fun loadMyDetails(){
+    private fun loadMyDetails() {
         //load my details
     }
 
-    private fun removeGuestList(){
+    private fun removeGuestList() {
         //remove Guest List
     }
 
-    private fun removeMyDetails(){
+    private fun removeMyDetails() {
         //remove my details
     }
 }

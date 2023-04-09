@@ -10,7 +10,7 @@ import com.example.nimantran.models.user.Guest
 
 // will contain a checkbox and a textview for each guest
 class SelectGuestAdapter(
-    onGuestChecked: (Guest) -> Unit,
+    onGuestChecked: (Guest, Boolean) -> Unit,
 ) : ListAdapter<Guest, SelectGuestAdapter.ViewHolder>(GuestDiffCallback()) {
     private val _onGuestChecked = onGuestChecked
     var selectedGuestList = mutableListOf<Guest>()
@@ -29,7 +29,7 @@ class SelectGuestAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             guest: Guest,
-            onGuestChecked: (Guest) -> Unit,
+            onGuestChecked: (Guest, Boolean) -> Unit,
             selectedGuests: MutableList<Guest>
         ) {
             binding.guest = guest
@@ -39,7 +39,7 @@ class SelectGuestAdapter(
                 } else {
                     selectedGuests.remove(guest)
                 }
-                onGuestChecked(guest)
+                onGuestChecked(guest,isChecked)
             }
             binding.executePendingBindings()
         }

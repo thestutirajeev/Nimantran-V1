@@ -64,7 +64,7 @@ class AddMyGuestFragment : Fragment() {
             if (state) {
                 myGuestViewModel.resetSaveStatus()
                 findNavController().navigateUp() // Navigate back to MyGuestFragment
-                myGuestViewModel.getGuests(db)
+                myGuestViewModel.getGuests(db, auth.currentUser?.uid)
             } else {
                 binding.addGuestContainer.isEnabled = true
             }
