@@ -44,11 +44,9 @@ class MyNotificationFragment : Fragment() {
         myNotificationViewModel.myNotifications.observe(viewLifecycleOwner) { notifications ->
             if (notifications.isNotEmpty()) {
                 binding.recyclerViewMyNotification.adapter =
-                    MyNotificationAdapter(requireActivity(), {
+                    MyNotificationAdapter(requireActivity()) {
                         myNotificationViewModel.selectMyNotification(it)
-                    }, {
-                        myNotificationViewModel.deleteMyNotification(db, it)
-                    })
+                    }
 
                 (binding.recyclerViewMyNotification.adapter as MyNotificationAdapter).submitList(
                     notifications
@@ -71,6 +69,6 @@ class MyNotificationFragment : Fragment() {
         _binding = null
     }
     companion object {
-        const val COLL_MY_NOTIFICATIONS = "myNotifications"
+        const val COLL_MY_NOTIFICATIONS = "notifications"
     }
 }

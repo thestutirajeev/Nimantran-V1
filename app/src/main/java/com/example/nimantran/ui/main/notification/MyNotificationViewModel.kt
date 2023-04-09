@@ -12,6 +12,9 @@ class MyNotificationViewModel : ViewModel() {
     private val _selectedMyNotification = MutableLiveData<Notification?>()
     val selectedMyNotification: MutableLiveData<Notification?> = _selectedMyNotification
 
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: MutableLiveData<Boolean> = _isLoading
+
     fun getMyNotifications(db: FirebaseFirestore) {
         loadMyNotifications(db)
         deselectMyNotification()
