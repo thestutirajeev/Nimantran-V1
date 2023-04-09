@@ -136,7 +136,11 @@
         android:id="@+id/getOrderDetailsFragment"
         android:name="com.example.nimantran.ui.main.clientGifts.GetOrderDetailsFragment"
         android:label="fragment_get_order_details"
-        tools:layout="@layout/fragment_get_order_details" />
+        tools:layout="@layout/fragment_get_order_details" >
+        <argument
+            android:name="item"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/addMyGuestFragment"
         android:name="com.example.nimantran.ui.main.clientGuests.AddMyGuestFragment"

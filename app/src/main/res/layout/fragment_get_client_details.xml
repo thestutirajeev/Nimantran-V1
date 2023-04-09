@@ -56,7 +56,7 @@
             android:gravity="center"
             android:paddingTop="30dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/ImageViewUser"
                 android:layout_width="140dp"
                 android:layout_height="140dp"

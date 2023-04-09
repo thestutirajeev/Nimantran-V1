@@ -65,7 +65,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
 */
         myProfileViewModel.getClient(db, currUser?.uid)
-/*
+
         // get client data
         val clt: Client = myProfileViewModel.client.value!!
 
@@ -77,17 +77,17 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             binding.radioFemale.isChecked = true
         }
   */
-        /*
-        binding.imageViewUser.load(client.image) {
-            crossfade(true)
-            transformations(CircleCropTransformation())
-        }
-*/
-        binding.buttonEditUser.setOnClickListener {
+                /*
+                binding.imageViewUser.load(client.image) {
+                    crossfade(true)
+                    transformations(CircleCropTransformation())
+                }
+        */
+                binding . buttonEditUser . setOnClickListener {
             enableEdit()
         }
 
-        binding.buttonSaveEditUser.setOnClickListener {
+                binding . buttonSaveEditUser . setOnClickListener {
             disableEdit()
             userId = currUser!!.uid
             val name = binding.editTextEditName.text.toString().trim()
@@ -107,58 +107,58 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
 
 
-            myProfileViewModel.updateClient(db,name,gender)
+            myProfileViewModel.updateClient(db, name, gender)
         }
 /*
         binding.imageViewEditUser.setOnClickListener {
             selectImage()
         }
 */
-        binding.buttonCancelEditUser.setOnClickListener {
+                binding . buttonCancelEditUser . setOnClickListener {
             disableEdit()
             myProfileViewModel.getClient(db, auth.currentUser?.uid)
         }
 
 
-
     }
-/*
-    private val getContent =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            binding.ImageViewUser.load(uri) {
-                crossfade(true)
-                transformations(CircleCropTransformation())
-                myProfileViewModel.uploadToFirebase(requireActivity(), storage, uri)
+
+    /*
+        private val getContent =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+                binding.ImageViewUser.load(uri) {
+                    crossfade(true)
+                    transformations(CircleCropTransformation())
+                    myProfileViewModel.uploadToFirebase(requireActivity(), storage, uri)
+                }
+            }
+
+
+        @AfterPermissionGranted(AddGiftFragment.REQUEST_IMAGE_GET)
+        private fun selectImage() {
+            if (EasyPermissions.hasPermissions(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                )
+            ) {
+                getContent.launch("image/*")
+            } else {
+                EasyPermissions.requestPermissions(
+                    this, getString(R.string.permission_required),
+                    122, Manifest.permission.READ_EXTERNAL_STORAGE
+                )
             }
         }
 
-
-    @AfterPermissionGranted(AddGiftFragment.REQUEST_IMAGE_GET)
-    private fun selectImage() {
-        if (EasyPermissions.hasPermissions(
-                requireContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-            )
+        override fun onRequestPermissionsResult(
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
         ) {
-            getContent.launch("image/*")
-        } else {
-            EasyPermissions.requestPermissions(
-                this, getString(R.string.permission_required),
-                122, Manifest.permission.READ_EXTERNAL_STORAGE
-            )
+            EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
         }
-    }
+    */
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-    }
-*/
-
- */
+     */
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
 //        selectImage()
@@ -175,7 +175,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         _binding = null
     }
 
-    private fun enableEdit(){
+    private fun enableEdit() {
         binding.apply {
             buttonEditUser.isVisible = false
             buttonSaveEditUser.isVisible = true
@@ -189,7 +189,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
-    private fun disableEdit(){
+    private fun disableEdit() {
         binding.apply {
             buttonEditUser.isVisible = true
             buttonSaveEditUser.isVisible = false

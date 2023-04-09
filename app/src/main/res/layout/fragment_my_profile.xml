@@ -6,7 +6,6 @@
     tools:context=".ui.main.settings.MyProfileFragment">
 
     <data>
-
         <variable
             name="myProfileViewModel"
             type="com.example.nimantran.ui.main.settings.MyProfileViewModel" />
@@ -28,11 +27,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/ImageViewUser"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginTop="40dp"
+            app:load_image="@{myProfileViewModel.client.profileImg}"
             android:layout_marginBottom="4dp"
             android:src="@drawable/ic_person"
             app:civ_border_width="4dp"
@@ -72,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="Name"
+
                 android:textColor="@color/primaryTextColor"
                 android:textSize="18dp"
                 android:textStyle="bold"
