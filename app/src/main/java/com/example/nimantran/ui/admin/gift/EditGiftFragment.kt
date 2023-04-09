@@ -70,6 +70,7 @@ class EditGiftFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         viewModel.isSaved.observe(viewLifecycleOwner) { state ->
             if (state) {
                 findNavController().navigateUp() // Navigate back to GiftListFragment
+                viewModel.getGifts(db)
             } else {
                 binding.editGiftContainer.isEnabled = true
                 binding.btnSaveGift.text = "Save"

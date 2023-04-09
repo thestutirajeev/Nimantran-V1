@@ -15,6 +15,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.nimantran.R
 import com.example.nimantran.databinding.FragmentMyProfileBinding
+import com.example.nimantran.models.admin.Client
 import com.example.nimantran.ui.admin.gift.AddGiftFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -56,13 +57,32 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
         disableEdit()
 
-        myProfileViewModel.getClient(db, auth.currentUser?.uid)
         val currUser = auth.currentUser
+/*
         if (currUser != null) {
             userId = currUser.uid
             currUser.phoneNumber?.let { binding.editTextEditPhone.setText(it) }
         }
+*/
+        myProfileViewModel.getClient(db, currUser?.uid)
+/*
+        // get client data
+        val clt: Client = myProfileViewModel.client.value!!
 
+        binding.editTextEditName.setText(clt.name)
+        binding.editTextEditPhone.setText(clt.phone)
+        if(clt.gender == "Male") {
+            binding.radioMale.isChecked = true
+        } else if(clt.gender == "Female"){
+            binding.radioFemale.isChecked = true
+        }
+  */
+        /*
+        binding.imageViewUser.load(client.image) {
+            crossfade(true)
+            transformations(CircleCropTransformation())
+        }
+*/
         binding.buttonEditUser.setOnClickListener {
             enableEdit()
         }
@@ -87,13 +107,13 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
 
 
-            myProfileViewModel.updateClient(db)
+            myProfileViewModel.updateClient(db,name,gender)
         }
-
+/*
         binding.imageViewEditUser.setOnClickListener {
             selectImage()
         }
-
+*/
         binding.buttonCancelEditUser.setOnClickListener {
             disableEdit()
             myProfileViewModel.getClient(db, auth.currentUser?.uid)
@@ -102,7 +122,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
 
     }
-
+/*
     private val getContent =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             binding.ImageViewUser.load(uri) {
@@ -111,6 +131,8 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 myProfileViewModel.uploadToFirebase(requireActivity(), storage, uri)
             }
         }
+
+
     @AfterPermissionGranted(AddGiftFragment.REQUEST_IMAGE_GET)
     private fun selectImage() {
         if (EasyPermissions.hasPermissions(
@@ -134,10 +156,12 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     ) {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
+*/
 
+ */
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
-        selectImage()
+//        selectImage()
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
@@ -146,6 +170,7 @@ class MyProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
 
     override fun onDestroyView() {
+
         super.onDestroyView()
         _binding = null
     }

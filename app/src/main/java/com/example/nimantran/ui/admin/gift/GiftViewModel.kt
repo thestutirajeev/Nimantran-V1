@@ -241,6 +241,7 @@ class GiftViewModel : ViewModel() {
                             Log.e("GiftViewModel", "Error updating gift ${it.message}")
                         }.addOnSuccessListener {
                             Log.d("GiftViewModel", "Gift updated ${selectedGift.value?.item}")
+//                            _isSaved.value = true
                         }
                 } catch (e: Exception) {
                     Log.e("GiftViewModel", "Error updating gift ${e.message}")

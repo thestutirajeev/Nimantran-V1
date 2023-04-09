@@ -21,13 +21,17 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.TimeUnit
 
 class OTPFragment : Fragment() {
 
+
     private var _binding: FragmentOtpBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
+    private lateinit var userId: String
     private lateinit var OTP: String
     private lateinit var resendingToken: ForceResendingToken
     private lateinit var phoneNumber: String
@@ -36,7 +40,7 @@ class OTPFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        auth = Firebase.auth
     }
 
     private fun resendOtpTextViewVisibility() {
@@ -142,7 +146,7 @@ class OTPFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        _binding = FragmentOtpBinding.inflate(inflater, container, false)
+        _binding = com.example.nimantran.databinding.FragmentOtpBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -200,6 +204,13 @@ class OTPFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val currUser = auth.currentUser
+        if (currUser != null) {
+            userId = currUser.uid
+            currUser.phoneNumber?.let { binding.textViewPhone.setText(it) }
+        }
+
         binding.otpEditText1.requestFocus()
         val bundle = OTPFragmentArgs.fromBundle(requireArguments())
         phoneNumber = bundle.phone
@@ -226,6 +237,18 @@ class OTPFragment : Fragment() {
             resendVerificationCode()
             resendOtpTextViewVisibility()
         }
+
+        binding.textViewClearOtp.setOnClickListener{
+            binding.otpEditText1.setText("")
+            binding.otpEditText2.setText("")
+            binding.otpEditText3.setText("")
+            binding.otpEditText4.setText("")
+            binding.otpEditText5.setText("")
+            binding.otpEditText6.setText("")
+            binding.otpEditText1.requestFocus()
+        }
+
+
     }
 
     companion object {

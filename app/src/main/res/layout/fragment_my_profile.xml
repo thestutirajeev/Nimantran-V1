@@ -87,6 +87,7 @@
                 android:enabled="false"
                 android:inputType="text"
                 android:minHeight="48dp"
+                android:text=""
                 android:hint="Name"
                 tools:text="Name"
                 app:layout_constraintBottom_toBottomOf="@id/textView1"
