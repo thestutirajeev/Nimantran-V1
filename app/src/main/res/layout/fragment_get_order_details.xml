@@ -39,6 +39,7 @@
                     android:layout_width="160dp"
                     android:layout_height="80dp"
                     android:padding="4dp"
+                    app:src="@{vmGifts.selectedMyGift.image}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/gift_items" />
@@ -50,6 +51,7 @@
                     android:layout_marginStart="12dp"
                     android:textColor="@color/secondaryColor"
                     android:textStyle="bold"
+                    android:text="@{vmGifts.selectedMyGift.item}"
                     app:layout_constraintStart_toEndOf="@id/imageViewGift"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Gift Item" />
@@ -61,10 +63,11 @@
                     android:layout_marginRight="12dp"
                     android:textSize="10sp"
                     android:textStyle="italic"
+                    app:price_text="@{vmGifts.selectedMyGift.price}"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewGiftName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/textViewGiftName"
-                    tools:text="100"></TextView>
+                    tools:text="100" />
 
                 <ScrollView
                     android:layout_width="0dp"
@@ -82,6 +85,7 @@
                         android:padding="2dp"
                         android:textSize="10sp"
                         android:textStyle="normal"
+                        android:text="@{vmGifts.selectedMyGift.description}"
                         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl nisl sit amet nisl." />
 
                 </ScrollView>
