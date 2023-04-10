@@ -111,7 +111,7 @@
             android:id="@+id/action_myNotificationFragment_to_myReadNotificationFragment"
             app:destination="@id/myReadNotificationFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/myReadNotificationFragment"
         android:name="com.example.nimantran.ui.main.notification.MyReadNotificationFragment"
         android:label="fragment_my_read_notification"

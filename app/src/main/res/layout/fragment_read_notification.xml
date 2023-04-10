@@ -49,8 +49,18 @@
                     android:textSize="8sp"
                     app:layout_constraintStart_toEndOf="@id/textViewNotificationTime"
                     app:layout_constraintBottom_toBottomOf="@id/textViewNotificationTime"
-
                     />
+                <ImageView
+                    android:id="@+id/imageViewClose"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/textViewNotificationTime"
+                    app:layout_constraintBottom_toBottomOf="@id/textViewNotificationTime"
+                    />
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/layout1"
                     android:layout_width="match_parent"

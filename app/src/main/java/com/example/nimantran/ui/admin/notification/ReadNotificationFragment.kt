@@ -38,6 +38,10 @@ class ReadNotificationFragment : BottomSheetDialogFragment() {
         notificationListViewModel.selectedNotification.observe(viewLifecycleOwner) {
 
         }
+
+        binding.imageViewClose.setOnClickListener {
+            dismiss()
+        }
     }
     
     companion object{

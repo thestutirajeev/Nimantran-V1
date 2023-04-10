@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.nimantran.R
 import com.example.nimantran.adapters.MyNotificationAdapter
 import com.example.nimantran.databinding.FragmentMyNotificationBinding
@@ -46,6 +47,8 @@ class MyNotificationFragment : Fragment() {
                 binding.recyclerViewMyNotification.adapter =
                     MyNotificationAdapter(requireActivity()) {
                         myNotificationViewModel.selectMyNotification(it)
+                        val dir = MyNotificationFragmentDirections.actionMyNotificationFragmentToMyReadNotificationFragment()
+                        findNavController().navigate(dir)
                     }
 
                 (binding.recyclerViewMyNotification.adapter as MyNotificationAdapter).submitList(
