@@ -39,11 +39,12 @@
                     android:layout_width="160dp"
                     android:layout_height="80dp"
                     android:padding="4dp"
-                    app:src="@{vmGifts.selectedMyGift.image}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/gift_items" />
-
+                    tools:src="@drawable/gift_items"
+                    image="@{vmGifts.selectedMyGift.image}"
+                    />
+<!--                    app:src="@{vmGifts.selectedMyGift.image}" -->
                 <TextView
                     android:id="@+id/textViewGiftName"
                     android:layout_width="wrap_content"
