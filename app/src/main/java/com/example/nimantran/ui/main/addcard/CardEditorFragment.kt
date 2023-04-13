@@ -33,15 +33,15 @@ class CardEditorFragment : Fragment() {
     }
 
     // DS Editor Launcher
-    private val photoEditorLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            result?.data?.let {
-                // display result in the ivTemplate
-                mUri = it.data
-                binding.ivTemplate.setImageURI(mUri)
-
-            }
-        }
+//    private val photoEditorLauncher =
+//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//            result?.data?.let {
+//                // display result in the ivTemplate
+//                mUri = it.data
+//                binding.ivTemplate.setImageURI(mUri)
+//
+//            }
+//        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +61,7 @@ class CardEditorFragment : Fragment() {
             launchPhotoEditor(Uri.parse(it.url))
 
             binding.cLEdit.setOnClickListener {
-                launchPhotoEditor(mUri!!)
+              //  launchPhotoEditor(mUri!!)
             }
         }
         binding.cLShare.setOnClickListener {
@@ -74,13 +74,13 @@ class CardEditorFragment : Fragment() {
     }
 
     private fun launchPhotoEditor(uri: Uri) {
-        val photoEditorIntent = Intent(requireContext(), DsPhotoEditorActivity::class.java)
-        photoEditorIntent.data = uri
-        photoEditorIntent.putExtra(
-            DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY,
-            "Nimantran"
-        );
-        photoEditorLauncher.launch(photoEditorIntent)
+//        val photoEditorIntent = Intent(requireContext(), DsPhotoEditorActivity::class.java)
+//        photoEditorIntent.data = uri
+//        photoEditorIntent.putExtra(
+//            DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY,
+//            "Nimantran"
+//        );
+//       // photoEditorLauncher.launch(photoEditorIntent)
     }
 
     /**
@@ -116,3 +116,4 @@ class CardEditorFragment : Fragment() {
             }
         }
 }
+
