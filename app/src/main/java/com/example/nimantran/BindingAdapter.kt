@@ -17,6 +17,7 @@ fun loadImage(view: android.widget.ImageView, url: String?) {
     }
 }
 
+
 @BindingAdapter("humanize_date_text")
 fun humanizeDate(view: TextView, date: Date?) {
     val now = System.currentTimeMillis()
